@@ -7,7 +7,7 @@ See also http://www.ontologymatching.org
 
 For our example we want to convert heterogentiy aml files in to ontology so that we can find Alignment in them.
 
-## Step 1:
+##Step 1:
 Convert aml files in to rdf (using Krextor).
 
 ## Step 2:
