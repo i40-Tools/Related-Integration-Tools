@@ -7,16 +7,16 @@ See also http://www.ontologymatching.org
 
 For our example we want to convert heterogentiy aml files in to ontology so that we can find Alignment in them.
 
-Step 1:
+## Step 1:
 Convert aml files in to rdf (using Krextor).
 
-Step 2:
+## Step 2:
 Rename .ttl to .owl and open in protege.
 
-Step 3:
+## Step 3:
 Save it as Turtle format.
 
-Step 4:
+## Step 4:
 replace all the uri;s with the following line :
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
@@ -67,7 +67,7 @@ replace all the uri;s with the following line :
 
 Note this will only work for AML domain.
 
-step5:
+## Step5:
 Once your owl files are ready we can now move to use align api.
 Clone the repository
 Go to cmd  and move to directory align-4.8/examples.
@@ -79,7 +79,7 @@ java -jar ../lib/procalign.jar file:c://file1.owl file:c://file2.owl -o rdf/rule
 
 This will generate the rules files in rdf/ folder. You can also specify your own folders. File1 and file 2 are path of converted owl files.
 
-Step 6:
+## Step 6:
 Once we have our rule we can use it to find alignment
 
 Run the following command:
