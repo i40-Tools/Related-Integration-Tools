@@ -17,7 +17,10 @@ Rename .ttl to .owl and open in protege.
 Save it as Turtle format.
 
 ## Step 4:
-replace all the uri;s with the following line :
+replace all the uri;s with the following line :              
+
+
+
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix foaf: <http://xmlns.com/foaf/spec/> .
