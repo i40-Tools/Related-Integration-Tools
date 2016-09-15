@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE rdf:RDF [
+<!ENTITY xsd "http://www.w3.org/2001/XMLSchema#">
+<!ENTITY edoal "http://ns.inria.org/edoal/1.0/#">
+<!ENTITY pm "http://www.example.org/pm#">
+<!ENTITY im "http://www.example.org/im#">
+<!ENTITY me "http://www.example.org/me#">
+<!ENTITY nuts "http://ec.europa.eu/eurostat/ramon/ontologies/geographic.rdf#">
+<!ENTITY insee "http://rdf.insee.fr/ontologie-geo-2006.rdf#">
+<!ENTITY O1 "http://www.example.org/onto1#">
+<!ENTITY O2 "http://www.example.org/onto2#">
+<!ENTITY fn "http://www.w3.org/2005/xpath-functions#">
+]>
+
+<!-- This example does not make sense as an alignment,
+it only illustrates transformations 
+-->
+<!-- In this case the default namespace is edoal -->
+<rdf:RDF xmlns="http://ns.inria.org/edoal/1.0/#" 
+         xml:base="http://ns.inria.org/edoal/1.0/#" 
+         xmlns:edoal="http://ns.inria.org/edoal/1.0/#"
+         xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+         xmlns:align="http://knowledgeweb.semanticweb.org/heterogeneity/alignment#"
+         xmlns:alext="http://exmo.inrialpes.fr/align/ext/1.0/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <align:Alignment> 
+    <align:xml>yes</align:xml>
+    <dc:date>2015-11-17</dc:date>
+    <alext:method>manual</alext:method>
+    <alext:purpose>example</alext:purpose>
+    <align:level>2EDOAL</align:level>
+    <align:type>**</align:type>    
+    <align:onto1>
+        <align:Ontology rdf:about="&im;">
+        <align:formalism>
+            <align:Formalism align:name="OWL1.0" align:uri="http://www.w3.org/2002/07/owl#"/>
+        </align:formalism>
+        </align:Ontology>
+    </align:onto1> 
+    <align:onto2>
+        <align:Ontology rdf:about="&me;">
+        <align:location>http://www.scharffe.fr/ontologies/OntologieDuVin.wsml</align:location>
+        <align:formalism>
+            <align:Formalism align:uri="http://www.wsmo.org/wsml/wsml-syntax/wsml-dl" align:name="wsml" />
+        </align:formalism>
+        </align:Ontology>
+    </align:onto2>
+    <align:map>
+      <align:Cell rdf:about="#M11b">
+        <align:entity1><Class rdf:about="&pm;Project" /></align:entity1>
+        <align:entity2><Class rdf:about="&im;Project" /></align:entity2>
+        <align:relation>=</align:relation>
+        <align:measure rdf:datatype="&xsd;float">1.0</align:measure>
+        <transformation>
+          <Transformation edoal:direction="-o">
+            <entity1>
+      	    <Property rdf:about="&pm;hasParticipant" />
+            </entity1>
+            <entity2>
+      	    <Apply edoal:operator="java:java.lang.String#concat">
+      	      <arguments rdf:parseType="Collection">
+      	        <Property rdf:about="&im;hasFullName" />
+                  <Literal edoal:string="/" />
+      	        <Property rdf:about="&im;hasSocialSecurityNumber" />
+      	      </arguments>
+      	    </Apply>
+            </entity2>
+          </Transformation>
+        </transformation>
+        <transformation>
+          <Transformation edoal:direction="o-">
+            <entity1>
+      	    <Apply edoal:operator="&fn;substring-before">
+      	      <arguments rdf:parseType="Collection">
+      	        <Property rdf:about="&pm;hasParticipant" />
+                  <Literal edoal:string="/" />
+      	      </arguments>
+      	    </Apply>
+            </entity1>
+            <entity2>
+      	    <Property rdf:about="&im;hasFullName" />
+            </entity2>
+          </Transformation>
+        </transformation>
+        <transformation>
+          <Transformation edoal:direction="o-">
+            <entity1>
+      	    <Apply edoal:operator="&fn;substring-after">
+      	      <arguments rdf:parseType="Collection">
+      	        <Property rdf:about="&pm;hasParticipant" />
+                  <Literal edoal:string="/" />
+      	      </arguments>
+      	    </Apply>
+            </entity1>
+            <entity2>
+      	    <Property rdf:about="&im;hasSocialSecurityNumber" />
+            </entity2>
+          </Transformation>
+        </transformation>
+        <transformation>
+          <Transformation edoal:direction="-o">
+            <entity1>
+      	    <Property rdf:about="&pm;hasParticipant" />
+            </entity1>
+            <entity2>
+      	    <Apply edoal:operator="&fn;replace">
+      	      <arguments rdf:parseType="Collection">
+      	        <Property rdf:about="&im;hasName" />
+                <Literal edoal:string="(.*) ([^ ]*)" />
+                <Literal edoal:string="$2, $1" />
+      	      </arguments>
+      	    </Apply>
+            </entity2>
+          </Transformation>
+        </transformation>
+        <transformation>
+          <Transformation edoal:direction="o-">
+            <entity1>
+      	      <Apply edoal:operator="&fn;format-date">
+      		<arguments rdf:parseType="Collection">
+                  <Property rdf:about="&pm;hasStartingDate" />
+                  <Literal edoal:string="[Y0001]-[M01]-[D01]" />
+      		</arguments>
+      	      </Apply>
+            </entity1>
+            <entity2>
+      	      <Property rdf:about="&im;hasStartingDate" />
+            </entity2>
+          </Transformation>
+        </transformation>
+        <transformation>
+          <Transformation edoal:direction="o-">
+            <entity1>
+      	    <Apply edoal:operator="op:subtract-dates">
+      	      <arguments rdf:parseType="Collection">
+                  <Property rdf:about="&pm;hasStartingDate" />
+                  <Property rdf:about="&pm;hasEndDate" />
+      	      </arguments>
+      	    </Apply>
+            </entity1>
+            <entity2>
+      	    <Property rdf:about="&im;hasDuration" />
+            </entity2>
+          </Transformation>
+        </transformation>
+        <transformation>
+          <Transformation edoal:direction="-o">
+            <entity1>
+      	      <Aggregate edoal:operator="&fn;sum">
+      		<arguments rdf:parseType="Collection">
+                  <Property>
+                    <compose rdf:parseType="Collection">
+                      <Relation rdf:about="&O1;component" />
+                      <Property rdf:about="&O1;cost" />
+                    </compose>
+                  </Property>
+      		</arguments>
+      	      </Aggregate>
+            </entity1>
+            <entity2>
+      	      <Property rdf:about="&O2;hasPrice" />
+            </entity2>
+          </Transformation>
+        </transformation>
+      </align:Cell>
+    </align:map>
+    <!-- OK -->
+    <align:map>
+      <align:Cell rdf:about="#M4">
+        <align:entity1><Class rdf:about="&me;PhysicalComponent" /></align:entity1>
+        <align:entity2><Class rdf:about="&im;MechatronicComponent" /></align:entity2>
+        <align:relation>&lt;</align:relation>
+        <align:measure rdf:datatype="&xsd;float">1.0</align:measure>
+        <transformation>
+          <Transformation edoal:direction="o-">
+            <entity1>
+      	    <Apply edoal:operator="http://www.google.com/finance/computeAmortization">
+      	      <arguments rdf:parseType="Collection">
+                  <Property rdf:about="me:hasSize" />
+                  <Property rdf:about="me:hasLocation" />
+                  <Property rdf:about="ma:hasInstallationDate" />
+      	      </arguments>
+      	    </Apply>
+            </entity1>
+            <entity2>
+      	    <Property rdf:about="&im;hasAmortization" />
+            </entity2>
+          </Transformation>
+        </transformation>
+      </align:Cell>
+    </align:map>
+    <!-- These two examples are complex and non elegant -->
+    <!-- They can even be reworked with two projects having two
+    subobject each whose property must be interchanged:
+      O = O' with O.a.A.b = O'.a'.B'.c & O.b.B.d = O.b'.A'.e
+    -->
+    <!--align:map>
+      <align:Cell rdf:about="#M7">
+        <align:entity1><Class rdf:about="&pm;Project" /></align:entity1>
+        <align:entity2><Class rdf:about="&im;Project" /></align:entity2>
+        <align:relation>&lt;</align:relation>
+        <align:measure rdf:datatype="&xsd;float">1.0</align:measure>
+        <transformation>
+          <Transformation edoal:direction="o-">
+            <entity1>
+      	      <Resource>
+      	        <type rdf:resource="&im;Person" />
+      	        <uri>
+      	          <Apply edoal:operator="&fn;encode-for-uri">
+      	            <arguments rdf:parseType="Collection">
+                      <Literal edoal:string="http://example.com/myURIPrefix" />
+                      <Property rdf:about="&pm;hasParticipant" />
+      	            </arguments>
+      	          </Apply>
+      	        </uri>
+      	      </Resource>
+            </entity1>
+            <entity2>
+      	      <Property rdf:about="&im;hasParticipant" />
+            </entity2>
+          </Transformation>
+        </transformation>
+      </align:Cell>
+    </align:map-->
+    <!--align:map>
+      <align:Cell rdf:about="#M7Nicolas">
+        <align:entity1><Class rdf:about="&pm;Project" /></align:entity1>
+        <align:entity2><Class rdf:about="&im;Project" /></align:entity2>
+        <align:relation>&lt;</align:relation>
+        <align:measure rdf:datatype="&xsd;float">1.0</align:measure>
+        <transformation>
+          <Transformation edoal:direction="o-">
+            <entity1>
+	      <Relation rdf:about="&pm;endDate>
+      	        <Resource>
+      	          <type rdf:resource="&pm;Date" />
+                  <valueEqual>
+                    <Property rdf:about="&pm;Year" />
+      	            <Apply edoal:operator="&fn;substring-after">
+      	              <arguments rdf:parseType="Collection">
+                        <Property rdf:about="&pm;hasParticipant" />
+                        <Literal edoal:string="/" />
+      	              </arguments>
+      	            </Apply>
+                  </valueEqual>
+                  ...
+      	        </Resource>
+              </Relation>
+            </entity1>
+            <entity2>
+      	      <Property rdf:about="&im;hasEndDate" />
+            </entity2>
+          </Transformation>
+        </transformation>
+      </align:Cell>
+    </align:map-->
+    <!-- OK -->
+    <align:map>
+      <align:Cell rdf:about="#M6">
+        <align:entity1>
+          <Relation>
+            <compose rdf:parseType="Collection">
+              <Relation>
+                <inverse>
+                  <Relation rdf:about="&me;sourceComponent" />
+                </inverse>
+              </Relation>
+              <Relation>
+                <and rdf:parseType="Collection">
+                  <Relation rdf:about="&me;targetComponent" />
+                  <RelationDomainRestriction>
+                    <class>
+                      <Class rdf:about="&me;Connection" />
+                    </class>
+                  </RelationDomainRestriction>
+                </and>
+              </Relation>
+            </compose>
+          </Relation>
+        </align:entity1>
+        <align:entity2><Relation rdf:about="&im;connectedWith" /></align:entity2>
+        <align:relation>=</align:relation>
+        <align:measure rdf:datatype="&xsd;float">1.0</align:measure>
+      </align:Cell>
+    </align:map>
+    <!-- OK -->
+    <align:map>
+      <align:Cell rdf:about="#M9a">
+        <align:entity1><Property rdf:about="&O1;privateBathroom" /></align:entity1>
+        <align:entity2>
+          <Property>
+           <and rdf:parseType="Collection">
+             <Property rdf:about="&O2;privateAreaRoom" />
+             <Property rdf:about="&O2;bathroom" />
+           </and>
+          </Property>
+        </align:entity2>
+        <align:relation>=</align:relation>
+        <align:measure rdf:datatype="&xsd;float">1.0</align:measure>
+      </align:Cell>
+    </align:map>
+    <!-- OK -->
+    <align:map>
+      <align:Cell rdf:about="#M10a">
+        <align:entity1><Class rdf:about="&insee;Department" /></align:entity1>
+        <align:entity2>
+          <Class>
+            <and rdf:parseType="Collection">
+              <Class rdf:about="&nuts;Region" />
+              <AttributeValueRestriction>
+                <onAttribute>
+                  <Relation rdf:about="&nuts;country" />
+                </onAttribute>
+                <comparator rdf:resource="&edoal;equals" />
+                <value><Instance rdf:about="http://example.com/iso/country#FR" /></value>
+              </AttributeValueRestriction>
+              <AttributeValueRestriction>
+                <onAttribute>
+                  <Property rdf:about="&nuts;level" />
+                </onAttribute>
+                <comparator rdf:resource="&edoal;equals" />
+                <value><Literal edoal:type="&xsd;int" edoal:string="2"/></value>
+              </AttributeValueRestriction>
+            </and>
+          </Class>
+        </align:entity2>
+        <align:relation>=</align:relation>
+        <align:measure rdf:datatype="&xsd;float">1.0</align:measure>
+      </align:Cell>
+    </align:map>
+  </align:Alignment> 
+</rdf:RDF>

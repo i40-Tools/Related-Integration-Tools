@@ -1,0 +1,385 @@
+<html>
+<head>
+<title>Alignment API: Implementation</title>
+<!--style type="text/css">@import url(style.css);</style-->
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+<body bgcolor="#ffffff">
+
+<div style="background-color: yellow;">
+</div>
+
+<h1>Alignment API: Algebraic operations</h1>
+
+
+<p>Algebraic <!-- later: (and order related)--> operations are possible on networks
+  of ontologies, alignments, relations and confidence measures.
+</p>
+<p>They are increasingly supported by using Algebras of relations.
+We present below the algebraic interface offered by each class of the API.</p>
+
+<h2>Operations on Networks of ontologies</h2>
+
+<p>
+The <tt>OntologyNetwork</tt> interface of the API defines the following operators:
+<dl>
+<dt>invert()</dt>
+<dd>returns the network of ontologies with all alignments inverted.</dd>
+</dl>
+</p>
+<p>
+In addition, our <tt>BasicOntologyNetwork</tt> implementation offers:
+<dl>
+<dt>close(boolean reflexive, boolean symmetric, boolean transitive)</dt>
+<dd>computes the reflexive-symmetric-transitive closure of a network
+  of ontologies by adding to it the reflexive, symmetric, or
+  composition of alignments found in the network.</dd>
+
+
+<!-- sure ??? -->
+<dt>meet(OntologyNetwork)</dt>
+<dd>Returns the ontology network made of all ontologies and alignment
+  from any of the networks
+<!--i>A&oplus;A'={&lang; e,e',n,r&rang;; &lang; e,e',n,r&rang;&isin; A &or; &lang; e,e',n',r&rang;&isin; A'}</i-->;</dd>
+<dt>join(OntologyNetwork)</dt>
+<dd>Returns the ontology network made of all ontologies and alignment
+  present in both networks. The alignments are computed through the
+  join operation
+<!--i>A&otimes; A'={&lang; e,e',min(n,n'),r&rang;; &lang; e,e',n,r&rang;&isin; A &and; &lang; e,e',n',r&rang;&isin; A'}</i-->.</dd>
+</dl>
+</p>
+
+
+<h2>Operations on Alignments</h2>
+
+<p>
+The <tt>Alignment</tt> interface of the API defines the following operators:
+<dl>
+<dt>inverse()</dt>
+<dd>From an alignment between <i>o<sub>1</sub></i>
+and <i>o<sub>2</sub></i>, returns an alignment
+between <i>o<sub>2</sub></i> and <i>o<sub>1</sub></i> based on
+the converse of relations (<tt>Relation.inverse()</tt>).
+<i>A<sup>-1</sup>={c<sup>-1</sup>; c&isin; A}</i> such that <i>c</i><sup>-1</sup> is the converse of cell <i>c</i>;</dd>
+<dt>meet(Alignment)</dt>
+<dd>Returns an alignment which contains all correspondences which are
+in any of the alignments.
+<i>A&oplus;A'={c; c&isin; A &or; c&isin; A'}</i>;</dd>
+<dt>join(Alignment)</dt>
+<dd>Returns an alignment which contains all correspondences which are
+in both alignments. In order to be correct, such operation requires to
+decide when two correspondences have an intersection.
+<i>A&otimes; A'={c; c&isin; A &and; c&isin; A'}</i>.</dd>
+<dt>diff(Alignment)</dt>
+<dd>Returns an alignment which contains all correspondences which are
+in the first alignment but not in the second. As for join, such operation requires to
+decide what part of a correspondence is part of another.
+<i>A&ominus;A'={c; c&isin; A &and; c&notin; A'}</i>;</dd>
+<dt>compose(Alignment)</dt>
+<dd>
+<i>A&odot;A'={c&odot;c'; c&isin; A &and; c'&isin; A'}</i> in which <i>c&odot; c'</i> is the composition of cells;</dd>
+</dl>
+</p>
+<p>
+In addition, our <tt>BasicAlignment</tt> implementation offers:
+<dl>
+<dt>aggregate(modality, Alignment...)</dt>
+<dd>Computes an alignment containing all correspondences of the
+  alignments provided as input, with a confidence aggregated according
+  to the modality (min/max/avg/pool).</dd>
+<dt>cut(modality, threshold)</dt>
+<dd>Suppresses from the alignment all correspondences whose confidence
+  is below a threshold intepreted according to the modality (perc/best/hardgap/propgap/hard/span/prop).
+</dl>
+</p>
+
+<h2>Operations on Cells</h2>
+
+<p>
+The <tt>Cell</tt> interface of the API the following
+operations:
+<p>
+<dl>
+<dt>compose(Cell)</dt>
+<dd>
+<i>&lang; e,e',n,r&rang;&odot;&lang; e',e'',n',r'&rang;=&lang;
+  e,e'',n&otimes; n',r&odot; r'&rang;</i> in which <i>r&odot; r'</i>
+is the composition of relations and <i>n&otimes; n'</i> the conjunction of confidences;</dd>
+<dt>inverse()</dt>
+<dd>&lang;<i>e,e',n,r</i>&rang;<sup>-1</sup>=&lang;<i>e',e,n,r</i><sup>-1</sup>&rang; such that <i>r</i><sup>-1</sup> is the converse of relation <i>r</i>;</dd>
+</dd>
+</p>
+<p>
+Strictly speaking, if one considers the semantics of relations and
+confidence measures, the composition of two cells should provide a set
+(conjunction of cells).
+</p>
+
+<h2>Operations on Relations</h2>
+
+<p>
+The <tt>Relation</tt> interface of the API offers the following
+operations:
+<p>
+<dl>
+<dt>compose(Relation)</dt>
+<dd>
+(<i>r</i>&odot;<i>r'</i>) Provides the composition of two relations and null if it does not exists.</dd>
+<dt>inverse()</dt>
+<dd>
+(<i>r</i><sup>-1</sup>) Provide the converse of a relation and null if it does not exist.</dd>
+</dd>
+</p>
+<p>
+In addition, the <tt>DisjunctiveRelation</tt> interface of the
+implentation offers:
+<dd>
+<dt>meet(Relation...)</dt>
+<dd>(<i>r</i>&oplus;<i>r'</i>...) Returns the disjunction of relations appearing in any of the relations.</dd>
+<dt>join(Relation...)</dt>
+<dd>(<i>r</i>&otimes;<i>r'</i>...) Returns the disjunction of relations appearing in all the relations.</dd>
+</dl>
+</p>
+
+
+<p>
+Various relation languages may be used in the Alignment API. They have
+to be declared through <tt>BasicAlignment.setRelationType( className )</tt>
+such that classname is the name of a class implementing
+the <tt>Relation</tt> interface.
+It is also recorded in the <a href="format.html">Alignment format</a>
+through the <tt>relationClass</tt> attribute.
+</p>
+<p>
+By default, the implementation
+is <tt>fr.inrialpes.exmo.align.impl.BasicRelation</tt>.
+</p>
+<p>
+The <tt>BasicRelation</tt> implementation only has two inverse
+relations (&sube; and &supe;) the other being self-inverse. 
+It implements the following composition table:
+<center border="1">
+<table>
+<tr><td></td><td>&sube;</td><td>=</td><td>&supe;</td></tr>
+<tr><td>&sube;</td><td>&sube;</td><td>&sube;</td><td>&bot;</td></tr>
+<tr><td>=</td><td>&sube;</td><td>=</td><td>&supe;</td></tr>
+<tr><td>&supe;</td><td>&bot;</td><td>&supe;</td><td>&supe;</td></tr>
+</table>
+</center>
+</p>
+
+<p>
+Other such classes have been implemented in the Alignment API in order
+to support an increasing number of operations. These are (supported
+operations in parenthesis):
+<dl>
+<dt><tt>BasicRelation</tt></dt>
+<dd>Which allows for dealing with simple independent relations.</dd>
+<dt><tt>DisjunctiveRelation</tt> (meet,join)</dt>
+<dd>In which each relation is in fact a disjunction of base relations.</dd>
+<dt><tt>AlgebraRelation</tt> (inverse,composition)</dt>
+<dd>Which implements relations from an algebras of relation, i.e.,
+  supporting join, meet, complement, inverse, and composition.</dd>
+</ul>
+These classes are abstract by nature, if not by implementation and
+have to be refined to implement concrete algebras.
+</p>
+<p>
+Only the <tt>AlgebraRelation</tt> interface offers the formally
+defined operations of algebras of relations.
+The current implementation of the API offers several algebras of
+relations:
+<dd>
+<dt>fr.inrialpes.exmo.align.impl.rel.A2RelationAlgebra</dt>
+<dd>for relations between instances,</dd>
+<dt>fr.inrialpes.exmo.align.impl.rel.A5RelationAlgebra</dt>
+<dd> for relations between classes,</dd>
+<dt>fr.inrialpes.exmo.align.impl.rel.A16RelationAlgebra</dt>
+<dd>for relations between classes including empty classes,
+instances and across them.</dd>
+</dd>
+</p>
+
+<h2>Operations on Confidences</h2>
+
+<p>
+There is no Confidence component in the API. However, the
+implementation of the API has such a generic component, even if all
+their values are implemented as double.
+</p>
+<p>
+The confidence measures should implement a triangular co-norm
+structure.
+</p>
+<p>
+The <tt>BasicConfidence</tt> class offers the two operations:
+<p>
+<dl>
+<dt>conjunction(double confidence)</dt>
+<dd>(<i>n</i>&otimes;<i>n'</i>) Returns the confidence associated to the conjunction of two
+  statements with attached confidence (it is implemented by the min operation);</dd>
+<dt>disjunction(double confidence)</dt>
+<dd>(<i>n</i>&oplus;<i>n'</i>) Returns the confidence associated to the disjunction of two
+  statements with attached confidence (it is implemented by the max operation).</dd>
+</dd>
+<dt>getTopConfidence()</dt>
+<dd>Returns the highest confidence (implemented as 1.0).</dd>
+</dd>
+<dt>getBottomConfidence()</dt>
+<dd>Returns the lowest confidence, the one which corresponds to
+  ignoring the correspondence (implemented as 0.0).</dd>
+</dd>
+</p>
+
+<h2>Using algebras of relations with the Alignment format and EDOAL</h2>
+
+<p>
+Such relations algebra may be used from the <a href="format.html">Alignment format</a>
+(including <a href="edoal.html">EDOAL alignments</a>), through the use
+of the <a href="labels.html"><tt>relationClass</tt> extension</a> in the alignment header:
+<pre>
+&lt;Alignment>
+  &lt;xml>yes&lt;/xml>
+  &lt;level>0&lt;/level>
+  &lt;type>**&lt;/type>
+  &lt;relationClass>fr.inrialpes.exmo.align.impl.rel.A5AlgebraRelation&lt;/relationClass>
+  &lt;onto1>
+  ...
+</pre>
+</p>
+
+<h2>Defining a new algebra of relations</h2>
+
+<p>
+In principle, defining a new algebra of relations amounts to provide:
+<ul>
+<li>The list of base relations;</li>
+<li>The identity relation;</li>
+<li>The relation inverse function;</li>
+<li>The relation composition function.</li>
+</ul>
+We have dreamed to provide a framework in which implementing just this
+would be sufficient.
+</p>
+<p>
+However, due to Java limitations, we have not been able to do so.
+The best solution that we found amounts to duplicate an existing
+algebra such as <tt>A5RelationAlgebra</tt> and <tt>A5BaseRelation</tt>
+and to modify only the parts above.
+</p>
+<p>
+More precisely, in <tt>A5BaseRelation</tt>, declare the set of base
+relations with its label:
+<pre>
+    EQUIV ( "=" ),
+    SUBSUMED( "<" ),
+    SUBSUME( ">" ),
+    OVERLAP( ")(" ),
+    DISJOINT( "%" );
+</pre>
+Then, in <tt>A5RelationAlgebra</tt>, declare all these relations and
+their inverse (the identity relation comes first):
+<pre>
+	declareRelation( A5BaseRelation.EQUIV, A5BaseRelation.EQUIV );
+	declareRelation( A5BaseRelation.SUBSUME, A5BaseRelation.SUBSUMED );
+	declareRelation( A5BaseRelation.SUBSUMED, A5BaseRelation.SUBSUME );
+	declareRelation( A5BaseRelation.OVERLAP, A5BaseRelation.OVERLAP );
+	declareRelation( A5BaseRelation.DISJOINT, A5BaseRelation.DISJOINT );
+</pre>
+and the composition table:
+<pre>
+	// ---- EQUIV
+	o( A5BaseRelation.EQUIV, A5BaseRelation.EQUIV,
+	   A5BaseRelation.EQUIV );
+	o( A5BaseRelation.EQUIV, A5BaseRelation.SUBSUME,
+	   A5BaseRelation.SUBSUME );
+	o( A5BaseRelation.EQUIV, A5BaseRelation.SUBSUMED,
+	   A5BaseRelation.SUBSUMED );
+	o( A5BaseRelation.EQUIV, A5BaseRelation.OVERLAP,
+	   A5BaseRelation.OVERLAP );
+	o( A5BaseRelation.EQUIV, A5BaseRelation.DISJOINT,
+	   A5BaseRelation.DISJOINT );
+	// ---- SUBSUME
+	o( A5BaseRelation.SUBSUME, A5BaseRelation.EQUIV, 
+	   A5BaseRelation.SUBSUME );
+	o( A5BaseRelation.SUBSUME, A5BaseRelation.SUBSUME, 
+	   A5BaseRelation.SUBSUME );
+        ...
+</pre>
+Alternatively the composition table can be described through a set of
+consistent triples (example from the A2 algebra):
+<pre>
+	t( A2BaseRelation.EQUIV, A2BaseRelation.EQUIV, A2BaseRelation.EQUIV );
+	t( A2BaseRelation.EQUIV, A2BaseRelation.DIFF, A2BaseRelation.DIFF );
+	t( A2BaseRelation.DIFF, A2BaseRelation.DIFF, A2BaseRelation.DIFF );
+</pre>
+</p>
+<p>
+Finally, in the two Java classes, the names <tt>A5BaseRelation</tt>
+and <tt>A5RelationAlgebra</tt> should be globally replaced by their
+new names.
+</p>
+<p>
+The new algebra can be used as the others predefined ones.
+In fact, it is not even necessary to define <tt>A5BaseRelation</tt> as
+public it may be kept private to the Algebra file.
+</p>
+
+<h2>Combining algebras of relations</h2>
+
+<p>
+Alignments may express relations from different standpoints or
+consider different types of entities (concepts, properties,
+individuals).
+Algebras of relations for such situations (such as A16) may be
+obtained by combining simpler algebras of relations.
+</p>
+<p>
+This is ongoing work which will come in due time to the Alignement API
+either through an offline algebra generator (generating Java classes
+implementing the combined algebra) or through an online combinator
+(able to interpret the combination of algebras on the fly).
+</p>
+
+<h2>Composing matching algorithms</h2><a name="pipe"></a>
+
+<p>
+Besides the composition of alignments, it is possible to compose
+matching methods.
+</p>
+<p>
+One of the claimed advantages of providing a format for alignments is the ability to improve alignments by 
+composing matching algorithms.
+This allows iterative matching: starting with
+a first alignment, followed by user feedback, subsequent alignment rectification, and so on.
+A previous alignment can, indeed, be passed to
+the <tt>align</tt> method as an argument.
+The correspondences of this alignment can
+be incorporated in those of the alignment to be processed.</p>
+
+<p>For instance, it is possible to implement the <tt>StrucSubsDistNameAlignment</tt>, 
+by first providing a simple substring distance on
+the property names and then applying a structural distance on classes.
+The new modular implementation of the algorithm yields the same results.</p>
+
+<p>Moreover, modularizing these matching algorithms offers the opportunity to manipulate
+the alignment in the middle, for instance, by triming resulting alignments.
+As an example, the algorithm used above can be obtained by:
+<ul>
+<li>matching the properties;</li>
+<li>triming those under <tt>threshold</tt>;</li>
+<li>matching the classes with regard to this partial alignment;</li>
+<li>generating axioms (see below);</li>
+</ul>
+</p>
+
+<address>
+<small>
+<hr />
+<center>http://alignapi.gforge.inria.fr/algebra.html</center>
+<hr />
+$Id: algebra.html 2070 2015-10-03 20:39:26Z euzenat $
+</small>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<!-- Works with Silk 2.5.4 (but not 2.6.1, but maybe 2.6.2) -->
+
+<Silk>
+  <Prefixes>
+    <Prefix id="rdf" namespace="http://www.w3.org/1999/02/22-rdf-syntax-ns#" />
+    <Prefix id="owl" namespace="http://www.w3.org/2002/07/owl#" />
+    <Prefix id="gn" namespace="http://www.geonames.org/ontology#" />
+    <Prefix id="id1" namespace="http://rdf.insee.fr/geo/" />
+    <Prefix id="insee" namespace="http://rdf.insee.fr/def/geo#" />
+  </Prefixes>
+  
+  <DataSources>
+    <DataSource id="id1" type="file">
+      <Param name="file" value="insee-communes.ttl"/>
+      <Param name="format" value="TTL" />
+    </DataSource>
+    
+    <DataSource id="id2" type="file">
+      <Param name="file" value="communes_gn.ttl"/>
+      <Param name="format" value="TTL" />
+    </DataSource>
+  </DataSources>
+  
+  <Interlinks>
+    <Interlink id="no1">
+      <LinkType>owl:sameAs</LinkType>
+
+      <SourceDataset dataSource="id1" var="e1">
+	<RestrictTo>
+	  ?e1 rdf:type insee:Commune . 
+	</RestrictTo>
+      </SourceDataset>
+      <TargetDataset dataSource="id2" var="e2">
+	<RestrictTo>
+	  ?e2 rdf:type gn:Feature . ?e2 gn:countryCode "FR" .
+	</RestrictTo>
+      </TargetDataset>
+
+      <LinkageRule>
+	<Compare metric="equality">
+	  <Input path="?e1/insee:nom" />
+	  <Input path="?e2/gn:name" />
+	</Compare>
+      </LinkageRule>
+      
+      <Filter />
+      
+      <Outputs>
+        <Output minConfidence="1." type="file">
+          <Param name="file" value="results/NewRound1-accepted.rdf"/>
+          <Param name="format" value="alignment"/>
+        </Output>
+      </Outputs>
+
+    </Interlink>
+
+    <Interlink id="no2">
+      <LinkType>owl:sameAs</LinkType>
+      <SourceDataset dataSource="id1" var="e1">
+	<RestrictTo>
+	  ?e1 rdf:type insee:Commune . 
+	</RestrictTo>
+      </SourceDataset>
+      <TargetDataset dataSource="id2" var="e2">
+	<RestrictTo>
+	  ?e2 rdf:type gn:Feature . ?e2 gn:countryCode "FR" .
+	</RestrictTo>
+      </TargetDataset>
+      <LinkageRule>
+	<Aggregate type="max">
+	  <Compare metric="jaccard" threshold=".2">
+	    <TransformInput function="tokenize">
+	      <Input path="?e1/insee:nom" />
+	    </TransformInput>
+	    <TransformInput function="tokenize">
+	      <Input path="?e2/gn:name" />
+	    </TransformInput>
+	  </Compare>
+	  <Compare metric="levenshtein">
+	    <Input path="?e1/insee:nom" />
+	    <Input path="?e2/gn:name" />
+	  </Compare>
+	</Aggregate>
+	</LinkageRule>
+      
+      <Filter />
+      
+      <Outputs>
+        <Output minConfidence=".7" type="file">
+          <Param name="file" value="results/NewRound2-accepted.rdf"/>
+          <Param name="format" value="alignment"/>
+        </Output>
+        <Output maxConfidence=".7" minConfidence=".2" type="file">
+          <Param name="file" value="results/NewRound2-tocheck.nt"/>
+          <Param name="format" value="ntriples"/>
+        </Output>
+      </Outputs>
+
+    </Interlink>
+      
+ </Interlinks>
+
+</Silk>

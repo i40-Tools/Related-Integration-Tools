@@ -1,0 +1,118 @@
+<?xml version='1.0' encoding='utf-8' standalone='no'?>
+<rdf:RDF xmlns='http://knowledgeweb.semanticweb.org/heterogeneity/alignment#'
+         xmlns:rdf='http://www.w3.org/1999/02/22-rdf-syntax-ns#'
+         xmlns:xsd='http://www.w3.org/2001/XMLSchema#'
+         xmlns:alext='http://exmo.inrialpes.fr/align/ext/1.0/'
+         xmlns:align='http://knowledgeweb.semanticweb.org/heterogeneity/alignment#'>
+<Alignment>
+  <xml>yes</xml>
+  <level>0</level>
+  <type>11</type>
+  <alext:method>Manually made alignment</alext:method>
+  <alext:time>53</alext:time>
+  <onto1>
+    <Ontology rdf:about="http://alignapi.gforge.inria.fr/tutorial/tutorial4/ontology1.owl">
+      <location>http://alignapi.gforge.inria.fr/tutorial/tutorial4/ontology1.owl</location>
+      <formalism>
+        <Formalism align:name="OWL2.0" align:uri="http://www.w3.org/2002/07/owl#"/>
+      </formalism>
+    </Ontology>
+  </onto1>
+  <onto2>
+    <Ontology rdf:about="http://alignapi.gforge.inria.fr/tutorial/tutorial4/ontology2.owl">
+      <location>http://alignapi.gforge.inria.fr/tutorial/tutorial4/ontology2.owl</location>
+      <formalism>
+        <Formalism align:name="OWL2.0" align:uri="http://www.w3.org/2002/07/owl#"/>
+      </formalism>
+    </Ontology>
+  </onto2>
+  <map>
+    <Cell>
+      <entity1 rdf:resource='http://alignapi.gforge.inria.fr/tutorial/tutorial4/ontology1.owl#Estudiante'/>
+      <entity2 rdf:resource='http://alignapi.gforge.inria.fr/tutorial/tutorial4/ontology2.owl#Student'/>
+      <relation>=</relation>
+      <measure rdf:datatype='http://www.w3.org/2001/XMLSchema#float'>1.0</measure>
+    </Cell>
+  </map>
+  <map>
+    <Cell>
+      <entity1 rdf:resource='http://alignapi.gforge.inria.fr/tutorial/tutorial4/ontology1.owl#Tutor'/>
+      <entity2 rdf:resource='http://alignapi.gforge.inria.fr/tutorial/tutorial4/ontology2.owl#Professor'/>
+      <relation>=</relation>
+      <measure rdf:datatype='http://www.w3.org/2001/XMLSchema#float'>1.0</measure>
+    </Cell>
+  </map>
+  <map>
+    <Cell>
+      <entity1 rdf:resource='http://alignapi.gforge.inria.fr/tutorial/tutorial4/ontology1.owl#lastname'/>
+      <entity2 rdf:resource='http://alignapi.gforge.inria.fr/tutorial/tutorial4/ontology2.owl#name'/>
+      <relation>=</relation>
+      <measure rdf:datatype='http://www.w3.org/2001/XMLSchema#float'>1.0</measure>
+    </Cell>
+  </map>
+  <map>
+    <Cell>
+      <entity1 rdf:resource='http://alignapi.gforge.inria.fr/tutorial/tutorial4/ontology1.owl#firstname'/>
+      <entity2 rdf:resource='http://alignapi.gforge.inria.fr/tutorial/tutorial4/ontology2.owl#first-name'/>
+      <relation>=</relation>
+      <measure rdf:datatype='http://www.w3.org/2001/XMLSchema#float'>1.0</measure>
+    </Cell>
+  </map>
+  <map>
+    <Cell>
+      <entity1 rdf:resource='http://alignapi.gforge.inria.fr/tutorial/tutorial4/ontology1.owl#gender'/>
+      <entity2 rdf:resource='http://alignapi.gforge.inria.fr/tutorial/tutorial4/ontology2.owl#gender'/>
+      <relation>=</relation>
+      <measure rdf:datatype='http://www.w3.org/2001/XMLSchema#float'>1.0</measure>
+    </Cell>
+  </map>
+  <map>
+    <Cell>
+      <entity1 rdf:resource='http://alignapi.gforge.inria.fr/tutorial/tutorial4/ontology1.owl#affiliation'/>
+      <entity2 rdf:resource='http://alignapi.gforge.inria.fr/tutorial/tutorial4/ontology2.owl#institution'/>
+      <relation>=</relation>
+      <measure rdf:datatype='http://www.w3.org/2001/XMLSchema#float'>1.0</measure>
+    </Cell>
+  </map>
+  <map>
+    <Cell>
+      <entity1 rdf:resource='http://alignapi.gforge.inria.fr/tutorial/tutorial4/ontology1.owl#city'/>
+      <entity2 rdf:resource='http://alignapi.gforge.inria.fr/tutorial/tutorial4/ontology2.owl#city-of-study'/>
+      <relation>=</relation>
+      <measure rdf:datatype='http://www.w3.org/2001/XMLSchema#float'>1.0</measure>
+    </Cell>
+  </map>
+  <map>
+    <Cell>
+      <entity1 rdf:resource='http://alignapi.gforge.inria.fr/tutorial/tutorial4/ontology1.owl#country'/>
+      <entity2 rdf:resource='http://alignapi.gforge.inria.fr/tutorial/tutorial4/ontology2.owl#country-of-study'/>
+      <relation>=</relation>
+      <measure rdf:datatype='http://www.w3.org/2001/XMLSchema#float'>1.0</measure>
+    </Cell>
+  </map>
+  <map>
+    <Cell>
+      <entity1 rdf:resource='http://alignapi.gforge.inria.fr/tutorial/tutorial4/ontology1.owl#year'/>
+      <entity2 rdf:resource='http://alignapi.gforge.inria.fr/tutorial/tutorial4/ontology2.owl#year-in-phd'/>
+      <relation>=</relation>
+      <measure rdf:datatype='http://www.w3.org/2001/XMLSchema#float'>1.0</measure>
+    </Cell>
+  </map>
+  <map>
+    <Cell>
+      <entity1 rdf:resource='http://alignapi.gforge.inria.fr/tutorial/tutorial4/ontology1.owl#topic'/>
+      <entity2 rdf:resource='http://alignapi.gforge.inria.fr/tutorial/tutorial4/ontology2.owl#topics-of-interest'/>
+      <relation>=</relation>
+      <measure rdf:datatype='http://www.w3.org/2001/XMLSchema#float'>1.0</measure>
+    </Cell>
+  </map>
+  <map>
+    <Cell>
+      <entity1 rdf:resource='http://alignapi.gforge.inria.fr/tutorial/tutorial4/ontology1.owl#supervisor'/>
+      <entity2 rdf:resource='http://alignapi.gforge.inria.fr/tutorial/tutorial4/ontology2.owl#phd-advisor'/>
+      <relation>=</relation>
+      <measure rdf:datatype='http://www.w3.org/2001/XMLSchema#float'>1.0</measure>
+    </Cell>
+  </map>
+</Alignment>
+</rdf:RDF>

@@ -1,0 +1,234 @@
+<?xml version="1.0"?>
+<!DOCTYPE rdf:RDF [
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY foaf "http://xmlns.com/foaf/0.1/" >
+    <!ENTITY exmo "http://exmo.inrialpes.fr/connectors-core/" >
+]>
+<rdf:RDF xmlns="http://exmo.inrialpes.fr/connectors-data/people/"
+     xml:base="http://exmo.inrialpes.fr/connectors-data/people/"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:foaf="http://xmlns.com/foaf/0.1/"
+     xmlns:exmo="http://exmo.inrialpes.fr/connectors-core/"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+    <owl:Ontology rdf:about="http://exmo.inrialpes.fr/connectors-data/people/">
+      <owl:imports rdf:resource="http://xmlns.com/foaf/0.1/"/>
+    </owl:Ontology>
+<!--
+Tests are on two main elements tested on datas for one property : 
+ - quantity : = | < | > =>  where card on people_1 is = | > | < to card
+   on people_2 (card is the number of resources for one specified
+   property
+ -Nb differences that can be : 
+  - 0
+  - 1
+  - Q = min(card(people_1), card(people)) - 1 => for the specified property
+  - n with 0 < n < Q
+)
+###qty##NbDiff###Linkey#####Case
+### = ##  0   ##Equals######AliceC1
+### = ##  1   ##Intersects##AliceC2
+### = ##  n   ##Intersects##AliceC3
+### = ##  Q   ##############AliceC4
+### > ##  0   ##Intersects##DaveC1
+### > ##  1   ##Intersects##DaveC2
+### > ##  n   ##Intersects##DaveC3
+### > ##  Q   ##############DaveC4
+### < ##  0   ##Intersects##CarolC1
+### < ##  1   ##Intersects##CarolC2
+### < ##  n   ##Intersects##CarolC3
+### < ##  Q   ##############CarolC4
+
+    Nothing : 
+    -->
+
+
+    <rdf:Description rdf:about="http://exmo.inrialpes.fr/connectors-data/people#alice_c0"><!-- CANNOT NO INTERSECTS (not same type) -->
+        <rdf:type rdf:resource="&exmo;OtherPersonneType"/>
+        <exmo:nom>AliceC1</exmo:nom>
+        <exmo:nom>AliceC1_1</exmo:nom>
+        <exmo:nom>AliceC1_2_other</exmo:nom>
+        <exmo:boitemel>alice1@gmail.com</exmo:boitemel>
+        <exmo:boitemel>alice1@msn.com</exmo:boitemel>
+    </rdf:Description>
+
+    <!-- EQUALS for (nom, givenName)-->
+    <rdf:Description rdf:about="http://exmo.inrialpes.fr/connectors-data/people#alice_c1_1">
+        <rdf:type rdf:resource="&exmo;Personne"/>
+        <exmo:nom>AliceC1</exmo:nom>
+        <exmo:nom>AliceC1_1</exmo:nom>
+        <exmo:nom>AliceC1_2</exmo:nom>
+        <exmo:boitemel>alice1@gmail.com</exmo:boitemel>
+        <exmo:boitemel>alice1@msn.com</exmo:boitemel>
+    </rdf:Description>
+
+
+    <!-- INTERSECTS  for (nom, givenName)  / Equals for (connait, knows) -->
+    <rdf:Description rdf:about="http://exmo.inrialpes.fr/connectors-data/people#alice_c2_1">
+        <rdf:type rdf:resource="&exmo;Personne"/>
+        <exmo:nom>AliceC2</exmo:nom>
+        <exmo:nom>AliceC2_1</exmo:nom>
+        <exmo:nom>AliceC2_2</exmo:nom>
+        <!--<exmo:connait>DaveC1_1</exmo:connait>
+        <exmo:connait>CarolC1_1</exmo:connait>-->
+        <exmo:connait>Ivan2</exmo:connait>
+        <exmo:boitemel>alice1@gmail.com</exmo:boitemel>
+        <exmo:boitemel>alice1@msn.com</exmo:boitemel>
+    </rdf:Description>
+
+    <!-- INTERSECTS  for (nom, givenName)   / INTERSECTS for (connait, knows) => knows one more-->
+    <rdf:Description rdf:about="http://exmo.inrialpes.fr/connectors-data/people#alice_c3_1">
+        <rdf:type rdf:resource="&exmo;Personne"/>
+        <exmo:nom>AliceC3</exmo:nom>
+        <exmo:nom>AliceC3_1</exmo:nom>
+        <exmo:nom>AliceC3_2</exmo:nom>
+        <exmo:nom>AliceC3_3</exmo:nom>
+        <exmo:nom>AliceC3_4</exmo:nom>
+        <exmo:nom>AliceC3_5</exmo:nom>
+        <exmo:nom>AliceC3_6</exmo:nom>
+        <exmo:connait>CarolC2_1</exmo:connait>
+        <exmo:connait>DaveC2_1</exmo:connait>
+        <exmo:connait>DaveC1_1</exmo:connait> <!-- givenName exist !-->
+        <exmo:boitemel>alice1@gmail.com</exmo:boitemel>
+        <exmo:boitemel>alice1@msn.com</exmo:boitemel>
+    </rdf:Description>
+
+    <!-- INTERSECTS  for (nom, givenName)  / INTERSECTS for (connait, knows) => knows one less-->
+    <rdf:Description rdf:about="http://exmo.inrialpes.fr/connectors-data/people#alice_c4_1">
+        <rdf:type rdf:resource="&exmo;Personne"/>
+        <exmo:nom>AliceC4</exmo:nom>
+        <exmo:nom>AliceC4_1</exmo:nom>
+        <exmo:nom>AliceC4_2</exmo:nom>
+        <exmo:nom>AliceC4_3</exmo:nom>
+        <exmo:nom>AliceC4_4</exmo:nom>
+        <exmo:nom>AliceC4_5</exmo:nom>
+        <exmo:nom>AliceC4_6</exmo:nom>
+        <exmo:connait>AliceC1_1</exmo:connait>
+        <exmo:connait>AliceC2_1</exmo:connait>
+        <exmo:boitemel>alice1@gmail.com</exmo:boitemel>
+        <exmo:boitemel>alice1@msn.com</exmo:boitemel>
+    </rdf:Description>
+
+    <!-- INTERSECTS  for (nom, givenName) / INTERSECTS for (connait, knows) => knows one different-->
+    <rdf:Description rdf:about="http://exmo.inrialpes.fr/connectors-data/people#dave_c1_1">
+        <rdf:type rdf:resource="&exmo;Personne"/>
+        <exmo:nom>DaveC1</exmo:nom>
+        <exmo:nom>DaveC1_1</exmo:nom>
+        <exmo:nom>DaveC1_2</exmo:nom>
+        <exmo:nom>DaveC1_3</exmo:nom>
+        <exmo:nom>DaveC1_4</exmo:nom>
+        <exmo:nom>DaveC1_5</exmo:nom>
+        <exmo:nom>DaveC1_6</exmo:nom>
+        <exmo:connait>DaveC3_2_diff</exmo:connait>
+        <exmo:connait>CarolC3_2_diff</exmo:connait>
+        <exmo:connait>CarolC4_4</exmo:connait>
+        <exmo:boitemel>dave@gmail.com</exmo:boitemel>
+        <exmo:boitemel>dave1@msn.com</exmo:boitemel>
+    </rdf:Description>
+
+    <!-- INTERSECTS  for (nom, givenName)-->
+    <rdf:Description rdf:about="http://exmo.inrialpes.fr/connectors-data/people#dave_c2_1">
+        <rdf:type rdf:resource="&exmo;Personne"/>
+        <exmo:nom>DaveC2</exmo:nom>
+        <exmo:nom>DaveC2_1</exmo:nom>
+        <exmo:nom>DaveC2_2</exmo:nom>
+        <exmo:nom>DaveC2_3</exmo:nom>
+        <exmo:nom>DaveC2_4</exmo:nom>
+        <exmo:nom>DaveC2_5</exmo:nom>
+        <exmo:nom>DaveC2_6</exmo:nom>
+        <exmo:boitemel>dave@gmail.com</exmo:boitemel>
+        <exmo:boitemel>dave1@msn.com</exmo:boitemel>
+    </rdf:Description>
+    
+    <!-- INTERSECTS  for (nom, givenName)-->
+    <rdf:Description rdf:about="http://exmo.inrialpes.fr/connectors-data/people#dave_c3_1">
+        <rdf:type rdf:resource="&exmo;Personne"/>
+        <exmo:nom>DaveC3</exmo:nom>
+        <exmo:nom>DaveC3_1</exmo:nom>
+        <exmo:nom>DaveC3_2</exmo:nom>
+        <exmo:nom>DaveC3_3_diff</exmo:nom>
+        <exmo:nom>DaveC3_4</exmo:nom>
+        <exmo:nom>DaveC3_5</exmo:nom>
+        <exmo:nom>DaveC3_6</exmo:nom>
+        <exmo:boitemel>dave@gmail.com</exmo:boitemel>
+        <exmo:boitemel>dave1@msn.com</exmo:boitemel>
+    </rdf:Description>
+
+    <!-- INTERSECTS  for (nom, givenName)-->
+    <rdf:Description rdf:about="http://exmo.inrialpes.fr/connectors-data/people#dave_c4_1">
+        <rdf:type rdf:resource="&exmo;Personne"/>
+        <exmo:nom>DaveC4</exmo:nom>
+        <exmo:nom>DaveC4_1</exmo:nom>
+        <exmo:nom>DaveC4_2</exmo:nom>
+        <exmo:nom>DaveC4_3</exmo:nom>
+        <exmo:nom>DaveC4_4</exmo:nom>
+        <exmo:nom>DaveC4_5</exmo:nom>
+        <exmo:nom>DaveC4_6</exmo:nom>
+        <exmo:boitemel>dave@gmail.com</exmo:boitemel>
+        <exmo:boitemel>dave1@msn.com</exmo:boitemel>
+    </rdf:Description>
+
+    <!-- INTERSECTS  for (nom, givenName)-->
+    <rdf:Description rdf:about="http://exmo.inrialpes.fr/connectors-data/people#carol_c1_1">
+        <rdf:type rdf:resource="&exmo;Personne"/>
+        <exmo:nom>CarolC1</exmo:nom>
+        <exmo:nom>CarolC1_1</exmo:nom>
+        <exmo:nom>CarolC1_2</exmo:nom>
+        <exmo:nom>CarolC1_3</exmo:nom>
+        <exmo:nom>CarolC1_4</exmo:nom>
+        <exmo:nom>CarolC1_5</exmo:nom>
+        <exmo:boitemel>carol1@gmail.com</exmo:boitemel>
+        <exmo:boitemel>carol1@msn.com</exmo:boitemel>
+    </rdf:Description>
+
+    <!-- INTERSECTS  for (nom, givenName)-->
+    <rdf:Description rdf:about="http://exmo.inrialpes.fr/connectors-data/people#carol_c2_1">
+        <rdf:type rdf:resource="&exmo;Personne"/>
+        <exmo:nom>CarolC2</exmo:nom>
+        <exmo:nom>CarolC2_1</exmo:nom>
+        <exmo:nom>CarolC2_2</exmo:nom>
+        <exmo:nom>CarolC2_3</exmo:nom>
+        <exmo:nom>CarolC2_4</exmo:nom>
+        <exmo:nom>CarolC2_5</exmo:nom>
+        <exmo:boitemel>carol1@gmail.com</exmo:boitemel>
+        <exmo:boitemel>carol1@msn.com</exmo:boitemel>
+    </rdf:Description>
+
+    <!-- INTERSECTS  for (nom, givenName)-->
+    <rdf:Description rdf:about="http://exmo.inrialpes.fr/connectors-data/people#carol_c3_1">
+        <rdf:type rdf:resource="&exmo;Personne"/>
+        <exmo:nom>CarolC3</exmo:nom>
+        <exmo:nom>CarolC3_1</exmo:nom>
+        <exmo:nom>CarolC3_2</exmo:nom>
+        <exmo:nom>CarolC3_3</exmo:nom>
+        <exmo:nom>CarolC3_4_diff</exmo:nom>
+        <exmo:nom>CarolC3_5</exmo:nom>
+        <exmo:boitemel>carol1@gmail.com</exmo:boitemel>
+        <exmo:boitemel>carol1@msn.com</exmo:boitemel>
+    </rdf:Description>
+
+    <!-- INTERSECTS  for (nom, givenName)-->
+    <rdf:Description rdf:about="http://exmo.inrialpes.fr/connectors-data/people#carol_c4_1">
+        <rdf:type rdf:resource="&exmo;Personne"/>
+        <exmo:nom>CarolC4</exmo:nom>
+        <exmo:nom>CarolC4_1_diff</exmo:nom>
+        <exmo:nom>CarolC4_2</exmo:nom>
+        <exmo:nom>CarolC4_3_diff</exmo:nom>
+        <exmo:nom>CarolC4_4_diff</exmo:nom>
+        <exmo:nom>CarolC4_5</exmo:nom>
+        <exmo:boitemel>carol1@gmail.com</exmo:boitemel>
+        <exmo:boitemel>carol1@msn.com</exmo:boitemel>
+    </rdf:Description>
+
+    <!-- UNIQ -->
+    <rdf:Description rdf:about="http://exmo.inrialpes.fr/connectors-data/people#ivan_1">
+        <rdf:type rdf:resource="&exmo;Personne"/>
+        <exmo:nom>Ivan1</exmo:nom>
+        <exmo:boitemel>ivan@gmail.com</exmo:boitemel>
+    </rdf:Description>
+
+</rdf:RDF>

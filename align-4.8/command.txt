@@ -1,0 +1,1 @@
+java -jar ../../../lib/procalign.jar file://$CWD/myOnto.owl file://$CWD/edu.mit.visus.bibtex.owl -o results/equal.rdf

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE rdf:RDF [
+<!ENTITY xsd "http://www.w3.org/2001/XMLSchema#">
+<!ENTITY eurostat "http://ec.europa.eu/eurostat/ramon/ontologies/geographic.rdf#">
+<!ENTITY insee "http://rdf.insee.fr/geo/">
+<!ENTITY proton "http://proton.semanticweb.org/">
+<!ENTITY edoal "http://ns.inria.org/edoal/1.0/#">
+]>
+
+<rdf:RDF xmlns="http://knowledgeweb.semanticweb.org/heterogeneity/alignment#"
+         xmlns:eurostat="http://ec.europa.eu/eurostat/ramon/ontologies/geographic.rdf#"
+         xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+         xmlns:insee="http://rdf.insee.fr/geo/"
+         xmlns:align="http://knowledgeweb.semanticweb.org/heterogeneity/alignment#"
+         xmlns:edoal="http://ns.inria.org/edoal/1.0/#">
+<Alignment>
+  <xml>yes</xml>
+  <level>2EDOAL</level>
+  <type>**</type>
+  <align:method>manual</align:method>
+  <onto1>
+    <Ontology rdf:about="http://rdf.insee.fr/geo/">
+      <location>insee/regions-2010.rdf</location>
+      <formalism>
+        <Formalism align:name="OWL1.0" align:uri="http://www.w3.org/2002/07/owl#"/>
+      </formalism>
+    </Ontology>
+  </onto1>
+  <onto2>
+    <Ontology rdf:about="http://ec.europa.eu/eurostat/ramon/ontologies/geographic.rdf#">
+    <location>insee/nuts2008_complete.rdf</location>
+      <formalism>
+        <Formalism align:name="OWL1.0" align:uri="http://www.w3.org/2002/07/owl#"/>
+      </formalism>
+    </Ontology>
+  </onto2>
+  <map>
+    <Cell>
+      <entity1>
+        <edoal:Class rdf:about="&insee;Departement"/>
+      </entity1>
+      <entity2>
+        <edoal:Class rdf:about="&eurostat;NUTSRegion"/>
+      </entity2>
+      <relation>equivalence</relation>
+      <measure>1.0</measure>
+      <edoal:linkkey> 
+        <edoal:Linkkey>
+          <edoal:binding>
+            <edoal:Intersects>
+              <edoal:property1>
+                <edoal:Property rdf:about="&insee;nom" /><!-- xml:lang="fr"-->
+              </edoal:property1>
+              <edoal:property2>
+                <edoal:Property rdf:about="&eurostat;name" />
+              </edoal:property2>
+            </edoal:Intersects>
+          </edoal:binding>
+        </edoal:Linkkey>
+      </edoal:linkkey>
+    </Cell>
+  </map>
+</Alignment>
+</rdf:RDF>

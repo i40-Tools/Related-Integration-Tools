@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='utf-8' standalone='no'?>
+<rdf:RDF xmlns='http://knowledgeweb.semanticweb.org/heterogeneity/alignment#'
+         xmlns:rdf='http://www.w3.org/1999/02/22-rdf-syntax-ns#'
+         xmlns:ns0='http://exmo.inrialpes.fr/align/service#'
+         xmlns:xsd='http://www.w3.org/2001/XMLSchema#'
+         xmlns:align='http://knowledgeweb.semanticweb.org/heterogeneity/alignment#'
+         xmlns:edoal='http://ns.inria.org/edoal/1.0/#'>
+<Alignment rdf:about="http://localhost:8089/alid/1394718240757/976">
+  <xml>yes</xml>
+  <level>2EDOAL</level>
+  <type>?*</type>
+  <pretty>Test meaning engines alignents</pretty>
+  <method>Manual</method>
+  <relationClass>fr.inrialpes.exmo.align.impl.rel.A5AlgebraRelation</relationClass>
+  <onto1>
+    <Ontology rdf:about="http://exmo.inrialpes.fr/connectors/example_musical_work_desc/">
+      <location>file:///home/nicolas/Bureau/Discotheka/Inria/Mission/tests/musical_work_source_desc.owl</location>
+      <formalism>
+        <Formalism align:name="OWL2.0" align:uri="http://www.w3.org/2002/07/owl#"/>
+      </formalism>
+    </Ontology>
+  </onto1>
+  <onto2>
+    <Ontology  rdf:about="http://purl.org/ontology/mo/">
+      <location>file:///home/nicolas/Bureau/Discotheka/Inria/Mission/tests/musicontology1.2.rdf</location>
+      <formalism>
+        <Formalism align:name="OWL2.0" align:uri="http://www.w3.org/2002/07/owl#"/>
+      </formalism>
+    </Ontology>
+  </onto2>
+  <!-- this one has no link key -->
+  <map>
+    <Cell rdf:about="http://exmo.inrialpes.fr/connectors#cell2">
+      <entity1>
+        <edoal:Property rdf:about="http://exmo.inrialpes.fr/connectors-data#titre"/>
+      </entity1>
+      <entity2>
+        <edoal:Property rdf:about="http://purl.org/ontology/mo/title"/>
+      </entity2>
+      <relation> , =,)(, &lt; ,,%, </relation>
+      <measure rdf:datatype='http://www.w3.org/2001/XMLSchema#float'>1.0</measure>
+    </Cell>
+  </map>
+  <!-- This one is different but has the same id! -->
+  <map>
+    <Cell rdf:about="http://exmo.inrialpes.fr/connectors#cell2">
+      <entity1>
+        <edoal:Property rdf:about="http://exmo.inrialpes.fr/connectors-data#soustitre"/>
+      </entity1>
+      <entity2>
+        <edoal:Property rdf:about="http://purl.org/ontology/mo/subtitle"/>
+      </entity2>
+      <relation>=</relation>
+      <measure rdf:datatype='http://www.w3.org/2001/XMLSchema#float'>1.0</measure>
+    </Cell>
+  </map>
+</Alignment>
+</rdf:RDF>

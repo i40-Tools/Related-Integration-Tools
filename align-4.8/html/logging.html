@@ -1,0 +1,122 @@
+<html>
+<head>
+<title>Alignment API: Logging</title>
+<!--style type="text/css">@import url(style.css);</style-->
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+<body bgcolor="#ffffff">
+
+<center><h1>Alignment API: Logging</h1></center>
+
+<p>
+The <a href="http://slf4j.org/docs.html">documentation of SLF4J</a> is
+comprehensive and explain very well what logging is and how it can be
+configured.
+</p>
+<p>
+The implementation of the Alignment API uses logging though SLF4J.
+</p>
+<p>
+What this means for the user is:
+<ul>
+<li>The API does not print on the standard or error output unless
+  requested by the user;</li>
+<li>The user can control what kind of feedback he wants from the API
+  (and the libraries that it imports);</li>
+<li>The user decides what logging facade it wants to use from SLF4J.</li>
+<li>This can be obtained without recompiling anything</li>
+</ul>
+</p>
+
+<h2>First run</h2>
+
+<p>
+The first command-line run should look like that:
+<div class="terminal">
+$ java -cp lib/procalign.jar fr.inrialpes.exmo.align.cli.ParserPrinter file:examples/rdf/newsample.rdf -o /tmp/toto.rdf
+SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+</div>
+</p>
+<p>
+This is actually fine. This means that no looger has been provided to
+the system and that all logging instructions will be ineffective.
+</p>
+
+<h2>Getting log messages</h2>
+
+<p>
+To get log messages, it is necessary to:
+<ul>
+<li>have in the class path an implementation of a LoggerBinder</li>
+<li>have in the current directory or path a configuration file.</li>
+</ul>
+None is provided by the alignment API, because it is not the
+philosophy of logging.
+</p>
+
+<p>
+As an example, one may
+use <a href="http://logback.qos.ch/">logback</a>. For that purpose,
+the files logback-core-VERS.jar and logback-classic-VERS.jar have to
+be added to the classpath.
+</p>
+<p>
+The result of the first command-line will be:
+<div class="terminal">
+$ java -cp lib/slf4j/logback-core-1.0.9.jar:lib/slf4j/logback-classic-1.0.9.jar:lib/procalign.jar  fr.inrialpes.exmo.align.cli.ParserPrinter file:examples/rdf/newsample.rdf -o /tmp/toto.rdf
+17:10:37.578 [main] DEBUG f.i.exmo.align.parser.XMLParser - startElement XMLParser : RDF
+17:10:37.581 [main] DEBUG f.i.exmo.align.parser.XMLParser - content XMLParser : 
+
+17:10:37.581 [main] DEBUG f.i.exmo.align.parser.XMLParser - startElement XMLParser : Alignment
+17:10:37.588 [main] DEBUG f.i.exmo.align.parser.XMLParser - content XMLParser : 
+  
+17:10:37.588 [main] DEBUG f.i.exmo.align.parser.XMLParser - startElement XMLParser : xml
+17:10:37.588 [main] DEBUG f.i.exmo.align.parser.XMLParser - content XMLParser : yes
+17:10:37.588 [main] DEBUG f.i.exmo.align.parser.XMLParser - endElement XMLParser : xml
+17:10:37.588 [main] DEBUG f.i.exmo.align.parser.XMLParser - content XMLParser : 
+  
+...  
+</div>
+The warning is not displayed anymore, but the logging messages sent by
+the Alignment parser are now visible (and there are many).
+</p>
+
+<h2>Controling output</h2>
+
+<p>
+This output can be controlled easily through configuration file. For
+instance, if one puts this minimal configuration file logback.xml:
+<pre>
+&lt;configuration>
+  &lt;root level="OFF"/>
+&lt;/configuration>
+</pre>
+in the current directory, then the result of the command line is:
+
+<div class="terminal">
+$ java -cp lib/slf4j/logback-core-1.0.9.jar:lib/slf4j/logback-classic-1.0.9.jar:lib/procalign.jar:lib/procalign.jar:. fr.inrialpes.exmo.align.cli.ParserPrinter file:examples/rdf/newsample.rdf -o /tmp/toto.rdf
+</div>
+Note the "." added at the end of the class path for telling where to
+find the logback.xml file.
+</p>
+
+<p>
+From here the fun starts. <a href="http://logback.qos.ch/manual/configuration.html">Logging can be fully configured</a> at the level
+of messages, classes, and packages. 
+By simply modifying the configuration file, one can selects which messages to receive.
+This is worth mastering!
+</p>
+
+
+<address>
+<small>
+<hr />
+<center>http://alignapi.gforge.inria.fr/logging.html</center>
+<hr />
+$Id: logging.html 1975 2014-10-31 16:28:17Z euzenat $
+</small>
+</body>
+</html>

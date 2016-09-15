@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='utf-8' standalone='no'?>
+<rdf:RDF xmlns='http://knowledgeweb.semanticweb.org/heterogeneity/alignment#'
+         xmlns:rdf='http://www.w3.org/1999/02/22-rdf-syntax-ns#'
+         xmlns:ns0='http://exmo.inrialpes.fr/align/service#'
+         xmlns:xsd='http://www.w3.org/2001/XMLSchema#'
+         xmlns:align='http://knowledgeweb.semanticweb.org/heterogeneity/alignment#'
+         xmlns:edoal='http://ns.inria.org/edoal/1.0/#'>
+    <Alignment rdf:about="http://localhost:8089/alid/1394718240757/976">
+        <xml>yes</xml>
+        <level>2EDOAL</level>
+        <type>?*</type>
+        <pretty>test1</pretty>
+        <ns0:cached>Thu Mar 13 14:44:05 CET 2014</ns0:cached>
+        <ns0:stored>Thu Mar 13 14:44:05 CET 2014</ns0:stored>
+        <time>34</time>
+        <ns0:ouri2>http://purl.org/ontology/mo/</ns0:ouri2>
+        <id>http://localhost:8089/alid/1394718240757/976</id>
+        <ns0:ouri1>http://exmo.inrialpes.fr/connectors/example_musical_work_desc/</ns0:ouri1>
+        <method>fr.inrialpes.exmo.align.impl.method.SubsDistNameAlignment</method>
+        <onto1>
+            <Ontology rdf:about="http://exmo.inrialpes.fr/connectors/example_musical_work_desc/">
+                <location>/home/tests/example_musical_work_desc.owl</location>
+                <formalism>
+                    <Formalism align:name="OWL2.0" align:uri="http://www.w3.org/2002/07/owl#"/>
+                </formalism>
+            </Ontology>
+        </onto1>
+        <onto2>
+            <Ontology rdf:about="http://purl.org/ontology/mo/">
+                <location>http://purl.org/ontology/mo/</location>
+                <formalism>
+                    <Formalism align:name="OWL2.0" align:uri="http://www.w3.org/2002/07/owl#"/>
+                </formalism>
+            </Ontology>
+        </onto2>
+        <map>
+            <Cell rdf:about="http://exmo.inrialpes.fr/connectors#cell1">
+                <entity1>
+                  <edoal:Class rdf:about="http://purl.org/ontology/mo/MusicalWork"/>
+                </entity1>
+                <entity2>
+                  <edoal:Class rdf:about="http://exmo.inrialpes.fr/connectors#RootElement"/>
+                </entity2>
+                <relation>=</relation>
+                <measure rdf:datatype='http://www.w3.org/2001/XMLSchema#float'>1.0</measure>
+                <edoal:linkkey> 
+                    <edoal:Linkkey>
+                        <ns0:type>weak</ns0:type>
+                        <edoal:binding>
+                            <edoal:Equals>
+                                <edoal:property1>
+                                    <edoal:Property rdf:about="http://purl.org/ontology/mo/opus" />
+                                </edoal:property1>
+                                <edoal:property2>
+                                    <edoal:Property rdf:about="http://exmo.inrialpes.fr/connectors#number" />
+                                </edoal:property2>
+                            </edoal:Equals>
+                        </edoal:binding>
+                        <edoal:binding>
+                            <edoal:Intersects>
+                                <edoal:property1>
+                                    <edoal:Property rdf:about="http://purl.org/ontology/mo/name" />
+                                </edoal:property1>
+                                <edoal:property2>
+                                    <edoal:Property rdf:about="http://exmo.inrialpes.fr/connectors#nom" />
+                                </edoal:property2>
+                            </edoal:Intersects>
+                        </edoal:binding>
+                    </edoal:Linkkey>
+                </edoal:linkkey>
+            </Cell>
+        </map>
+    </Alignment>
+</rdf:RDF>

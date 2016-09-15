@@ -1,0 +1,12 @@
+PREFIX dt:   <http://example.org/datatype#> .
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+PREFIX xmls:  <http://www.w3.org/2001/XMLSchema#> .
+PREFIX foaf:  <http://xmlns.com/foaf/0.1/> .
+PREFIX onto1: <http://www.example.org/ontology1#> .
+
+SELECT *
+FROM XXX
+WHERE {
+    ?X rdf:type <http://www.example.org/ontology1#reviewedarticle>.
+    ?X rdf:type onto1:reviewedarticle .
+  }

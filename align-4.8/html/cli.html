@@ -1,0 +1,274 @@
+<html>
+<head>
+<title>Alignment API: Command line interface</title>
+<!--style type="text/css">@import url(style.css);</style-->
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+<body bgcolor="#ffffff">
+
+<center><h1>Alignment API: Command line interface</h1></center>
+
+<p>
+The implementation offers various command line tools available in
+the <tt>fr.inrialpes.exmo.align.cli</tt> package:
+<dl>
+<dt>Procalign</dt><dd>Runs a matcher on a pair of ontologies</dd>
+<dt>ParserPrinter</dt><dd>Parses and alignment and displays it in
+    various formats.</dd>
+<dt>TransformQuery</dt><dd>Transform a SPARQL query according to an
+    alignment.</dd>
+<!--dt>DiffAlign</dt><dd>TODO</dd-->
+<dt>EvalAlign</dt><dd>Evaluates and alignment with respect to a
+    reference alignment.</dd>
+<dt>TestGen</dt><dd>Generates tests for evaluating matchers.</dd>
+<dt>GroupAlign</dt><dd>Runs a matcher against several different test cases.</dd>
+<dt>GroupAggreg</dt><dd>Aggregates several matcher results in several different test cases.</dd>
+<dt>GroupEval</dt><dd>Evaluates several matcher results in several different test cases.</dd>
+<dt>ExtGroupEval</dt><dd>Same as above with extended evaluators</dd>
+<dt>WGroupEval</dt><dd>Same as above with weighted evaluators.</dd>
+<dt>GenPlot</dt><dd>Generates various pliots from matcher resulst
+    (ROC curves or precision/recall graphs).</dd>
+<dt>GroupOutput</dt><dd>Generates other representations of matcher results.</dd>
+</dl>
+</p>
+<p>
+These command line operations usually share switch conventions:
+<ul>
+<li>displaying help (-h);</li>
+<li>taking parameters (-Dv=n) and parameter files (-P);</li>
+<li>directing the output to a file (-o);</li>
+</ul></p>
+
+<h3>Matching</h3>
+<p>
+The implementation offers a stand-alone program (<tt>fr.inrialpes.exmo.align.cli.Procalign</tt>) which:
+<ul>
+<li>Reads two OWL/RDF ontologies;</li>
+<li>Creates an alignment object;</li>
+<li>Computes the alignment between these ontologies;</li>
+<li>Eventually cut the alignment under a threhold:</li>
+<li>Displays the result.</li>
+</ul>
+Additional options are available:
+<ul>
+<li>controlling the way of rendering the output (-r);</li>
+<li>deciding the implementation of the matching method (-i);</li>
+<li>providing an input alignment (-a).</li>
+</ul>
+</p>
+
+<p>Running the program is achieved through:
+<div class="terminal">
+$ java -cp lib/procalign.jar --help
+usage: java fr.inrialpes.exmo.align.cli.Procalign [options] ontoURI ontoURI
+            Matches the two ontologies identified by &lt;ontoURI>
+
+Options:
+ -a,--alignment &lt;FILE>     Use initial alignment FILE
+ -D &lt;NAME=VALUE>           Use value for given property
+ -d,--debug &lt;LEVEL>        debug argument is deprecated, use logging instead
+                           See http://alignapi.gforge.inria.fr/logging.html
+ -h,--help                 Print this page
+ -i,--impl &lt;CLASS>         Use the given CLASS for matcher
+ -o,--output &lt;FILE>        Send output to FILE
+ -P,--params &lt;FILE>        Read parameters from FILE
+ -r,--renderer &lt;CLASS>     Use the given CLASS for output
+ -T,--cutmethod &lt;METHOD>   Method to use for triming (hard|perc|prop|best|span)
+ -t,--threshold &lt;DOUBLE>   Trim the alignment with regard to threshold
+
+Alignment API implementation 4.6 (1886:1889M)
+</div>
+</p>
+<p>
+Parameters can be passed to all the command line interfaces through the "-Dname=value" scheme. These parameters are either used by the command line utility or transmitted to the called programs, e.g., <tt>align()</tt>. Parameters can also be passed through an XML file through the "-P filename" option.
+</p>
+
+<h3>Displaying alignments</h3>
+<p>
+Another such utility (<tt>ParserPrinter</tt>) allows to read an
+alignment, to manipulate it and to output it without processing
+the <tt>align</tt> method.
+</p>
+<div class="terminal">
+$ java -cp lib/procalign.jar fr.inrialpes.exmo.align.cli.ParserPrinter
+usage: java fr.inrialpes.exmo.align.cli.ParserPrinter [options] alignfile
+            Parse the given &lt;alignfile> and prints it
+
+Options:
+ -D &lt;NAME=VALUE>           Use value for given property
+ -d,--debug &lt;LEVEL>        debug argument is deprecated, use logging instead
+                           See http://alignapi.gforge.inria.fr/logging.html
+ -e,--embedded             Read the alignment as embedded in a XML file
+ -h,--help                 Print this page
+ -i,--inverse              Inverse first and second ontology
+ -o,--output &lt;FILE>        Send output to FILE
+ -P,--params &lt;FILE>        Read parameters from FILE
+ -p,--parser &lt;CLASS>       Use the given CLASS for parsing
+ -r,--renderer &lt;CLASS>     Use the given CLASS for rendering
+ -T,--cutmethod &lt;METHOD>   Method to use for triming (hard|perc|prop|best|span)
+ -t,--threshold &lt;DOUBLE>   Trim the alignment with regard to threshold
+ -w,--outputDir &lt;DIR>      Split the output in a DIRectory (SPARQL)
+
+Alignment API implementation 4.6 (1886:1889M)
+</div>
+<p>
+The utility may be invoked in the following way:
+<div class="terminal">
+$ java -cp lib/procalign.jar fr.inrialpes.exmo.align.cli.ParserPrinter file:examples/rdf/newsample.rdf -r fr.inrialpes.exmo.align.impl.renderer.OWLAxiomsRendererVisitor
+</div>
+It should work with files and with URIs, dereferenceable or not:
+<div class="terminal">
+$ java -cp lib/procalign.jar fr.inrialpes.exmo.align.cli.ParserPrinter http://alignapi.gforge.inria.fr//tutorial/refalign.rdf
+$ java -cp lib/procalign.jar fr.inrialpes.exmo.align.cli.ParserPrinter http://aserv.inrialpes.fr/alid/1317289904908/444
+</div>
+</p>
+
+<h3>Translating queries</h3>
+<p>
+Another such utility (<tt>TransformQuery</tt>) allows to read a
+query (either from the command line, from the standard input or from a
+file) and prints out the same query in which entities of the first
+ontology in the alignment have been replaced by corresponding entities
+of the second ontology. Additional namespaces may be defined for
+simplifying the output.
+</p>
+<div class="terminal">
+$ java -cp lib/procalign.jar fr.inrialpes.exmo.align.cli.TransformQuery --help
+usage: java fr.inrialpes.exmo.align.cli.TransformQuery [options] QUERY
+            Transforms the given QUERY according to an alignment
+
+Options:
+ -a,--alignment &lt;URI>   use the alignment identified by URI
+ -D &lt;NAME=VALUE>        Use value for given property
+ -d,--debug &lt;LEVEL>     debug argument is deprecated, use logging instead
+                        See http://alignapi.gforge.inria.fr/logging.html
+ -e,--echo              Echo the input query
+ -h,--help              Print this page
+ -o,--output &lt;FILE>     Send output to FILE
+ -P,--params &lt;FILE>     Read parameters from FILE
+ -q,--query &lt;FILE>      get the query from the corresponding FILE
+
+Alignment API implementation 4.6 (1886:1889M)
+</div>
+<p>
+The utility may be invoked in the following way:
+<div class="terminal">
+$ java -cp lib/procalign.jar fr.inrialpes.exmo.align.cli.TransformQuery -a file:examples/rdf/newsample.rdf -q examples/rdf/query.sparql -Donto2=http://www.example.org/ontology2#
+</div>
+</p>
+
+<h3>Batch matching</h3>
+
+<p>There is a small utility (<tt>GroupAlign</tt>) which allows to implement batch matching. It starts with a directory containing a set of subdirectories. Each subdirectory contains an ontology to align (usually called <tt>onto.rdf</tt>) and there exist an ontology to be aligned againts these (-n argument, e.g., named <tt>./onto.rdf</tt>).</p>
+<div class="terminal">
+$ java -cp lib/procalign.jar fr.inrialpes.exmo.align.cli.GroupAlign --help
+usage: java fr.inrialpes.exmo.align.cli.GroupAlign [options]
+            Matches pairs of ontologies in subdirectories
+
+Options:
+ -a,--alignment &lt;FILE>   Use an initial alignment FILE
+ -D &lt;NAME=VALUE>         Use value for given property
+ -d,--debug &lt;LEVEL>      debug argument is deprecated, use logging instead
+                         See http://alignapi.gforge.inria.fr/logging.html
+ -h,--help               Print this page
+ -i,--impl &lt;CLASS>       Use the given Alignment implementation
+ -n,--name &lt;URI>         Use the given URI as common source ontology
+ -o,--output &lt;FILE>      Send output to FILE
+ -P,--params &lt;FILE>      Read parameters from FILE
+ -r,--renderer &lt;CLASS>   Use the given CLASS for rendering
+ -s,--source &lt;FILE>      Source ontology FILEname (default onto1.rdf)
+ -t,--target &lt;FILE>      Target ontology FILEname (default onto.rdf)
+ -u,--uriprefix &lt;URI>    URI prefix of the target
+ -w,--directory &lt;DIR>    The DIRectory containing the data to match
+
+Alignment API implementation 4.6 (1886:1889M)
+</div>
+
+<p>Invoking <tt>GroupAlign</tt> with some implementation (-i argument), some set of parameters (-P argument), the name of the output file (-o argument) and optionally a renderer (-r argument) will output the resulting alignment in each of these directories:
+<div class="terminal">
+$ java -cp $CWD/../lib/procalign.jar fr.inrialpes.exmo.align.cli@.GroupAlign -o edna -n file://$CWD/101/onto.rdf -i fr.inrialpes.exmo.align.impl.method.EditDistNameAlignment
+</div>
+</p>
+<p>
+This will compare each onto.rdf file in each of the subdirectory to the <tt>file://$CWD/101/onto.rdf</tt> with the <tt>EditDistNameAlignment</tt> method and output the result in a <tt>edna.rdf</tt> file in each directory.
+</p>
+<p>
+The output is ready to be evaluated by <tt>GroupEval</tt> and <tt>GroupAggreg</tt>.
+</p>
+
+<h3>Aggregation of multiple alignments</h3>
+
+<p><tt>GroupAggreg</tt> aggregates alignments provided by different
+  matchers. It starts with a
+  directory (specified with <tt>-w</tt>, default current directort) containing a set of
+  subdirectories (one per test). 
+Each subdirectory contains a set of alignments
+  (called <tt>xxx.rdf</tt> where <tt>xxx</tt> is a string passed
+  to <tt>-l</tt>).
+The alignments considered in the <tt>-l</tt> parameters are
+  aggregated with the method specified with the <tt>-m</tt> parameter
+  (default "min").
+The results may be further trimmed with the usual <tt>-t</tt>
+  and <tt>-T</tt> parameters.
+Finally, one alignment per directory is output to the directory
+  specified by <tt>-o</tt>.
+</p>
+<div class="terminal">
+$ java -cp /Java/alignapi/lib/procalign.jar fr.inrialpes.exmo.align.cli.GroupAggreg --help
+usage: java fr.inrialpes.exmo.align.cli.GroupAggreg [options]
+            Evaluates in parallel several matching results on several tests in
+            subdirectories
+
+Options:
+ -D &lt;NAME=VALUE>           Use value for given property
+ -d,--debug &lt;LEVEL>        debug argument is deprecated, use logging instead
+                           See http://alignapi.gforge.inria.fr/logging.html
+ -h,--help                 Print this page
+ -l,--list &lt;FILE>          List of FILEs to be included in the results
+                           (required)
+ -m,--aggmethod &lt;METHOD>   Method to use for aggregating (min|max|avg|pool)
+ -o,--outputDir &lt;DIR>      The DIRectory where to output results
+ -P,--params &lt;FILE>        Read parameters from FILE
+ -T,--cutmethod &lt;METHOD>   Method to use for triming (hard|perc|prop|best|span)
+ -t,--threshold &lt;DOUBLE>   Trim the alignment with regard to threshold
+ -w,--workDir &lt;DIR>        The DIRectory containing the data to evaluate
+
+Alignment API implementation 4.6 (1975M)
+</div>
+
+<p>Invoking <tt>GroupAggreg</tt> as below:
+<div class="terminal">
+$ java -cp /Java/alignapi/lib/procalign.jar fr.inrialpes.exmo.align.cli.GroupAggreg -o /tmp/agg -T prop -t .7 -m avg -l "edna,AML,YAM++,StringsAuto"
+</div>
+will aggregate in the current directory (no <tt>-w</tt>), the
+alignments in subdirectories identified by edna,AML,YAM++,StringsAuto,
+with the aggregation method (<tt>-m avg</tt> for
+  average); it will trim the result with the trimming method (<tt>-T prop -t .7</tt> for the 70% best
+  correspondences) and output it in the /tmp/agg directory.
+</p>
+
+<h2>Generating tests</h2>
+
+<p>
+Tools for generating matching tests (<tt>TestGen</tt>) are described
+in the <a href="testgen.html">test generation page</a>.
+</p>
+
+<h2>Evaluating alignments</h2>
+
+<p>
+Tools for evaluating (<tt>EvalAlign</tt>) and batch evaluating
+alignments  (<tt>GroupEval</tt>, <tt>ExtGroupEval</tt>, <tt>WGroupEval</tt>) and displaying
+results (<tt>GenPlot</tt>, <tt>GroupOutput</tt>) are described in the <a href="eval.html">evaluation page</a>.
+</p>
+
+<address>
+<small>
+<hr />
+<center>http://alignapi.gforge.inria.fr/cli.html</center>
+<hr />
+$Id: cli.html 1978 2014-11-07 09:02:53Z euzenat $
+</small>
+</body>
+</html>

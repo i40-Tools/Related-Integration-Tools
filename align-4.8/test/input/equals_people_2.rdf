@@ -1,0 +1,202 @@
+<?xml version="1.0"?>
+<!DOCTYPE rdf:RDF [
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY foaf "http://xmlns.com/foaf/0.1/" >
+]>
+<rdf:RDF xmlns="http://exmo.inrialpes.fr/connectors-data/people/"
+         xml:base="http://exmo.inrialpes.fr/connectors-data/people/"
+         xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+         xmlns:foaf="http://xmlns.com/foaf/0.1/"
+         xmlns:owl="http://www.w3.org/2002/07/owl#"
+         xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+         xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+    <owl:Ontology rdf:about="http://exmo.inrialpes.fr/connectors-data/people/">
+        <owl:imports rdf:resource="http://xmlns.com/foaf/0.1/"/>
+    </owl:Ontology>
+
+    <!-- EQUALS for (nom, givenName)-->
+    <rdf:Description rdf:about="http://exmo.inrialpes.fr/connectors-data/people#alice_c1_2">
+        <rdf:type rdf:resource="&foaf;Person"/>
+        <foaf:givenName>AliceC1</foaf:givenName>
+        <foaf:givenName>AliceC1_1</foaf:givenName>
+        <foaf:givenName>AliceC1_2</foaf:givenName>
+        <foaf:mbox>alice2@gmail.com</foaf:mbox>
+        <foaf:mbox>alice2@msn.com</foaf:mbox>
+    </rdf:Description>
+
+    <!-- INTERSECTS  for (nom, givenName) / Equals for (connait, knows)-->
+    <rdf:Description rdf:about="http://exmo.inrialpes.fr/connectors-data/people#alice_c2_2">
+        <rdf:type rdf:resource="&foaf;Person"/>
+        <foaf:givenName>AliceC2</foaf:givenName>
+        <foaf:givenName>AliceC2_1</foaf:givenName>
+        <foaf:givenName>AliceC2_2_diff</foaf:givenName>
+        <!--<foaf:knows rdf:resource="http://exmo.inrialpes.fr/connectors-data/people#dave_c1_2" />
+        <foaf:knows rdf:resource="http://exmo.inrialpes.fr/connectors-data/people#carol_c1_2" />-->
+        <foaf:knows rdf:resource="http://exmo.inrialpes.fr/connectors-data/people#ivan_2" />
+        <foaf:mbox>alice2@gmail.com</foaf:mbox>
+        <foaf:mbox>alice2@msn.com</foaf:mbox>
+    </rdf:Description>
+    
+    <!-- INTERSECTS  for (nom, givenName)  / INTERSECTS for (connait, knows) => knows one less-->
+    <rdf:Description rdf:about="http://exmo.inrialpes.fr/connectors-data/people#alice_c3_2">
+        <rdf:type rdf:resource="&foaf;Person"/>
+        <foaf:givenName>AliceC3</foaf:givenName>
+        <foaf:givenName>AliceC3_1_diff</foaf:givenName>
+        <foaf:givenName>AliceC3_2</foaf:givenName>
+        <foaf:givenName>AliceC3_3_diff</foaf:givenName>
+        <foaf:givenName>AliceC3_4</foaf:givenName>
+        <foaf:givenName>AliceC3_5_diff</foaf:givenName>
+        <foaf:givenName>AliceC3_6</foaf:givenName>
+        <foaf:knows rdf:resource="http://exmo.inrialpes.fr/connectors-data/people#dave_c2_2" />
+        <foaf:knows rdf:resource="http://exmo.inrialpes.fr/connectors-data/people#carol_c2_2" />
+        <foaf:mbox>alice1@gmail.com</foaf:mbox>
+        <foaf:mbox>alice1@msn.com</foaf:mbox>
+    </rdf:Description>
+
+    <!-- INTERSECTS  for (nom, givenName)  / INTERSECTS for (connait, knows) => knows one more -->
+    <rdf:Description rdf:about="http://exmo.inrialpes.fr/connectors-data/people#alice_c4_2"><!-- INTERSECTS -->
+        <rdf:type rdf:resource="&foaf;Person"/>
+        <foaf:givenName>AliceC4</foaf:givenName>
+        <foaf:givenName>AliceC4_1_diff</foaf:givenName>
+        <foaf:givenName>AliceC4_2_diff</foaf:givenName>
+        <foaf:givenName>AliceC4_3_diff</foaf:givenName>
+        <foaf:givenName>AliceC4_4_diff</foaf:givenName>
+        <foaf:givenName>AliceC4_5_diff</foaf:givenName>
+        <foaf:givenName>AliceC4_6_diff</foaf:givenName>
+        <foaf:knows rdf:resource="http://exmo.inrialpes.fr/connectors-data/people#alice_c1_2" />
+        <foaf:knows rdf:resource="http://exmo.inrialpes.fr/connectors-data/people#alice_c2_2" />
+        <foaf:knows rdf:resource="http://exmo.inrialpes.fr/connectors-data/people#dave_c1_2" />
+        <foaf:mbox>alice1@gmail.com</foaf:mbox>
+        <foaf:mbox>alice1@msn.com</foaf:mbox>
+    </rdf:Description>
+    
+    <!-- INTERSECTS  for (nom, givenName) / INTERSECTS for (connait, knows) => knows one different-->
+    <rdf:Description rdf:about="http://exmo.inrialpes.fr/connectors-data/people#dave_c1_2">
+        <rdf:type rdf:resource="&foaf;Person"/>
+        <foaf:givenName>DaveC1</foaf:givenName>
+        <foaf:givenName>DaveC1_1</foaf:givenName>
+        <foaf:givenName>DaveC1_2</foaf:givenName>
+        <foaf:givenName>DaveC1_3</foaf:givenName>
+        <foaf:givenName>DaveC1_4</foaf:givenName>
+        <foaf:givenName>DaveC1_5</foaf:givenName>
+        <foaf:knows rdf:resource="http://exmo.inrialpes.fr/connectors-data/people#dave_c3_2" />
+        <foaf:knows rdf:resource="http://exmo.inrialpes.fr/connectors-data/people#carol_c3_2" />
+        <foaf:knows rdf:resource="http://exmo.inrialpes.fr/connectors-data/people#ivan_2" />
+        <foaf:mbox>dave@gmail.com</foaf:mbox>
+        <foaf:mbox>dave2@msn.com</foaf:mbox>
+    </rdf:Description>
+    
+    <!-- INTERSECTS  for (nom, givenName)-->
+    <rdf:Description rdf:about="http://exmo.inrialpes.fr/connectors-data/people#dave_c2_2">
+        <rdf:type rdf:resource="&foaf;Person"/>
+        <foaf:givenName>DaveC2</foaf:givenName>
+        <foaf:givenName>DaveC2_1</foaf:givenName>
+        <foaf:givenName>DaveC2_2</foaf:givenName>
+        <foaf:givenName>DaveC2_3_diff</foaf:givenName>
+        <foaf:givenName>DaveC2_4</foaf:givenName>
+        <foaf:givenName>DaveC2_5</foaf:givenName>
+        <foaf:mbox>dave@gmail.com</foaf:mbox>
+        <foaf:mbox>dave2@msn.com</foaf:mbox>
+    </rdf:Description>
+    <!-- INTERSECTS  for (nom, givenName)-->
+    <rdf:Description
+        rdf:about="http://exmo.inrialpes.fr/connectors-data/people#dave_c3_2">
+        <rdf:type rdf:resource="&foaf;Person"/>
+        <foaf:givenName>DaveC3</foaf:givenName>
+        <foaf:givenName>DaveC3_1</foaf:givenName>
+        <foaf:givenName>DaveC3_2_diff</foaf:givenName>
+        <foaf:givenName>DaveC3_3</foaf:givenName>
+        <foaf:givenName>DaveC3_4_diff</foaf:givenName>
+        <foaf:givenName>DaveC3_5</foaf:givenName>
+        <foaf:mbox>dave@gmail.com</foaf:mbox>
+        <foaf:mbox>dave1@msn.com</foaf:mbox>
+    </rdf:Description>
+
+    <!-- INTERSECTS  for (nom, givenName)-->
+    <rdf:Description
+        rdf:about="http://exmo.inrialpes.fr/connectors-data/people#dave_c4_2">
+        <rdf:type rdf:resource="&foaf;Person"/>
+        <foaf:givenName>DaveC4</foaf:givenName>
+        <foaf:givenName>DaveC4_1_diff</foaf:givenName>
+        <foaf:givenName>DaveC4_2_diff</foaf:givenName>
+        <foaf:givenName>DaveC4_3_diff</foaf:givenName>
+        <foaf:givenName>DaveC4_4_diff</foaf:givenName>
+        <foaf:givenName>DaveC4_5_diff</foaf:givenName>
+        <foaf:givenName>DaveC4_6_diff</foaf:givenName>
+        <foaf:mbox>dave@gmail.com</foaf:mbox>
+        <foaf:mbox>dave1@msn.com</foaf:mbox>
+    </rdf:Description>
+
+    <!-- INTERSECTS  for (nom, givenName)-->
+    <rdf:Description
+        rdf:about="http://exmo.inrialpes.fr/connectors-data/people#carol_c1_2">
+        <rdf:type rdf:resource="&foaf;Person"/>
+        <foaf:givenName>CarolC1</foaf:givenName>
+        <foaf:givenName>CarolC1_1</foaf:givenName>
+        <foaf:givenName>CarolC1_2</foaf:givenName>
+        <foaf:givenName>CarolC1_3</foaf:givenName>
+        <foaf:givenName>CarolC1_4</foaf:givenName>
+        <foaf:givenName>CarolC1_5</foaf:givenName>
+        <foaf:givenName>CarolC1_6</foaf:givenName>
+        <foaf:mbox>carol1@gmail.com</foaf:mbox>
+        <foaf:mbox>carol1@msn.com</foaf:mbox>
+    </rdf:Description>
+
+    <!-- INTERSECTS  for (nom, givenName)-->
+    <rdf:Description
+        rdf:about="http://exmo.inrialpes.fr/connectors-data/people#carol_c2_2">
+        <rdf:type rdf:resource="&foaf;Person"/>
+        <foaf:givenName>CarolC2</foaf:givenName>
+        <foaf:givenName>CarolC2_1</foaf:givenName>
+        <foaf:givenName>CarolC2_2</foaf:givenName>
+        <foaf:givenName>CarolC2_3</foaf:givenName>
+        <foaf:givenName>CarolC2_4</foaf:givenName>
+        <foaf:givenName>CarolC2_5_diff</foaf:givenName>
+        <foaf:givenName>CarolC2_6</foaf:givenName>
+        <foaf:mbox>carol1@gmail.com</foaf:mbox>
+        <foaf:mbox>carol1@msn.com</foaf:mbox>
+    </rdf:Description>
+
+    <!-- INTERSECTS  for (nom, givenName)-->
+    <rdf:Description
+        rdf:about="http://exmo.inrialpes.fr/connectors-data/people#carol_c3_2">
+        <rdf:type rdf:resource="&foaf;Person"/>
+        <foaf:givenName>CarolC3</foaf:givenName>
+        <foaf:givenName>CarolC3_1</foaf:givenName>
+        <foaf:givenName>CarolC3_2_diff</foaf:givenName>
+        <foaf:givenName>CarolC3_3</foaf:givenName>
+        <foaf:givenName>CarolC3_4</foaf:givenName>
+        <foaf:givenName>CarolC3_5_diff</foaf:givenName>
+        <foaf:givenName>CarolC3_6</foaf:givenName>
+        <foaf:mbox>carol1@gmail.com</foaf:mbox>
+        <foaf:mbox>carol1@msn.com</foaf:mbox>
+    </rdf:Description>
+
+    <!-- INTERSECTS  for (nom, givenName)-->
+    <rdf:Description
+        rdf:about="http://exmo.inrialpes.fr/connectors-data/people#carol_c4_2">
+        <rdf:type rdf:resource="&foaf;Person"/>
+        <foaf:givenName>CarolC4</foaf:givenName>
+        <foaf:givenName>CarolC4_1</foaf:givenName>
+        <foaf:givenName>CarolC4_2_diff</foaf:givenName>
+        <foaf:givenName>CarolC4_3</foaf:givenName>
+        <foaf:givenName>CarolC4_4</foaf:givenName>
+        <foaf:givenName>CarolC4_5_diff</foaf:givenName>
+        <foaf:givenName>CarolC4_6</foaf:givenName>
+        <foaf:mbox>carol1@gmail.com</foaf:mbox>
+        <foaf:mbox>carol1@msn.com</foaf:mbox>
+    </rdf:Description>
+
+    <!-- UNIQ -->
+    <rdf:Description
+        rdf:about="http://exmo.inrialpes.fr/connectors-data/people#ivan_2">
+        <rdf:type rdf:resource="&foaf;Person"/>
+        <foaf:givenName>Ivan2</foaf:givenName>
+        <foaf:mbox>ivan@gmail.com</foaf:mbox>
+    </rdf:Description>
+
+
+</rdf:RDF>

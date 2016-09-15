@@ -1,0 +1,521 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>Interlinking data with alignments and link keys</title>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<link rel="stylesheet" type="text/css" href="../../base.css" />
+<link rel="stylesheet" type="text/css" href="../../style.css" />
+<script type="text/javascript">
+<!--
+function show(id) {
+	var element = document.getElementById(id);
+	element.style.display = "block";
+}
+function hide(id) {
+	var element = document.getElementById(id);
+	element.style.display = "none";
+}
+-->
+</script>
+<style type="text/css">
+<!--
+div.logic {
+	padding-left: 5px;
+	padding-right: 5px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+-->
+</style>
+</head>
+<body style="background-color: #FFFFFF;">
+
+<h1>Interlinking data with alignments and link keys</h1>
+<dl>
+<dt>This version:</dt>
+<dd>http://alignapi.gforge.inria.fr/tutorial/tutorial6/</dd>
+<dt>Author:</dt>
+<dd><a href="http://exmo.inrialpes.fr/people/euzenat">J&eacute;r&ocirc;me Euzenat</a>, INRIA &amp; LIG
+</dd>
+</dl>
+
+<p style="border-top: 2px solid #AAAAAA; padding-top: 15px;">This tutorial explains how it is possible to generate links between
+datasets from EDOAL alignments with <a href="../../edoal.html">link
+    keys</a>.
+It optionally illustrates similar taks with Silk.</p>
+<p style="padding-top: 15px;border-top: 2px solid #AAAAAA;"></p>
+
+<h2>Requirements</h2>
+
+<p>
+The tutorial works simply with software embedded in the Alignment API.
+However, making is work with <!--LinkKeyDisco and-->Silk or a triple store requires
+additional software.
+<ul>
+<!--li>"<a href="http://exmo.inrialpes.fr/~jdavid/linkrule-extraction/">LinkKeyDisco</a>" for extracting link keys</li-->
+<li><a href="http://silk-framework.com/">Silk</a> for generating links from similarity specification</li>
+<li><a href="http://openrdf.org/">Sesame</a> or <a href="http://virtuoso.openlinksw.com/rdf-quad-store/">Virtuoso</a> as a triple store (optional)</li>
+<!--li>Note that we may also use <a href="http://openrefine.org/">OpenRefine</a></li-->
+</ul>
+As usual, the whole tutorial is performed through command line.
+</p>
+<p>
+The evaluation of such queries under a triple store, and using named graphs, are illustrated
+<a href="browser.html">here</a>.
+</p>
+
+
+<h2>Set up</h2>
+
+<p>
+First start by cleaning up your environment:
+<div class="terminal">
+$ cd tutorial6
+$ mkdir results
+</div>
+</p>
+
+<h2>Data sets</h2>
+
+<p>
+We are using two different data sets in files.
+<ul>
+<li><a href="nuts2008_complete.rdf">nuts2008_complete.rdf</a>:
+  The <a href="http://simap.europa.eu/codes-and-nomenclatures/codes-nuts/codes-nuts-table_fr.htm">Eurostat administrative decomposition of Europe up to level 3</a>
+  in the Nomenclature of Territorial Units for Statistics (NUTS);</a>
+<li><a href="regions-2010.rdf">regions-2010.rdf</a>: the
+  French statistical institue (INSEE) administrative circumscription
+  in France.</a>
+<li><a href="reflinks.rdf">reflinks.rdf</a>: an alignment containing all links between these
+  two data sets (for evaluation purposes only).
+</ul>
+Of course, the tutorial can be adapted with your own data sets.
+</p>
+<!-- Data: 
+
+NUTS vs. insee .
+
+insee vs geoname .
+
+bnf-person vs. bne-author
+-->
+
+
+<!--h2>Extracting link keys</h2>
+
+<p>
+From the data set stored in files, it generates an alignment comprising
+link keys.
+</p>
+
+<p style="background-color: yellow;">(1) Try to extract with DiscoLinkKey on insee/nuts</p>
+
+<p style="background-color: yellow;">(2) Try to extract with DiscoLinkKey on insee/geonames</p-->
+
+<h2>Generating links from link keys</h2>
+
+<p>
+From an alignment comprising link keys, it is possible to generate
+sameAs links.
+We have several such alignments here:
+<ul>
+<li><a href="linkkey1.rdf">linkkey1.rdf</a> to <a href="linkkey4.rdf">linkkey4.rdf</a>: a series of alignments which contains linkkeys and can be used for generating links;</li>
+<!--li>align.rdf: An edoal alignment which may be used for generating Silk script</li-->
+</ul>
+The goal of the tutorial is that you apply them one after the other, i.e., replacing the number in
+the instructions below to see what these link keys do.
+</p>
+
+<div class="button">
+  <input type="button" onclick="show('qu0cli')" value="See alignment"/>
+  <input type="button" onclick="hide('qu0cli');" value="Hide"/>
+</div>
+<div class="explain" id="qu0cli">
+This corresponds to <a href="linkkey3.rdf">linkkey3.rdf</a>:
+<div class="result">
+  &lt;map>
+    &lt;Cell>
+      &lt;entity1>
+        &lt;edoal:Class rdf:about="&insee;Departement"/>
+      &lt;/entity1>
+      &lt;entity2>
+        &lt;edoal:Class>
+          &lt;edoal:and rdf:parseType="Collection">
+            &lt;edoal:Class rdf:about="&eurostat;NUTSRegion"/>
+            &lt;edoal:AttributeValueRestriction>
+              &lt;edoal:onAttribute>
+                &lt;edoal:Property rdf:about="&eurostat;level"/>
+              &lt;/edoal:onAttribute>
+              &lt;edoal:comparator rdf:resource="&edoal;equals"/>
+              &lt;edoal:value>&lt;edoal:Literal edoal:type="&xsd;integer" edoal:string="3" />&lt;/edoal:value>
+           &lt;/edoal:AttributeValueRestriction>
+           &lt;edoal:AttributeValueRestriction>
+             &lt;edoal:onAttribute>
+	       &lt;edoal:Relation>
+		 &lt;edoal:compose rdf:parseType="Collection">
+                   &lt;edoal:Relation rdf:about="&eurostat;hasParentRegion" />
+                   &lt;edoal:Relation rdf:about="&eurostat;hasParentRegion" />
+                   &lt;edoal:Relation rdf:about="&eurostat;hasParentRegion" />
+		 &lt;/edoal:compose>
+	       &lt;/edoal:Relation>
+	     &lt;/edoal:onAttribute>
+             &lt;edoal:comparator rdf:resource="&edoal;equals"/>
+             &lt;edoal:value>&lt;edoal:Instance rdf:about="&esdata;FR" />&lt;/edoal:value>
+           &lt;/edoal:AttributeValueRestriction>
+          &lt;/edoal:and>
+        &lt;/edoal:Class>
+      &lt;/entity2>
+      &lt;relation>equivalence&lt;/relation>
+      &lt;measure>1.0&lt;/measure>
+      &lt;edoal:linkkey> 
+        &lt;edoal:Linkkey>
+          &lt;edoal:binding>
+            &lt;edoal:Intersects>
+              &lt;edoal:property1>
+                &lt;edoal:Property rdf:about="&insee;nom" />&lt;!-- xml:lang="fr"-->
+              &lt;/edoal:property1>
+              &lt;edoal:property2>
+                &lt;edoal:Property rdf:about="&eurostat;name" />
+              &lt;/edoal:property2>
+            &lt;/edoal:Intersects>
+          &lt;/edoal:binding>
+        &lt;/edoal:Linkkey>
+      &lt;/edoal:linkkey>
+    &lt;/Cell>
+  &lt;/map>
+</div>
+<p>The full alignment is available at: <a href="linkkey3.rdf">linkkey3.rdf</a></p>
+</div>
+
+<p>
+This is processed by:
+<div class="terminal">
+$ java -cp $CLASSPATH fr.inrialpes.exmo.align.cli.ParserPrinter file:linkkey1.rdf -r fr.inrialpes.exmo.align.impl.renderer.SPARQLLinkkerRendererVisitor -o results/query.sparql
+</div>
+</p>
+to generate a set of SPARQL queries.
+<div class="button">
+  <input type="button" onclick="show('qu1cli')" value="See generated query"/>
+  <input type="button" onclick="hide('qu1cli');" value="Hide"/>
+</div>
+<div class="explain" id="qu1cli">
+<div class="result">
+PREFIX rdf:&lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX ns1:&lt;http://ec.europa.eu/eurostat/ramon/ontologies/geographic.rdf#>
+PREFIX owl:&lt;http://www.w3.org/2002/07/owl#>
+PREFIX ns2:&lt;http://ec.europa.eu/eurostat/ramon/rdfdata/nuts2008/>
+PREFIX ns0:&lt;http://rdf.insee.fr/geo/>
+PREFIX xsd:&lt;http://www.w3.org/2001/XMLSchema#>
+
+CONSTRUCT { ?s1 owl:sameAs ?s2 }
+WHERE {
+?s1 rdf:type ns0:Departement .
+?s2 rdf:type ns1:NUTSRegion .
+?s2 ns1:level ?o2 .
+FILTER (?o2=3)
+?s2 ns1:hasParentRegion ?o4 .
+?o4 ns1:hasParentRegion ?o5 .
+?o5 ns1:hasParentRegion ?o6 .
+FILTER (?o6=ns2:FR)
+?s1 ns0:nom ?o7 .
+?s2 ns1:name ?o8 .
+FILTER( lcase(str(?o7)) = lcase(str(?o8)) ) }
+</div>
+Think about what you could do to improve this query?
+</div>
+
+<p>
+Processing any of these SPARQL queries, will generate links.
+<div class="terminal">
+$ java -cp $CLASSPATH arq.query --query results/query.sparql --data regions-2010.rdf --data nuts2008_complete.rdf > results/links.ttl
+</div>
+<div class="button">
+  <input type="button" onclick="show('qu3cli')" value="See generated links"/>
+  <input type="button" onclick="hide('qu3cli');" value="Hide"/>
+</div>
+<div class="explain" id="qu3cli">
+<div class="result">
+@prefix geo:   &lt;http://rdf.insee.fr/geo/> .
+@prefix cc:    &lt;http://creativecommons.org/ns#> .
+@prefix :      &lt;http://ec.europa.eu/eurostat/ramon/ontologies/geographic.rdf#> .
+@prefix rdf:   &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix owl:   &lt;http://www.w3.org/2002/07/owl#> .
+@prefix dcterms: &lt;http://purl.org/dc/terms/> .
+@prefix rdfs:  &lt;http://www.w3.org/2000/01/rdf-schema#> .
+@prefix ns0:   &lt;http://rdf.insee.fr/geo/> .
+@prefix ns1:   &lt;http://ec.europa.eu/eurostat/ramon/ontologies/geographic.rdf#> .
+@prefix dc:    &lt;http://purl.org/dc/elements/1.1/> .
+
+&lt;http://rdf.insee.fr/geo/2010/DEP_67>
+        owl:sameAs  &lt;http://ec.europa.eu/eurostat/ramon/rdfdata/nuts2008/FR421> .
+
+&lt;http://rdf.insee.fr/geo/2010/DEP_39>
+        owl:sameAs  &lt;http://ec.europa.eu/eurostat/ramon/rdfdata/nuts2008/CH025> , &lt;http://ec.europa.eu/eurostat/ramon/rdfdata/nuts2008/FR432> .
+
+&lt;http://rdf.insee.fr/geo/2010/DEP_2A>
+        owl:sameAs  &lt;http://ec.europa.eu/eurostat/ramon/rdfdata/nuts2008/FR831> .
+
+&lt;http://rdf.insee.fr/geo/2010/DEP_61>
+        owl:sameAs  &lt;http://ec.europa.eu/eurostat/ramon/rdfdata/nuts2008/FR253> .
+
+&lt;http://rdf.insee.fr/geo/2010/DEP_33>
+        owl:sameAs  &lt;http://ec.europa.eu/eurostat/ramon/rdfdata/nuts2008/FR612> .
+
+&lt;http://rdf.insee.fr/geo/2010/DEP_05>
+        owl:sameAs  &lt;http://ec.europa.eu/eurostat/ramon/rdfdata/nuts2008/FR822> .
+
+&lt;http://rdf.insee.fr/geo/2010/DEP_74>
+        owl:sameAs  &lt;http://ec.europa.eu/eurostat/ramon/rdfdata/nuts2008/FR718> .
+
+...
+</div>
+<p>The full link set is available at: <a href="links.ttl">results/links.ttl</a></p>
+</div>
+Can you spot a problem? Where does it come from? How can it be solved?
+</p>
+
+<!--h2>Generating links with OpenRefine</h2>
+
+<p>
+OpenRefine is an interface for publishing data as linked data.
+One of its capability is to declare linking services to preform
+interlinking.
+Unfortunatelly such services are so simple that they only allow to
+link with one condition, i.e., there is no way to express link rules
+beyond nom&equiv;name.
+</p-->
+
+<h2>Generating links from similarity measures</h2>
+
+<p>
+We use Silk 2.6.1 in order to generate links based on the similarity
+between resources.
+Silk is driven by scripts which express such similarity.
+The scripts are expressed in the <a href="https://www.assembla.com/wiki/show/silk/Link_Specification_Language">Link Specification Language</a>
+</p>
+
+<p>
+We have several linkkage rules available they are all in the same
+script (identified by no1...no6):
+<ul>
+<!--li><a href="align.rdf">align.rdf</a>: A simple alignment that can generate a skeleton Silk script;</li-->
+<li><a href="script.xml">script.xml</a>: A script ready to use.</li>
+</ul>
+<!--Unfortunately <span style="background-color: yellow;">the script must
+  be updated to set the paths (/Skratch/TutoLinking/)
+  correctly</span>.-->
+Again, your goal is to process the linkage rules provided in this
+  script from n1 to n6 and to understand what they do.
+</p>
+
+<p>
+Here is the example of a part of <a href="script.xml">script.xml</a>
+
+<div class="button">
+  <input type="button" onclick="show('scr1cli')" value="See prefixes"/>
+  <input type="button" onclick="show('scr2cli')" value="See sources"/>
+  <input type="button" onclick="show('scr3cli')" value="See linkage rules"/>
+  <input type="button" onclick="show('scr4cli')" value="See filters"/>
+  <input type="button" onclick="show('scr5cli')" value="See output"/>
+  <input type="button" onclick="hide('scr1cli');hide('scr2cli');hide('scr3cli');hide('scr4cli');hide('scr5cli');" value="Hide"/>
+</div>
+<div class="explain" id="scr1cli">
+<div class="result">
+&lt;?xml version="1.0" encoding="utf-8" ?>
+
+&lt;Silk>
+  &lt;Prefixes>
+    &lt;Prefix id="rdf" namespace="http://www.w3.org/1999/02/22-rdf-syntax-ns#" />
+    &lt;Prefix id="owl" namespace="http://www.w3.org/2002/07/owl#" />
+    &lt;Prefix id="id2" namespace="http://ec.europa.eu/eurostat/ramon/ontologies/geographic.rdf#" />
+    &lt;Prefix id="id1" namespace="http://rdf.insee.fr/geo/" />
+  &lt;/Prefixes>
+  
+</div>
+</div>
+<div class="explain" id="scr2cli">
+<div class="result">
+  &lt;DataSources>
+    &lt;DataSource id="id1" type="file">
+      &lt;Param name="file" value="regions-2010.rdf"/>
+      &lt;Param name="format" value="RDF/XML" />
+    &lt;/DataSource>
+    
+    &lt;DataSource id="id2" type="file">
+      &lt;Param name="file" value="nuts2008_complete.rdf"/>
+      &lt;Param name="format" value="RDF/XML" />
+    &lt;/DataSource>
+  &lt;/DataSources>
+
+</div>
+</div>
+<div class="explain" id="scr3cli">
+<div class="result">
+  &lt;Interlinks>
+    &lt;Interlink id="no1">
+      &lt;LinkType>owl:sameAs&lt;/LinkType>
+      &lt;SourceDataset dataSource="id1" var="e1">
+	&lt;RestrictTo>
+	  ?e1 rdf:type id1:Departement . 
+	&lt;/RestrictTo>
+      &lt;/SourceDataset>
+      &lt;TargetDataset dataSource="id2" var="e2">
+	&lt;RestrictTo>
+	  ?e2 rdf:type id2:NUTSRegion .
+	&lt;/RestrictTo>
+      &lt;/TargetDataset>
+      &lt;LinkageRule>
+	&lt;Aggregate type="max">
+	  &lt;Compare metric="jaccard">
+	    &lt;TransformInput function="tokenize">
+	      &lt;Input path="?e1\id1:subdivision/id1:nom" />
+	    &lt;/TransformInput>
+	    &lt;TransformInput function="tokenize">
+	      &lt;Input path="?e2/id2:name" />
+	    &lt;/TransformInput>
+	  &lt;/Compare>
+	  &lt;Compare metric="jaccard">
+	    &lt;TransformInput function="tokenize">
+	      &lt;Input path="?e1/id1:nom" />
+	    &lt;/TransformInput>
+	    &lt;TransformInput function="tokenize">
+	      &lt;Input path="?e2/id2:name" />
+	    &lt;/TransformInput>
+	  &lt;/Compare>
+	&lt;/Aggregate>
+      &lt;/LinkageRule>
+      
+</div>
+</div>
+<div class="explain" id="scr4cli">
+<div class="result">
+      &lt;Filter />
+      
+</div>
+</div>
+<div class="explain" id="scr5cli">
+<div class="result">
+      &lt;Outputs>
+	&lt;Output type="file">
+	  &lt;Param name="file" value="results/Round1.rdf"/>
+	  &lt;Param name="format" value="alignment"/>
+	&lt;/Output>
+      &lt;/Outputs>
+
+    &lt;/Interlink>
+
+  &lt;/Interlinks>
+
+&lt;/Silk>
+
+</div>
+</div>
+
+</p>
+<!--p>
+<p style="background-color: yellow;">Align->Silk insee/nuts: does not work correctly</p>
+Note that a skeleton for Silk scripts can already be obtained from an
+alignment through a renderer:
+<div class="terminal">
+$ java -cp $CLASSPATH fr.inrialpes.exmo.align.cli.ParserPrinter file:test-align-no-pc.xml  -r fr.inrialpes.exmo.align.impl.renderer.SILKRendererVisitor -o results/script.lsl
+</div>
+</p-->
+<p>
+<!--pre>
+java -DconfigFile=script.lsl [-DlinkSpec=<Interlink ID>] [-Dthreads=<threads>]  [-DlogQueries=(true/false)] [-Dreload=(true/false)] -jar silk.jar
+</pre-->
+
+<div class="terminal">
+$ java -DconfigFile=script.xml -DlinkSpec=no1 -jar silk.jar
+</div>
+The result is provided as a set of links in a format which is supposed to be the
+Alignment format. However, it is not correct. This is fixed here by
+applyng the patch:
+<div class="terminal">
+$ sh bin/fix.sh results/Round1-accepted.rdf
+</div>
+on resulting file (here results/Round1-accepted.rdf).
+It is possible to count the number of answers provided by the
+evaluation through:
+<div class="terminal">
+$ grep entity1 results/Round1-accepted.rdf | wc -l
+103
+</div>
+</p>
+
+<!--p style="background-color: yellow;">(8) Proceed to correct evaluations of Silk, have silk output as links or alignments</p-->
+<p>
+Link quality can be tested by comparison with the reference alignment
+<a href="reflinks.rdf">reflinks.rdf</a>:
+<div class="terminal">
+$ java -cp $CLASSPATH fr.inrialpes.exmo.align.cli.EvalAlign -i fr.inrialpes.exmo.align.impl.eval.PRecEvaluator file:reflinks.rdf file:results/Round1-accepted.rdf
+</div>
+which answers:
+<div class="result">
+&lt;?xml version='1.0' encoding='utf-8' standalone='yes'?>
+&lt;rdf:RDF xmlns:rdf='http://www.w3.org/1999/02/22-rdf-syntax-ns#'
+  xmlns:map='http://www.atl.external.lmco.com/projects/ontology/ResultsOntology.n3#'>
+  &lt;map:output rdf:about=''>
+    &lt;map:input1 rdf:resource="http://rdf.insee.fr/geo/"/>
+    &lt;map:input2 rdf:resource="http://ec.europa.eu/eurostat/ramon/ontologies/geographic.rdf#"/>
+    &lt;map:precision>0.9611650485436893&lt;/map:precision>
+    &lt;map:recall>1.0&lt;/map:recall>
+    &lt;map:fMeasure>0.9801980198019802&lt;/map:fMeasure>
+    &lt;map:oMeasure>0.9595959595959596&lt;/map:oMeasure>
+    &lt;result>1.0404040404040404&lt;/result>
+  &lt;/map:output>
+&lt;/rdf:RDF>
+</div>
+It provides all valid links (recall=100%) but not all the links
+it found are correct (precision=96%). Could you improve on this?
+</p>
+
+<!--p>
+Also have a look at the .nt
+</p-->
+
+<p>
+Try the other proposed linked rule and/or try to improve the linkage
+used.
+<div class="button">
+  <input type="button" onclick="show('silkcli')" value="See evaluation results"/>
+  <input type="button" onclick="hide('silkcli');" value="Hide"/>
+</div>
+<div class="explain" id="silkcli">
+<table border="0">
+<tr><td>rule</td><td>&equiv;</td><td>comparison</td><td>#links</td><td>prec.</td><td>rec.</td></tr>
+<tr><td>no1</td><td>dpt &equiv; NR</td><td>name=nom</td><td>103</td><td>.96</td><td>1.0</td></tr>
+<tr><td>no2</td><td>dpt &equiv; NR&amp;level=3</td><td>tok(name)~tok(nom)</td><td>100</td><td>.99</td><td>1.0</td></tr>
+<tr><td>no3</td><td>dpt &equiv; NR</td><td>AVG(tok(name)~tok(nom), tok(hasParentRegion/name)~tok(\subdivision/name))</td><td>89</td><td>1.0</td><td>.90</td></tr>
+<tr><td>no4</td><td>dpt &equiv; NR&amp;level=3&amp;hasParentRegion<sup>3</sup>=FR</td><td>AVG(tok(name)~tok(nom), tok(hasParentRegion/name)~tok(\subdivision/name))</td><td>89</td><td>1.0</td><td>.90</td></tr>
+<tr><td>no5</td><td>dpt &equiv; NR&amp;level=3&amp;hasParentRegion<sup>3</sup>=FR</td><td>name=nom</td><td>99</td><td>1.0</td><td>1.0</td></tr>
+<tr><td>no6</td><td>dpt &equiv; NR&amp;level=3&amp;hasParentRegion<sup>3</sup>=FR</td><td>MAX(tok(name)~tok(nom), tok(hasParentRegion/name)~tok(\subdivision/name))</td><td>439</td><td>.23</td><td>1.0</td></tr>
+<tr><td>no7</td><td>dpt &equiv; NR&amp;level=3&amp;hasParentRegion<sup>3</sup>=FR</td><td>MIN(tok(name)~tok(nom), tok(hasParentRegion/name)~tok(\subdivision/name))</td><td>89</td><td>1.0</td><td>.90</td></tr>
+</table>
+</div>
+</p>
+
+<h2>Extra work</h2>
+
+<p>
+For the curious, we have a larger example, between the
+French communes
+in <a href="http://exmo.inria.fr/~jdavid/linkrule-extraction/files/communes_insee.ttl">insee-communes.ttl</a> and
+those of geonames
+(<a href="http://exmo.inria.fr/~jdavid/linkrule-extraction/files/communes_gn.ttl">communes_gn.ttl</a>).
+A starting script is <a href="geo-script.xml">geo-script.xml</a>.
+This sample data comes from
+the <a href="http://exmo.inria.fr/~jdavid/linkrule-extraction/">LinkKeyDisco</a>
+system experiments.
+</p>
+
+<hr />
+<small>
+<div style="text-align: center;">http://alignapi.gforge.inria.fr/tutorial/tutorial6/</div>
+<hr />
+<div>$Id: index.html 2058 2015-09-11 06:24:58Z euzenat $</div>
+</small>
+</body>
+</html>

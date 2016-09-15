@@ -1,0 +1,821 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+
+<!-- there are 10 0.0 -->
+<rdf:RDF xmlns="http://knowledgeweb.semanticweb.org/heterogeneity/alignment#"
+         xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:align="http://knowledgeweb.semanticweb.org/heterogeneity/alignment#">
+<Alignment>
+  <xml>yes</xml>
+  <level>1</level>
+  <type>**</type>
+  <method>manual</method>
+  <onto1>
+    <Ontology rdf:about="http://rdf.insee.fr/geo/">
+      <location>file:admin/regions-2010.rdf</location>
+      <formalism>
+        <Formalism align:name="OWL1.0" align:uri="http://www.w3.org/2002/07/owl#"/>
+      </formalism>
+    </Ontology>
+  </onto1>
+  <onto2>
+    <Ontology rdf:about="http://ec.europa.eu/eurostat/ramon/ontologies/geographic.rdf#">
+      <location>file:admin/nuts2008_complete.rdf</location>
+      <formalism>
+        <Formalism align:name="OWL1.0" align:uri="http://www.w3.org/2002/07/owl#"/>
+      </formalism>
+    </Ontology>
+  </onto2>
+  <map>
+    <Cell>
+      <entity1 rdf:resource="http://rdf.insee.fr/geo/2010/DEP_63" />
+      <entity2 rdf:resource="http://ec.europa.eu/eurostat/ramon/rdfdata/nuts2008/FR724" />
+      <relation>=</relation>
+      <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+    </Cell>
+  </map>
+  <map>
+    <Cell>
+      <entity1 rdf:resource="http://rdf.insee.fr/geo/2010/DEP_64" />
+      <entity2 rdf:resource="http://ec.europa.eu/eurostat/ramon/rdfdata/nuts2008/FR615" />
+      <relation>=</relation>
+      <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+    </Cell>
+  </map>
+  <map>
+    <Cell>
+      <entity1 rdf:resource="http://rdf.insee.fr/geo/2010/DEP_06" />
+      <entity2 rdf:resource="http://ec.europa.eu/eurostat/ramon/rdfdata/nuts2008/FR823" />
+      <relation>=</relation>
+      <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+    </Cell>
+  </map>
+  <map>
+    <Cell>
+      <entity1 rdf:resource="http://rdf.insee.fr/geo/2010/DEP_04" />
+      <entity2 rdf:resource="http://ec.europa.eu/eurostat/ramon/rdfdata/nuts2008/FR821" />
+      <relation>=</relation>
+      <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+    </Cell>
+  </map>
+  <map>
+    <Cell>
+      <entity1 rdf:resource="http://rdf.insee.fr/geo/2010/DEP_02" />
+      <entity2 rdf:resource="http://ec.europa.eu/eurostat/ramon/rdfdata/nuts2008/FR221" />
+      <relation>=</relation>
+      <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+    </Cell>
+  </map>
+  <map>
+    <Cell>
+      <entity1 rdf:resource="http://rdf.insee.fr/geo/2010/DEP_90" />
+      <entity2 rdf:resource="http://ec.europa.eu/eurostat/ramon/rdfdata/nuts2008/FR434" />
+      <relation>=</relation>
+      <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+    </Cell>
+  </map>
+  <map>
+    <Cell>
+      <entity1 rdf:resource="http://rdf.insee.fr/geo/2010/DEP_07" />
+      <entity2 rdf:resource="http://ec.europa.eu/eurostat/ramon/rdfdata/nuts2008/FR712" />
+      <relation>=</relation>
+      <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+    </Cell>
+  </map>
+  <map>
+    <Cell>
+      <entity1 rdf:resource="http://rdf.insee.fr/geo/2010/DEP_01" />
+      <entity2 rdf:resource="http://ec.europa.eu/eurostat/ramon/rdfdata/nuts2008/FR711" />
+      <relation>=</relation>
+      <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+    </Cell>
+  </map>
+  <map>
+    <Cell>
+      <entity1 rdf:resource="http://rdf.insee.fr/geo/2010/DEP_47" />
+      <entity2 rdf:resource="http://ec.europa.eu/eurostat/ramon/rdfdata/nuts2008/FR614" />
+      <relation>=</relation>
+      <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+    </Cell>
+  </map>
+  <map>
+    <Cell>
+      <entity1 rdf:resource="http://rdf.insee.fr/geo/2010/DEP_40" />
+      <entity2 rdf:resource="http://ec.europa.eu/eurostat/ramon/rdfdata/nuts2008/FR613" />
+      <relation>=</relation>
+      <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+    </Cell>
+  </map>
+  <map>
+    <Cell>
+      <entity1 rdf:resource="http://rdf.insee.fr/geo/2010/DEP_45" />
+      <entity2 rdf:resource="http://ec.europa.eu/eurostat/ramon/rdfdata/nuts2008/FR246" />
+      <relation>=</relation>
+      <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+    </Cell>
+  </map>
+  <map>
+    <Cell>
+      <entity1 rdf:resource="http://rdf.insee.fr/geo/2010/DEP_41" />
+      <entity2 rdf:resource="http://ec.europa.eu/eurostat/ramon/rdfdata/nuts2008/FR245" />
+      <relation>=</relation>
+      <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+    </Cell>
+  </map>
+  <map>
+    <Cell>
+      <entity1 rdf:resource="http://rdf.insee.fr/geo/2010/DEP_43" />
+      <entity2 rdf:resource="http://ec.europa.eu/eurostat/ramon/rdfdata/nuts2008/FR723" />
+      <relation>=</relation>
+      <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+    </Cell>
+  </map>
+  <map>
+    <Cell>
+      <entity1 rdf:resource="http://rdf.insee.fr/geo/2010/DEP_68" />
+      <entity2 rdf:resource="http://ec.europa.eu/eurostat/ramon/rdfdata/nuts2008/FR422" />
+      <relation>=</relation>
+      <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+    </Cell>
+  </map>
+  <map>
+    <Cell>
+      <entity1 rdf:resource="http://rdf.insee.fr/geo/2010/DEP_52" />
+      <entity2 rdf:resource="http://ec.europa.eu/eurostat/ramon/rdfdata/nuts2008/FR214" />
+      <relation>=</relation>
+      <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+    </Cell>
+  </map>
+  <map>
+    <Cell>
+      <entity1 rdf:resource="http://rdf.insee.fr/geo/2010/DEP_91" />
+      <entity2 rdf:resource="http://ec.europa.eu/eurostat/ramon/rdfdata/nuts2008/FR104" />
+      <relation>=</relation>
+      <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</measure>
+    </Cell>
+  </map>
+  <map>
+    <Cell>
+      <entity1 rdf:resource="http://rdf.insee.fr/geo/2010/DEP_2B" />
+      <entity2 rdf:resource="http://ec.europa.eu/eurostat/ramon/rdfdata/nuts2008/FR832" />
+      <relation>=</relation>
+      <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+    </Cell>
+  </map>
+  <map>
+    <Cell>
+      <entity1 rdf:resource="http://rdf.insee.fr/geo/2010/DEP_82" />
+      <entity2 rdf:resource="http://ec.europa.eu/eurostat/ramon/rdfdata/nuts2008/FR628" />
+      <relation>=</relation>
+      <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+    </Cell>
+  </map>
+  <map>
+    <Cell>
+      <entity1 rdf:resource="http://rdf.insee.fr/geo/2010/DEP_81" />
+      <entity2 rdf:resource="http://ec.europa.eu/eurostat/ramon/rdfdata/nuts2008/FR627" />
+      <relation>=</relation>
+      <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+    </Cell>
+  </map>
+  <map>
+    <Cell>
+      <entity1 rdf:resource="http://rdf.insee.fr/geo/2010/DEP_24" />
+      <entity2 rdf:resource="http://ec.europa.eu/eurostat/ramon/rdfdata/nuts2008/FR611" />
+      <relation>=</relation>
+      <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+    </Cell>
+  </map>
+  <map>
+    <Cell>
+      <entity1 rdf:resource="http://rdf.insee.fr/geo/2010/DEP_66" />
+      <entity2 rdf:resource="http://ec.europa.eu/eurostat/ramon/rdfdata/nuts2008/FR815" />
+      <relation>=</relation>
+      <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+    </Cell>
+  </map>
+  <map>
+    <Cell>
+      <entity1 rdf:resource="http://rdf.insee.fr/geo/2010/DEP_70" />
+      <entity2 rdf:resource="http://ec.europa.eu/eurostat/ramon/rdfdata/nuts2008/FR433" />
+      <relation>=</relation>
+      <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+    </Cell>
+  </map>
+  <map>
+    <Cell>
+      <entity1 rdf:resource="http://rdf.insee.fr/geo/2010/DEP_62" />
+      <entity2 rdf:resource="http://ec.europa.eu/eurostat/ramon/rdfdata/nuts2008/FR302" />
+      <relation>=</relation>
+      <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</measure>
+    </Cell>
+  </map>
+  <map>
+    <Cell>
+      <entity1 rdf:resource="http://rdf.insee.fr/geo/2010/DEP_48" />
+      <entity2 rdf:resource="http://ec.europa.eu/eurostat/ramon/rdfdata/nuts2008/FR814" />
+      <relation>=</relation>
+      <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+    </Cell>
+  </map>
+  <map>
+    <Cell>
+      <entity1 rdf:resource="http://rdf.insee.fr/geo/2010/DEP_25" />
+      <entity2 rdf:resource="http://ec.europa.eu/eurostat/ramon/rdfdata/nuts2008/FR431" />
+      <relation>=</relation>
+      <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+    </Cell>
+  </map>
+  <map>
+    <Cell>
+      <entity1 rdf:resource="http://rdf.insee.fr/geo/2010/DEP_46" />
+      <entity2 rdf:resource="http://ec.europa.eu/eurostat/ramon/rdfdata/nuts2008/FR625" />
+      <relation>=</relation>
+      <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+    </Cell>
+  </map>
+  <map>
+    <Cell>
+      <entity1 rdf:resource="http://rdf.insee.fr/geo/2010/DEP_34" />
+      <entity2 rdf:resource="http://ec.europa.eu/eurostat/ramon/rdfdata/nuts2008/FR813" />
+      <relation>=</relation>
+      <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+    </Cell>
+  </map>
+  <map>
+    <Cell>
+      <entity1 rdf:resource="http://rdf.insee.fr/geo/2010/DEP_87" />
+      <entity2 rdf:resource="http://ec.europa.eu/eurostat/ramon/rdfdata/nuts2008/FR633" />
+      <relation>=</relation>
+      <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+    </Cell>
+  </map>
+  <map>
+    <Cell>
+      <entity1 rdf:resource="http://rdf.insee.fr/geo/2010/DEP_65" />
+      <entity2 rdf:resource="http://ec.europa.eu/eurostat/ramon/rdfdata/nuts2008/FR626" />
+      <relation>=</relation>
+      <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+    </Cell>
+  </map>
+  <map>
+    <Cell>
+      <entity1 rdf:resource="http://rdf.insee.fr/geo/2010/DEP_31" />
+      <entity2 rdf:resource="http://ec.europa.eu/eurostat/ramon/rdfdata/nuts2008/FR623" />
+      <relation>=</relation>
+      <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+    </Cell>
+  </map>
+  <map>
+    <Cell>
+      <entity1 rdf:resource="http://rdf.insee.fr/geo/2010/DEP_44" />
+      <entity2 rdf:resource="http://ec.europa.eu/eurostat/ramon/rdfdata/nuts2008/FR511" />
+      <relation>=</relation>
+      <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+    </Cell>
+  </map>
+  <map>
+    <Cell>
+      <entity1 rdf:resource="http://rdf.insee.fr/geo/2010/DEP_42" />
+      <entity2 rdf:resource="http://ec.europa.eu/eurostat/ramon/rdfdata/nuts2008/FR715" />
+      <relation>=</relation>
+      <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+    </Cell>
+  </map>
+  <map>
+    <Cell>
+      <entity1 rdf:resource="http://rdf.insee.fr/geo/2010/DEP_05" />
+      <entity2 rdf:resource="http://ec.europa.eu/eurostat/ramon/rdfdata/nuts2008/FR822" />
+      <relation>=</relation>
+      <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+    </Cell>
+  </map>
+  <map>
+    <Cell>
+      <entity1 rdf:resource="http://rdf.insee.fr/geo/2010/DEP_74" />
+      <entity2 rdf:resource="http://ec.europa.eu/eurostat/ramon/rdfdata/nuts2008/FR718" />
+      <relation>=</relation>
+      <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+    </Cell>
+  </map>
+  <map>
+    <Cell>
+      <entity1 rdf:resource="http://rdf.insee.fr/geo/2010/DEP_79" />
+      <entity2 rdf:resource="http://ec.europa.eu/eurostat/ramon/rdfdata/nuts2008/FR533" />
+      <relation>=</relation>
+      <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+    </Cell>
+  </map>
+  <map>
+    <Cell>
+      <entity1 rdf:resource="http://rdf.insee.fr/geo/2010/DEP_71" />
+      <entity2 rdf:resource="http://ec.europa.eu/eurostat/ramon/rdfdata/nuts2008/FR263" />
+      <relation>=</relation>
+      <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+    </Cell>
+  </map>
+  <map>
+    <Cell>
+      <entity1 rdf:resource="http://rdf.insee.fr/geo/2010/DEP_75" />
+      <entity2 rdf:resource="http://ec.europa.eu/eurostat/ramon/rdfdata/nuts2008/FR101" />
+      <relation>=</relation>
+      <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</measure>
+    </Cell>
+  </map>
+  <map>
+    <Cell>
+      <entity1 rdf:resource="http://rdf.insee.fr/geo/2010/DEP_26" />
+      <entity2 rdf:resource="http://ec.europa.eu/eurostat/ramon/rdfdata/nuts2008/FR713" />
+      <relation>=</relation>
+      <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+    </Cell>
+  </map>
+  <map>
+    <Cell>
+      <entity1 rdf:resource="http://rdf.insee.fr/geo/2010/DEP_61" />
+      <entity2 rdf:resource="http://ec.europa.eu/eurostat/ramon/rdfdata/nuts2008/FR253" />
+      <relation>=</relation>
+      <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+    </Cell>
+  </map>
+  <map>
+    <Cell>
+      <entity1 rdf:resource="http://rdf.insee.fr/geo/2010/DEP_76" />
+      <entity2 rdf:resource="http://ec.europa.eu/eurostat/ramon/rdfdata/nuts2008/FR232" />
+      <relation>=</relation>
+      <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+    </Cell>
+  </map>
+  <map>
+    <Cell>
+      <entity1 rdf:resource="http://rdf.insee.fr/geo/2010/DEP_92" />
+      <entity2 rdf:resource="http://ec.europa.eu/eurostat/ramon/rdfdata/nuts2008/FR105" />
+      <relation>=</relation>
+      <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</measure>
+    </Cell>
+  </map>
+  <map>
+    <Cell>
+      <entity1 rdf:resource="http://rdf.insee.fr/geo/2010/DEP_33" />
+      <entity2 rdf:resource="http://ec.europa.eu/eurostat/ramon/rdfdata/nuts2008/FR612" />
+      <relation>=</relation>
+      <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+    </Cell>
+  </map>
+  <map>
+    <Cell>
+      <entity1 rdf:resource="http://rdf.insee.fr/geo/2010/DEP_15" />
+      <entity2 rdf:resource="http://ec.europa.eu/eurostat/ramon/rdfdata/nuts2008/FR722" />
+      <relation>=</relation>
+      <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+    </Cell>
+  </map>
+  <map>
+    <Cell>
+      <entity1 rdf:resource="http://rdf.insee.fr/geo/2010/DEP_22" />
+      <entity2 rdf:resource="http://ec.europa.eu/eurostat/ramon/rdfdata/nuts2008/FR521" />
+      <relation>=</relation>
+      <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+    </Cell>
+  </map>
+  <map>
+    <Cell>
+      <entity1 rdf:resource="http://rdf.insee.fr/geo/2010/DEP_21" />
+      <entity2 rdf:resource="http://ec.europa.eu/eurostat/ramon/rdfdata/nuts2008/FR261" />
+      <relation>=</relation>
+      <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+    </Cell>
+  </map>
+  <map>
+    <Cell>
+      <entity1 rdf:resource="http://rdf.insee.fr/geo/2010/DEP_14" />
+      <entity2 rdf:resource="http://ec.europa.eu/eurostat/ramon/rdfdata/nuts2008/FR251" />
+      <relation>=</relation>
+      <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+    </Cell>
+  </map>
+  <map>
+    <Cell>
+      <entity1 rdf:resource="http://rdf.insee.fr/geo/2010/DEP_18" />
+      <entity2 rdf:resource="http://ec.europa.eu/eurostat/ramon/rdfdata/nuts2008/FR241" />
+      <relation>=</relation>
+      <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+    </Cell>
+  </map>
+  <map>
+    <Cell>
+      <entity1 rdf:resource="http://rdf.insee.fr/geo/2010/DEP_2A" />
+      <entity2 rdf:resource="http://ec.europa.eu/eurostat/ramon/rdfdata/nuts2008/FR831" />
+      <relation>=</relation>
+      <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+    </Cell>
+  </map>
+  <map>
+    <Cell>
+      <entity1 rdf:resource="http://rdf.insee.fr/geo/2010/DEP_72" />
+      <entity2 rdf:resource="http://ec.europa.eu/eurostat/ramon/rdfdata/nuts2008/FR514" />
+      <relation>=</relation>
+      <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+    </Cell>
+  </map>
+  <map>
+    <Cell>
+      <entity1 rdf:resource="http://rdf.insee.fr/geo/2010/DEP_80" />
+      <entity2 rdf:resource="http://ec.europa.eu/eurostat/ramon/rdfdata/nuts2008/FR223" />
+      <relation>=</relation>
+      <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+    </Cell>
+  </map>
+  <map>
+    <Cell>
+      <entity1 rdf:resource="http://rdf.insee.fr/geo/2010/DEP_973" />
+      <entity2 rdf:resource="http://ec.europa.eu/eurostat/ramon/rdfdata/nuts2008/FR930" />
+      <relation>=</relation>
+      <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+    </Cell>
+  </map>
+  <map>
+    <Cell>
+      <entity1 rdf:resource="http://rdf.insee.fr/geo/2010/DEP_971" />
+      <entity2 rdf:resource="http://ec.europa.eu/eurostat/ramon/rdfdata/nuts2008/FR910" />
+      <relation>=</relation>
+      <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+    </Cell>
+  </map>
+  <map>
+    <Cell>
+      <entity1 rdf:resource="http://rdf.insee.fr/geo/2010/DEP_73" />
+      <entity2 rdf:resource="http://ec.europa.eu/eurostat/ramon/rdfdata/nuts2008/FR717" />
+      <relation>=</relation>
+      <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+    </Cell>
+  </map>
+  <map>
+    <Cell>
+      <entity1 rdf:resource="http://rdf.insee.fr/geo/2010/DEP_60" />
+      <entity2 rdf:resource="http://ec.europa.eu/eurostat/ramon/rdfdata/nuts2008/FR222" />
+      <relation>=</relation>
+      <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+    </Cell>
+  </map>
+  <map>
+    <Cell>
+      <entity1 rdf:resource="http://rdf.insee.fr/geo/2010/DEP_30" />
+      <entity2 rdf:resource="http://ec.europa.eu/eurostat/ramon/rdfdata/nuts2008/FR812" />
+      <relation>=</relation>
+      <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+    </Cell>
+  </map>
+  <map>
+    <Cell>
+      <entity1 rdf:resource="http://rdf.insee.fr/geo/2010/DEP_32" />
+      <entity2 rdf:resource="http://ec.europa.eu/eurostat/ramon/rdfdata/nuts2008/FR624" />
+      <relation>=</relation>
+      <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+    </Cell>
+  </map>
+  <map>
+    <Cell>
+      <entity1 rdf:resource="http://rdf.insee.fr/geo/2010/DEP_23" />
+      <entity2 rdf:resource="http://ec.europa.eu/eurostat/ramon/rdfdata/nuts2008/FR632" />
+      <relation>=</relation>
+      <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+    </Cell>
+  </map>
+  <map>
+    <Cell>
+      <entity1 rdf:resource="http://rdf.insee.fr/geo/2010/DEP_19" />
+      <entity2 rdf:resource="http://ec.europa.eu/eurostat/ramon/rdfdata/nuts2008/FR631" />
+      <relation>=</relation>
+      <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+    </Cell>
+  </map>
+  <map>
+    <Cell>
+      <entity1 rdf:resource="http://rdf.insee.fr/geo/2010/DEP_93" />
+      <entity2 rdf:resource="http://ec.europa.eu/eurostat/ramon/rdfdata/nuts2008/FR106" />
+      <relation>=</relation>
+      <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</measure>
+    </Cell>
+  </map>
+  <map>
+    <Cell>
+      <entity1 rdf:resource="http://rdf.insee.fr/geo/2010/DEP_77" />
+      <entity2 rdf:resource="http://ec.europa.eu/eurostat/ramon/rdfdata/nuts2008/FR102" />
+      <relation>=</relation>
+      <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</measure>
+    </Cell>
+  </map>
+  <map>
+    <Cell>
+      <entity1 rdf:resource="http://rdf.insee.fr/geo/2010/DEP_17" />
+      <entity2 rdf:resource="http://ec.europa.eu/eurostat/ramon/rdfdata/nuts2008/FR532" />
+      <relation>=</relation>
+      <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+    </Cell>
+  </map>
+  <map>
+    <Cell>
+      <entity1 rdf:resource="http://rdf.insee.fr/geo/2010/DEP_16" />
+      <entity2 rdf:resource="http://ec.europa.eu/eurostat/ramon/rdfdata/nuts2008/FR531" />
+      <relation>=</relation>
+      <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+    </Cell>
+  </map>
+  <map>
+    <Cell>
+      <entity1 rdf:resource="http://rdf.insee.fr/geo/2010/DEP_58" />
+      <entity2 rdf:resource="http://ec.europa.eu/eurostat/ramon/rdfdata/nuts2008/FR262" />
+      <relation>=</relation>
+      <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+    </Cell>
+  </map>
+  <map>
+    <Cell>
+      <entity1 rdf:resource="http://rdf.insee.fr/geo/2010/DEP_88" />
+      <entity2 rdf:resource="http://ec.europa.eu/eurostat/ramon/rdfdata/nuts2008/FR414" />
+      <relation>=</relation>
+      <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+    </Cell>
+  </map>
+  <map>
+    <Cell>
+      <entity1 rdf:resource="http://rdf.insee.fr/geo/2010/DEP_29" />
+      <entity2 rdf:resource="http://ec.europa.eu/eurostat/ramon/rdfdata/nuts2008/FR522" />
+      <relation>=</relation>
+      <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+    </Cell>
+  </map>
+  <map>
+    <Cell>
+      <entity1 rdf:resource="http://rdf.insee.fr/geo/2010/DEP_39" />
+      <entity2 rdf:resource="http://ec.europa.eu/eurostat/ramon/rdfdata/nuts2008/FR432" />
+      <relation>=</relation>
+      <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+    </Cell>
+  </map>
+  <map>
+    <Cell>
+      <entity1 rdf:resource="http://rdf.insee.fr/geo/2010/DEP_83" />
+      <entity2 rdf:resource="http://ec.europa.eu/eurostat/ramon/rdfdata/nuts2008/FR825" />
+      <relation>=</relation>
+      <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+    </Cell>
+  </map>
+  <map>
+    <Cell>
+      <entity1 rdf:resource="http://rdf.insee.fr/geo/2010/DEP_86" />
+      <entity2 rdf:resource="http://ec.europa.eu/eurostat/ramon/rdfdata/nuts2008/FR534" />
+      <relation>=</relation>
+      <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+    </Cell>
+  </map>
+  <map>
+    <Cell>
+      <entity1 rdf:resource="http://rdf.insee.fr/geo/2010/DEP_85" />
+      <entity2 rdf:resource="http://ec.europa.eu/eurostat/ramon/rdfdata/nuts2008/FR515" />
+      <relation>=</relation>
+      <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+    </Cell>
+  </map>
+  <map>
+    <Cell>
+      <entity1 rdf:resource="http://rdf.insee.fr/geo/2010/DEP_67" />
+      <entity2 rdf:resource="http://ec.europa.eu/eurostat/ramon/rdfdata/nuts2008/FR421" />
+      <relation>=</relation>
+      <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+    </Cell>
+  </map>
+  <map>
+    <Cell>
+      <entity1 rdf:resource="http://rdf.insee.fr/geo/2010/DEP_84" />
+      <entity2 rdf:resource="http://ec.europa.eu/eurostat/ramon/rdfdata/nuts2008/FR826" />
+      <relation>=</relation>
+      <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+    </Cell>
+  </map>
+  <map>
+    <Cell>
+      <entity1 rdf:resource="http://rdf.insee.fr/geo/2010/DEP_59" />
+      <entity2 rdf:resource="http://ec.europa.eu/eurostat/ramon/rdfdata/nuts2008/FR301" />
+      <relation>=</relation>
+      <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</measure>
+    </Cell>
+  </map>
+  <map>
+    <Cell>
+      <entity1 rdf:resource="http://rdf.insee.fr/geo/2010/DEP_69" />
+      <entity2 rdf:resource="http://ec.europa.eu/eurostat/ramon/rdfdata/nuts2008/FR716" />
+      <relation>=</relation>
+      <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+    </Cell>
+  </map>
+  <map>
+    <Cell>
+      <entity1 rdf:resource="http://rdf.insee.fr/geo/2010/DEP_89" />
+      <entity2 rdf:resource="http://ec.europa.eu/eurostat/ramon/rdfdata/nuts2008/FR264" />
+      <relation>=</relation>
+      <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+    </Cell>
+  </map>
+  <map>
+    <Cell>
+      <entity1 rdf:resource="http://rdf.insee.fr/geo/2010/DEP_95" />
+      <entity2 rdf:resource="http://ec.europa.eu/eurostat/ramon/rdfdata/nuts2008/FR108" />
+      <relation>=</relation>
+      <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</measure>
+    </Cell>
+  </map>
+  <map>
+    <Cell>
+      <entity1 rdf:resource="http://rdf.insee.fr/geo/2010/DEP_94" />
+      <entity2 rdf:resource="http://ec.europa.eu/eurostat/ramon/rdfdata/nuts2008/FR107" />
+      <relation>=</relation>
+      <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</measure>
+    </Cell>
+  </map>
+  <map>
+    <Cell>
+      <entity1 rdf:resource="http://rdf.insee.fr/geo/2010/DEP_13" />
+      <entity2 rdf:resource="http://ec.europa.eu/eurostat/ramon/rdfdata/nuts2008/FR824" />
+      <relation>=</relation>
+      <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+    </Cell>
+  </map>
+  <map>
+    <Cell>
+      <entity1 rdf:resource="http://rdf.insee.fr/geo/2010/DEP_56" />
+      <entity2 rdf:resource="http://ec.europa.eu/eurostat/ramon/rdfdata/nuts2008/FR524" />
+      <relation>=</relation>
+      <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+    </Cell>
+  </map>
+  <map>
+    <Cell>
+      <entity1 rdf:resource="http://rdf.insee.fr/geo/2010/DEP_50" />
+      <entity2 rdf:resource="http://ec.europa.eu/eurostat/ramon/rdfdata/nuts2008/FR252" />
+      <relation>=</relation>
+      <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+    </Cell>
+  </map>
+  <map>
+    <Cell>
+      <entity1 rdf:resource="http://rdf.insee.fr/geo/2010/DEP_51" />
+      <entity2 rdf:resource="http://ec.europa.eu/eurostat/ramon/rdfdata/nuts2008/FR213" />
+      <relation>=</relation>
+      <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+    </Cell>
+  </map>
+  <map>
+    <Cell>
+      <entity1 rdf:resource="http://rdf.insee.fr/geo/2010/DEP_35" />
+      <entity2 rdf:resource="http://ec.europa.eu/eurostat/ramon/rdfdata/nuts2008/FR523" />
+      <relation>=</relation>
+      <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+    </Cell>
+  </map>
+  <map>
+    <Cell>
+      <entity1 rdf:resource="http://rdf.insee.fr/geo/2010/DEP_37" />
+      <entity2 rdf:resource="http://ec.europa.eu/eurostat/ramon/rdfdata/nuts2008/FR244" />
+      <relation>=</relation>
+      <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+    </Cell>
+  </map>
+  <map>
+    <Cell>
+      <entity1 rdf:resource="http://rdf.insee.fr/geo/2010/DEP_36" />
+      <entity2 rdf:resource="http://ec.europa.eu/eurostat/ramon/rdfdata/nuts2008/FR243" />
+      <relation>=</relation>
+      <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+    </Cell>
+  </map>
+  <map>
+    <Cell>
+      <entity1 rdf:resource="http://rdf.insee.fr/geo/2010/DEP_28" />
+      <entity2 rdf:resource="http://ec.europa.eu/eurostat/ramon/rdfdata/nuts2008/FR242" />
+      <relation>=</relation>
+      <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+    </Cell>
+  </map>
+  <map>
+    <Cell>
+      <entity1 rdf:resource="http://rdf.insee.fr/geo/2010/DEP_03" />
+      <entity2 rdf:resource="http://ec.europa.eu/eurostat/ramon/rdfdata/nuts2008/FR721" />
+      <relation>=</relation>
+      <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+    </Cell>
+  </map>
+  <map>
+    <Cell>
+      <entity1 rdf:resource="http://rdf.insee.fr/geo/2010/DEP_57" />
+      <entity2 rdf:resource="http://ec.europa.eu/eurostat/ramon/rdfdata/nuts2008/FR413" />
+      <relation>=</relation>
+      <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+    </Cell>
+  </map>
+  <map>
+    <Cell>
+      <entity1 rdf:resource="http://rdf.insee.fr/geo/2010/DEP_55" />
+      <entity2 rdf:resource="http://ec.europa.eu/eurostat/ramon/rdfdata/nuts2008/FR412" />
+      <relation>=</relation>
+      <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+    </Cell>
+  </map>
+  <map>
+    <Cell>
+      <entity1 rdf:resource="http://rdf.insee.fr/geo/2010/DEP_54" />
+      <entity2 rdf:resource="http://ec.europa.eu/eurostat/ramon/rdfdata/nuts2008/FR411" />
+      <relation>=</relation>
+      <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+    </Cell>
+  </map>
+  <map>
+    <Cell>
+      <entity1 rdf:resource="http://rdf.insee.fr/geo/2010/DEP_10" />
+      <entity2 rdf:resource="http://ec.europa.eu/eurostat/ramon/rdfdata/nuts2008/FR212" />
+      <relation>=</relation>
+      <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+    </Cell>
+  </map>
+  <map>
+    <Cell>
+      <entity1 rdf:resource="http://rdf.insee.fr/geo/2010/DEP_08" />
+      <entity2 rdf:resource="http://ec.europa.eu/eurostat/ramon/rdfdata/nuts2008/FR211" />
+      <relation>=</relation>
+      <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+    </Cell>
+  </map>
+  <map>
+    <Cell>
+      <entity1 rdf:resource="http://rdf.insee.fr/geo/2010/DEP_972" />
+      <entity2 rdf:resource="http://ec.europa.eu/eurostat/ramon/rdfdata/nuts2008/FR920" />
+      <relation>=</relation>
+      <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+    </Cell>
+  </map>
+  <map>
+    <Cell>
+      <entity1 rdf:resource="http://rdf.insee.fr/geo/2010/DEP_27" />
+      <entity2 rdf:resource="http://ec.europa.eu/eurostat/ramon/rdfdata/nuts2008/FR231" />
+      <relation>=</relation>
+      <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+    </Cell>
+  </map>
+  <map>
+    <Cell>
+      <entity1 rdf:resource="http://rdf.insee.fr/geo/2010/DEP_53" />
+      <entity2 rdf:resource="http://ec.europa.eu/eurostat/ramon/rdfdata/nuts2008/FR513" />
+      <relation>=</relation>
+      <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+    </Cell>
+  </map>
+  <map>
+    <Cell>
+      <entity1 rdf:resource="http://rdf.insee.fr/geo/2010/DEP_49" />
+      <entity2 rdf:resource="http://ec.europa.eu/eurostat/ramon/rdfdata/nuts2008/FR512" />
+      <relation>=</relation>
+      <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+    </Cell>
+  </map>
+  <map>
+    <Cell>
+      <entity1 rdf:resource="http://rdf.insee.fr/geo/2010/DEP_78" />
+      <entity2 rdf:resource="http://ec.europa.eu/eurostat/ramon/rdfdata/nuts2008/FR103" />
+      <relation>=</relation>
+      <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</measure>
+    </Cell>
+  </map>
+  <map>
+    <Cell>
+      <entity1 rdf:resource="http://rdf.insee.fr/geo/2010/DEP_11" />
+      <entity2 rdf:resource="http://ec.europa.eu/eurostat/ramon/rdfdata/nuts2008/FR811" />
+      <relation>=</relation>
+      <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+    </Cell>
+  </map>
+  <map>
+    <Cell>
+      <entity1 rdf:resource="http://rdf.insee.fr/geo/2010/DEP_38" />
+      <entity2 rdf:resource="http://ec.europa.eu/eurostat/ramon/rdfdata/nuts2008/FR714" />
+      <relation>=</relation>
+      <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+    </Cell>
+  </map>
+  <map>
+    <Cell>
+      <entity1 rdf:resource="http://rdf.insee.fr/geo/2010/DEP_12" />
+      <entity2 rdf:resource="http://ec.europa.eu/eurostat/ramon/rdfdata/nuts2008/FR622" />
+      <relation>=</relation>
+      <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+    </Cell>
+  </map>
+  <map>
+    <Cell>
+      <entity1 rdf:resource="http://rdf.insee.fr/geo/2010/DEP_09" />
+      <entity2 rdf:resource="http://ec.europa.eu/eurostat/ramon/rdfdata/nuts2008/FR621" />
+      <relation>=</relation>
+      <measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+    </Cell>
+  </map>
+</Alignment>
+</rdf:RDF>

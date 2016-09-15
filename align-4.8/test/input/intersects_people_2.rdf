@@ -1,0 +1,81 @@
+<?xml version="1.0"?>
+<!DOCTYPE rdf:RDF [
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY foaf "http://xmlns.com/foaf/0.1/" >
+]>
+<rdf:RDF xmlns="http://exmo.inrialpes.fr/connectors-data/people/"
+         xml:base="http://exmo.inrialpes.fr/connectors-data/people/"
+         xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+         xmlns:foaf="http://xmlns.com/foaf/0.1/"
+         xmlns:owl="http://www.w3.org/2002/07/owl#"
+         xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+         xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+    <owl:Ontology rdf:about="http://exmo.inrialpes.fr/connectors-data/people/">
+        <owl:imports rdf:resource="http://xmlns.com/foaf/0.1/"/>
+    </owl:Ontology>
+
+
+    <!-- EQUALS + Intersects for (nom, givenName) / Intersects for (connait, knows) -->
+    <rdf:Description rdf:about="http://exmo.inrialpes.fr/connectors-data/people#alice_c1_2">
+        <rdf:type rdf:resource="&foaf;Person"/>
+        <foaf:givenName>AliceC1</foaf:givenName>
+        <foaf:givenName>AliceC1_1</foaf:givenName>
+        <foaf:givenName>AliceC1_2</foaf:givenName>
+        <foaf:knows rdf:resource="http://exmo.inrialpes.fr/connectors-data/people#alice_c3_2" />
+        <foaf:knows rdf:resource="http://exmo.inrialpes.fr/connectors-data/people#alice_c4_2" />
+        <foaf:mbox>alice2@gmail.com</foaf:mbox>
+        <foaf:mbox>alice2@msn.com</foaf:mbox>
+    </rdf:Description>
+
+    <!-- INTERSECTS on AliceC2 for (nom, givenName) / Equals + Intersects for (connait, knows)-->
+    <rdf:Description rdf:about="http://exmo.inrialpes.fr/connectors-data/people#alice_c2_2">
+        <rdf:type rdf:resource="&foaf;Person"/>
+        <foaf:givenName>AliceC2</foaf:givenName>
+        <foaf:givenName>AliceC2_1_diff</foaf:givenName>
+        <foaf:givenName>AliceC2_2_diff</foaf:givenName>
+        <foaf:knows rdf:resource="http://exmo.inrialpes.fr/connectors-data/people#alice_c3_2" />
+        <foaf:knows rdf:resource="http://exmo.inrialpes.fr/connectors-data/people#alice_c4_2" />
+        <foaf:mbox>alice2@gmail.com</foaf:mbox>
+        <foaf:mbox>alice2@msn.com</foaf:mbox>
+    </rdf:Description>
+    
+    <!-- UNIQ -->
+    <rdf:Description rdf:about="http://exmo.inrialpes.fr/connectors-data/people#alice_c3_2">
+        <rdf:type rdf:resource="&foaf;Person"/>
+        <foaf:givenName>AliceC3_1_diff</foaf:givenName>
+        <foaf:givenName>AliceC3_2_diff</foaf:givenName>
+        <foaf:givenName>AliceC3_3_diff</foaf:givenName>
+        <foaf:givenName>AliceC3_4_diff</foaf:givenName>
+        <foaf:givenName>AliceC3_5_diff</foaf:givenName>
+        <foaf:givenName>AliceC3_6_diff</foaf:givenName>
+        <foaf:mbox>alice1@gmail.com</foaf:mbox>
+        <foaf:mbox>alice1@msn.com</foaf:mbox>
+    </rdf:Description>
+    
+    <!-- UNIQ -->
+    <rdf:Description rdf:about="http://exmo.inrialpes.fr/connectors-data/people#alice_c4_2">
+        <rdf:type rdf:resource="&foaf;Person"/>
+        <foaf:givenName>AliceC4</foaf:givenName>
+        <foaf:givenName>AliceC4_1_diff</foaf:givenName>
+        <foaf:givenName>AliceC4_2_diff</foaf:givenName>
+        <foaf:givenName>AliceC4_3_diff</foaf:givenName>
+        <foaf:givenName>AliceC4_4_diff</foaf:givenName>
+        <foaf:givenName>AliceC4_5_diff</foaf:givenName>
+        <foaf:givenName>AliceC4_6_diff</foaf:givenName>
+        <foaf:mbox>alice1@gmail.com</foaf:mbox>
+        <foaf:mbox>alice1@msn.com</foaf:mbox>
+    </rdf:Description>
+
+    <!-- UNIQ -->
+    <rdf:Description
+        rdf:about="http://exmo.inrialpes.fr/connectors-data/people#ivan_2">
+        <rdf:type rdf:resource="&foaf;Person"/>
+        <foaf:givenName>Ivan2</foaf:givenName>
+        <foaf:mbox>ivan@gmail.com</foaf:mbox>
+    </rdf:Description>
+
+
+</rdf:RDF>

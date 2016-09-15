@@ -1,0 +1,55 @@
+<project>
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>fr.paris8.iut.info.iddl</groupId>
+  <artifactId>iddl</artifactId>
+  <version>1.5</version>
+  <!-- Unreleased version of 2013-03-06 -->
+  <name>Integrated Distributed Description Logic</name>
+  <description>A Resonner for Integrated Distributed Description Logic (now also called DRAOn)</description>
+  <licenses>
+    <license>
+      <name>GNU LESSER GENERAL PUBLIC LICENSE Version 2.1, February 1999</name>
+      <url>http://www.gnu.org/licenses/lgpl-2.1.html</url>
+    </license>
+  </licenses>
+
+  <url>http://iddl.gforge.inria.fr/</url>
+
+  <!-- alignapi owlapi, clairement -->
+  <!--dependencies>
+    <dependency>
+      <groupId>org.semanticweb.owl</groupId>
+      <artifactId>align</artifactId>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>fr.inrialpes.exmo.align</groupId>
+      <artifactId>procalign</artifactId>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>fr.inrialpes.exmo</groupId>
+      <artifactId>ontowrap</artifactId>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.semanticweb.HermiT</groupId>
+      <artifactId>HermiT</artifactId>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.semanticweb</groupId>
+      <artifactId>owlapi</artifactId>
+      <optional>true</optional>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.xml</groupId>
+      <artifactId>xml-apis</artifactId>
+      <optional>true</optional>
+      <scope>compile</scope>
+    </dependency>
+  </dependencies-->
+
+</project>

@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<!-- Works with Silk 2.5.4 (but not 2.6.1, but maybe 2.6.2) -->
+
+<Silk>
+  <Prefixes>
+    <Prefix id="rdf" namespace="http://www.w3.org/1999/02/22-rdf-syntax-ns#" />
+    <Prefix id="owl" namespace="http://www.w3.org/2002/07/owl#" />
+    <Prefix id="id2" namespace="http://ec.europa.eu/eurostat/ramon/ontologies/geographic.rdf#" />
+    <Prefix id="id3" namespace="http://ec.europa.eu/eurostat/ramon/rdfdata/nuts2008/" />
+    <Prefix id="id1" namespace="http://rdf.insee.fr/geo/" />
+  </Prefixes>
+  
+  <DataSources>
+    <DataSource id="id1" type="file">
+      <Param name="file" value="regions-2010.rdf"/>
+      <Param name="format" value="RDF/XML" />
+    </DataSource>
+    
+    <DataSource id="id2" type="file">
+      <Param name="file" value="nuts2008_complete.rdf"/>
+      <Param name="format" value="RDF/XML" />
+    </DataSource>
+  </DataSources>
+  
+  <Interlinks>
+    <Interlink id="no1">
+      <LinkType>owl:sameAs</LinkType>
+
+      <SourceDataset dataSource="id1" var="e1">
+	<RestrictTo>
+	  ?e1 rdf:type id1:Departement . 
+	</RestrictTo>
+      </SourceDataset>
+      <TargetDataset dataSource="id2" var="e2">
+	<RestrictTo>
+	  ?e2 rdf:type id2:NUTSRegion .
+	</RestrictTo>
+      </TargetDataset>
+
+      <LinkageRule>
+	<Compare metric="equality">
+	  <Input path="?e1/id1:nom" />
+	  <Input path="?e2/id2:name" />
+	</Compare>
+      </LinkageRule>
+      
+      <Filter />
+      
+      <Outputs>
+        <Output minConfidence="1." type="file">
+          <Param name="file" value="results/Round1-accepted.rdf"/>
+          <Param name="format" value="alignment"/>
+        </Output>
+      </Outputs>
+
+    </Interlink>
+
+    <Interlink id="no2">
+      <LinkType>owl:sameAs</LinkType>
+      <SourceDataset dataSource="id1" var="e1">
+	<RestrictTo>
+	  ?e1 rdf:type id1:Departement . 
+	</RestrictTo>
+      </SourceDataset>
+      <TargetDataset dataSource="id2" var="e2">
+	<RestrictTo>
+	  ?e2 rdf:type id2:NUTSRegion . ?e2 id2:level ?ov1 . FILTER (?ov1=3) .
+	</RestrictTo>
+      </TargetDataset>
+      <LinkageRule>
+	<Compare metric="jaccard" threshold=".2">
+	  <TransformInput function="tokenize">
+	    <Input path="?e1/id1:nom" />
+	  </TransformInput>
+	  <TransformInput function="tokenize">
+	    <Input path="?e2/id2:name" />
+	  </TransformInput>
+	</Compare>
+      </LinkageRule>
+      
+      <Filter />
+      
+      <Outputs>
+        <Output minConfidence=".7" type="file">
+          <Param name="file" value="results/Round2-accepted.rdf"/>
+          <Param name="format" value="alignment"/>
+        </Output>
+        <Output maxConfidence=".7" minConfidence=".2" type="file">
+          <Param name="file" value="results/Round2-tocheck.nt"/>
+          <Param name="format" value="ntriples"/>
+        </Output>
+      </Outputs>
+
+    </Interlink>
+      
+    <Interlink id="no3">
+      <LinkType>owl:sameAs</LinkType>
+
+      <SourceDataset dataSource="id1" var="e1">
+	<RestrictTo>
+	  ?e1 rdf:type id1:Departement . 
+	</RestrictTo>
+      </SourceDataset>
+      <TargetDataset dataSource="id2" var="e2">
+	<RestrictTo>
+	  ?e2 rdf:type id2:NUTSRegion .
+	</RestrictTo>
+      </TargetDataset>
+
+      <LinkageRule>
+	<Aggregate type="average">
+	  <Compare metric="jaccard" threshold=".2">
+	    <TransformInput function="tokenize">
+	      <Input path="?e1\id1:subdivision/id1:nom" />
+	    </TransformInput>
+	    <TransformInput function="tokenize">
+	      <Input path="?e2/id2:hasParentRegion/id2:name" />
+	    </TransformInput>
+	  </Compare>
+	  <Compare metric="jaccard" threshold=".2">
+	    <TransformInput function="tokenize">
+	      <Input path="?e1/id1:nom" />
+	    </TransformInput>
+	    <TransformInput function="tokenize">
+	      <Input path="?e2/id2:name" />
+	    </TransformInput>
+	  </Compare>
+	</Aggregate>
+      </LinkageRule>
+      
+      <Filter />
+      
+      <Outputs>
+        <Output minConfidence=".7" type="file">
+          <Param name="file" value="results/Round3-accepted.rdf"/>
+          <Param name="format" value="alignment"/>
+        </Output>
+        <Output maxConfidence=".7" minConfidence=".2" type="file">
+          <Param name="file" value="results/Round3-tocheck.nt"/>
+          <Param name="format" value="ntriples"/>
+        </Output>
+      </Outputs>
+
+    </Interlink>
+
+    <Interlink id="no4">
+      <LinkType>owl:sameAs</LinkType>
+      <SourceDataset dataSource="id1" var="e1">
+	<RestrictTo>
+	  ?e1 rdf:type id1:Departement . 
+	</RestrictTo>
+      </SourceDataset>
+      <TargetDataset dataSource="id2" var="e2">
+	<RestrictTo>
+	  ?e2 rdf:type id2:NUTSRegion . ?e2 id2:level ?ov1 . FILTER (?ov1=3) .
+	  ?e2 id2:hasParentRegion ?o4 .
+	  ?o4 id2:hasParentRegion ?o5 .
+	  ?o5 id2:hasParentRegion ?o6 .
+	  FILTER ( ?o6 = id3:FR ) .
+	</RestrictTo>
+      </TargetDataset>
+      <LinkageRule>
+	<Aggregate type="average">
+	  <Compare metric="jaccard" threshold=".2">
+	    <TransformInput function="tokenize">
+	      <Input path="?e1\id1:subdivision/id1:nom" />
+	    </TransformInput>
+	    <TransformInput function="tokenize">
+	      <Input path="?e2/id2:hasParentRegion/id2:name" />
+	    </TransformInput>
+	  </Compare>
+	  <Compare metric="jaccard" threshold=".2">
+	    <TransformInput function="tokenize">
+	      <Input path="?e1/id1:nom" />
+	    </TransformInput>
+	    <TransformInput function="tokenize">
+	      <Input path="?e2/id2:name" />
+	    </TransformInput>
+	  </Compare>
+	</Aggregate>
+      </LinkageRule>
+      
+      <Filter />
+      
+      <Outputs>
+        <Output minConfidence=".7" type="file">
+          <Param name="file" value="results/Round4-accepted.rdf"/>
+          <Param name="format" value="alignment"/>
+        </Output>
+        <Output maxConfidence=".7" minConfidence=".2" type="file">
+          <Param name="file" value="results/Round4-tocheck.nt"/>
+          <Param name="format" value="ntriples"/>
+        </Output>
+      </Outputs>
+
+    </Interlink>
+
+    <Interlink id="no5">
+      <LinkType>owl:sameAs</LinkType>
+      <SourceDataset dataSource="id1" var="e1">
+	<RestrictTo>
+	  ?e1 rdf:type id1:Departement . 
+	</RestrictTo>
+      </SourceDataset>
+      <TargetDataset dataSource="id2" var="e2">
+	<RestrictTo>
+	  ?e2 rdf:type id2:NUTSRegion . ?e2 id2:level ?ov1 . FILTER (?ov1=3) .
+	  ?e2 id2:hasParentRegion ?o4 .
+	  ?o4 id2:hasParentRegion ?o5 .
+	  ?o5 id2:hasParentRegion ?o6 .
+	  FILTER ( ?o6 = id3:FR ) .
+	</RestrictTo>
+      </TargetDataset>
+      <LinkageRule>
+	<Compare metric="equality">
+	  <Input path="?e1/id1:nom" />
+	  <Input path="?e2/id2:name" />
+	</Compare>
+      </LinkageRule>
+      
+      <Filter />
+      
+      <Outputs>
+        <Output minConfidence=".7" type="file">
+          <Param name="file" value="results/Round5-accepted.rdf"/>
+          <Param name="format" value="alignment"/>
+        </Output>
+        <Output maxConfidence=".7" minConfidence=".2" type="file">
+          <Param name="file" value="results/Round5-tocheck.nt"/>
+          <Param name="format" value="ntriples"/>
+        </Output>
+      </Outputs>
+
+    </Interlink>
+
+    <Interlink id="no6">
+      <LinkType>owl:sameAs</LinkType>
+      <SourceDataset dataSource="id1" var="e1">
+	<RestrictTo>
+	  ?e1 rdf:type id1:Departement . 
+	</RestrictTo>
+      </SourceDataset>
+      <TargetDataset dataSource="id2" var="e2">
+	<RestrictTo>
+	  ?e2 rdf:type id2:NUTSRegion . ?e2 id2:level ?ov1 . FILTER (?ov1=3) .
+	  ?e2 id2:hasParentRegion ?o4 .
+	  ?o4 id2:hasParentRegion ?o5 .
+	  ?o5 id2:hasParentRegion ?o6 .
+	  FILTER ( ?o6 = id3:FR ) .
+	</RestrictTo>
+      </TargetDataset>
+      <LinkageRule>
+	<Aggregate type="max">
+	  <Compare metric="jaccard" threshold=".2">
+	    <TransformInput function="tokenize">
+	      <Input path="?e1\id1:subdivision/id1:nom" />
+	    </TransformInput>
+	    <TransformInput function="tokenize">
+	      <Input path="?e2/id2:hasParentRegion/id2:name" />
+	    </TransformInput>
+	  </Compare>
+	  <Compare metric="jaccard" threshold=".2">
+	    <TransformInput function="tokenize">
+	      <Input path="?e1/id1:nom" />
+	    </TransformInput>
+	    <TransformInput function="tokenize">
+	      <Input path="?e2/id2:name" />
+	    </TransformInput>
+	  </Compare>
+	</Aggregate>
+      </LinkageRule>
+      
+      <Filter />
+      
+      <Outputs>
+        <Output minConfidence=".7" type="file">
+          <Param name="file" value="results/Round6-accepted.rdf"/>
+          <Param name="format" value="alignment"/>
+        </Output>
+        <Output maxConfidence=".7" minConfidence=".2" type="file">
+          <Param name="file" value="results/Round6-tocheck.nt"/>
+          <Param name="format" value="ntriples"/>
+        </Output>
+      </Outputs>
+
+    </Interlink>
+
+    <Interlink id="no7">
+      <LinkType>owl:sameAs</LinkType>
+      <SourceDataset dataSource="id1" var="e1">
+	<RestrictTo>
+	  ?e1 rdf:type id1:Departement . 
+	</RestrictTo>
+      </SourceDataset>
+      <TargetDataset dataSource="id2" var="e2">
+	<RestrictTo>
+	  ?e2 rdf:type id2:NUTSRegion . ?e2 id2:level ?ov1 . FILTER (?ov1=3) .
+	  ?e2 id2:hasParentRegion ?o4 .
+	  ?o4 id2:hasParentRegion ?o5 .
+	  ?o5 id2:hasParentRegion ?o6 .
+	  FILTER ( ?o6 = id3:FR ) .
+	</RestrictTo>
+      </TargetDataset>
+      <LinkageRule>
+	<Aggregate type="min">
+	  <Compare metric="jaccard" threshold=".2">
+	    <TransformInput function="tokenize">
+	      <Input path="?e1\id1:subdivision/id1:nom" />
+	    </TransformInput>
+	    <TransformInput function="tokenize">
+	      <Input path="?e2/id2:hasParentRegion/id2:name" />
+	    </TransformInput>
+	  </Compare>
+	  <Compare metric="jaccard" threshold=".2">
+	    <TransformInput function="tokenize">
+	      <Input path="?e1/id1:nom" />
+	    </TransformInput>
+	    <TransformInput function="tokenize">
+	      <Input path="?e2/id2:name" />
+	    </TransformInput>
+	  </Compare>
+	</Aggregate>
+      </LinkageRule>
+      
+      <Filter />
+      
+      <Outputs>
+        <Output minConfidence=".7" type="file">
+          <Param name="file" value="results/Round7-accepted.rdf"/>
+          <Param name="format" value="alignment"/>
+        </Output>
+        <Output maxConfidence=".7" minConfidence=".2" type="file">
+          <Param name="file" value="results/Round7-tocheck.nt"/>
+          <Param name="format" value="ntriples"/>
+        </Output>
+      </Outputs>
+
+    </Interlink>
+
+ </Interlinks>
+
+</Silk>

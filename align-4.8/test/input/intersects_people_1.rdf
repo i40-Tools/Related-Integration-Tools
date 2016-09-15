@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<!DOCTYPE rdf:RDF [
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY foaf "http://xmlns.com/foaf/0.1/" >
+    <!ENTITY exmo "http://exmo.inrialpes.fr/connectors-core/" >
+]>
+<rdf:RDF xmlns="http://exmo.inrialpes.fr/connectors-data/people/"
+         xml:base="http://exmo.inrialpes.fr/connectors-data/people/"
+         xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+         xmlns:foaf="http://xmlns.com/foaf/0.1/"
+         xmlns:exmo="http://exmo.inrialpes.fr/connectors-core/"
+         xmlns:owl="http://www.w3.org/2002/07/owl#"
+         xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+         xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+    <owl:Ontology rdf:about="http://exmo.inrialpes.fr/connectors-data/people/">
+        <owl:imports rdf:resource="http://xmlns.com/foaf/0.1/"/>
+    </owl:Ontology>
+
+    <!-- INTERSECTS + EQUALS for (nom, givenName) / Intersects for (connait, knows)-->
+    <rdf:Description rdf:about="http://exmo.inrialpes.fr/connectors-data/people#alice_c1_1">
+        <rdf:type rdf:resource="&exmo;Personne"/>
+        <exmo:nom>AliceC1</exmo:nom>
+        <exmo:nom>AliceC1_1</exmo:nom>
+        <exmo:nom>AliceC1_2</exmo:nom>
+        <exmo:connait>AliceC3_1_diff</exmo:connait>
+        <exmo:connait>AliceC2_1_diff</exmo:connait>
+        <exmo:boitemel>alice1@gmail.com</exmo:boitemel>
+        <exmo:boitemel>alice1@msn.com</exmo:boitemel>
+    </rdf:Description>
+    
+    <!-- INTERSECTS on AliceC2 for (nom, givenName) / Equals + INTERSECTS for (connait, knows)-->
+    <rdf:Description rdf:about="http://exmo.inrialpes.fr/connectors-data/people#alice_c2_1">
+        <rdf:type rdf:resource="&exmo;Personne"/>
+        <exmo:nom>AliceC2</exmo:nom>
+        <exmo:nom>AliceC2_1</exmo:nom>
+        <exmo:nom>AliceC2_2</exmo:nom>
+        <exmo:connait>AliceC3_1_diff</exmo:connait>
+        <exmo:connait>AliceC4_1_diff</exmo:connait>
+        <exmo:boitemel>alice1@gmail.com</exmo:boitemel>
+        <exmo:boitemel>alice1@msn.com</exmo:boitemel>
+    </rdf:Description>
+
+    <rdf:Description rdf:about="http://exmo.inrialpes.fr/connectors-data/people#alice_c3_1"><!-- NOTHING -->
+        <rdf:type rdf:resource="&exmo;Personne"/>
+        <exmo:nom>AliceC3_1</exmo:nom>
+        <exmo:nom>AliceC3_2</exmo:nom>
+        <exmo:nom>AliceC3_3</exmo:nom>
+        <exmo:nom>AliceC3_4</exmo:nom>
+        <exmo:nom>AliceC3_5</exmo:nom>
+        <exmo:nom>AliceC3_6</exmo:nom>
+        <exmo:boitemel>alice1@gmail.com</exmo:boitemel>
+        <exmo:boitemel>alice1@msn.com</exmo:boitemel>
+    </rdf:Description>
+
+
+
+    <rdf:Description
+        rdf:about="http://exmo.inrialpes.fr/connectors-data/people#ivan_1"><!-- UNIQ -->
+        <rdf:type rdf:resource="&exmo;Personne"/>
+        <exmo:nom>Ivan1</exmo:nom>
+        <exmo:boitemel>ivan@gmail.com</exmo:boitemel>
+    </rdf:Description>
+
+</rdf:RDF>

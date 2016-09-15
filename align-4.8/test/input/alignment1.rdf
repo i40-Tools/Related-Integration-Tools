@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='utf-8' standalone='no'?>
+<rdf:RDF xmlns='http://knowledgeweb.semanticweb.org/heterogeneity/alignment#'
+         xmlns:rdf='http://www.w3.org/1999/02/22-rdf-syntax-ns#'
+         xmlns:ns0='http://exmo.inrialpes.fr/align/service#'
+         xmlns:xsd='http://www.w3.org/2001/XMLSchema#'
+         xmlns:align='http://knowledgeweb.semanticweb.org/heterogeneity/alignment#'
+         xmlns:edoal='http://ns.inria.org/edoal/1.0/#'>
+<Alignment rdf:about="http://localhost:8089/alid/1394718240757/976">
+  <xml>yes</xml>
+  <level>2EDOAL</level>
+  <type>?*</type>
+  <pretty>test1</pretty>
+  <ns0:cached>Thu Mar 13 14:44:05 CET 2014</ns0:cached>
+  <ns0:stored>null</ns0:stored>
+  <time>34</time>
+  <ns0:ouri2>http://purl.org/ontology/mo/</ns0:ouri2>
+  <id>http://localhost:8089/alid/1394718240757/976</id>
+  <ns0:ouri1>http://exmo.inrialpes.fr/connectors/example_musical_work_desc/</ns0:ouri1>
+  <method>fr.inrialpes.exmo.align.impl.method.SubsDistNameAlignment</method>
+  <onto1>
+    <Ontology rdf:about="http://exmo.inrialpes.fr/connectors/example_musical_work_desc/">
+      <location></location>
+      <formalism>
+        <Formalism align:name="OWL2.0" align:uri="http://www.w3.org/2002/07/owl#"/>
+      </formalism>
+    </Ontology>
+  </onto1>
+  <onto2>
+    <Ontology  rdf:about="http://purl.org/ontology/mo/">
+      <location></location>
+      <formalism>
+        <Formalism align:name="OWL2.0" align:uri="http://www.w3.org/2002/07/owl#"/>
+      </formalism>
+    </Ontology>
+  </onto2>
+  <map>
+    <Cell rdf:about="http://exmo.inrialpes.fr/connectors#cell_key">
+      <entity1>
+        <edoal:Property rdf:about="http://exmo.inrialpes.fr/connectors#key" />
+      </entity1>
+      <entity2>
+        <edoal:Property>
+          <edoal:compose rdf:parseType="Collection">
+            <edoal:Relation>
+              <edoal:and rdf:parseType="Collection">
+                <edoal:RelationCoDomainRestriction>
+                  <edoal:class>
+                    <edoal:Class rdf:about="http://purl.org/NET/c4dm/keys.owl#Key"/>
+                  </edoal:class>
+                </edoal:RelationCoDomainRestriction>
+                <edoal:RelationDomainRestriction>
+                  <edoal:class>
+                    <edoal:Class rdf:about="http://purl.org/NET/c4dm/keys.owl#Work"/>
+                  </edoal:class>
+                </edoal:RelationDomainRestriction>
+                <edoal:Relation rdf:about="http://purl.org/ontology/mo/key" />
+              </edoal:and>
+            </edoal:Relation>
+            <edoal:Property rdf:about="http://www.w3.org/2000/01/rdf-schema#label"/>
+          </edoal:compose>
+        </edoal:Property>
+      </entity2>
+      <relation>=</relation> 
+      <measure rdf:datatype='http://www.w3.org/2001/XMLSchema#float'>1.0</measure>
+    </Cell>
+  </map>
+</Alignment>
+</rdf:RDF>

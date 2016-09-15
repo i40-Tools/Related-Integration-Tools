@@ -1,0 +1,11 @@
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX aa: <http://alignapi.gforge.inria.fr/tutorial/tutorial4/ontology1.owl#>
+
+SELECT ?fn ?ln ?t ?s
+WHERE {
+      ?student rdf:type aa:Estudiante .
+      ?student aa:firstname  ?fn .
+      ?student aa:lastname  ?ln .
+OPTIONAL   {   ?student aa:affiliation ?t . }
+OPTIONAL   {   ?student aa:supervisor ?s . }
+}
