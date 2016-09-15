@@ -21,17 +21,17 @@ replace all the uri;s with the following line :
 
 
 
-@prefix xml: <http://www.w3.org/XML/1998/namespace> .
-@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix foaf: <http://xmlns.com/foaf/spec/> .
-@prefix prov: <http://www.w3.org/ns/prov#> .
-@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
-@prefix vann: <http://purl.org/vocab/vann/> .
-@prefix void: <http://rdfs.org/ns/void#> .
-@prefix terms: <http://purl.org/dc/terms/> .
-@prefix schema: <http://schema.org/> .
-@base <https://w3id.org/i40/aml#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .  
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .   
+@prefix foaf: <http://xmlns.com/foaf/spec/> .   
+@prefix prov: <http://www.w3.org/ns/prov#> .   
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .  
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .   
+@prefix vann: <http://purl.org/vocab/vann/> .   
+@prefix void: <http://rdfs.org/ns/void#> .   
+@prefix terms: <http://purl.org/dc/terms/> .   
+@prefix schema: <http://schema.org/> .   
+@base <https://w3id.org/i40/aml#> .   
 
 <https://w3id.org/i40/aml#> rdf:type owl:Ontology ;
                              
