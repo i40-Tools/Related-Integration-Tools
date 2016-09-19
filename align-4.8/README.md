@@ -87,7 +87,7 @@ Once we have our rule we can use it to find alignment
 
 Run the following command:
 
-java -cp ../lib/procalign.jar fr.inrialpes.exmo.align.cli.ParserPrinter file:rdf/rules.rdf -r fr.inrialpes.exmo.align.impl.renderer.OWLAxiomsRendererVisitor -o rdf/output.rdf
+java -cp ../lib/procalign.jar fr.inrialpes.exmo.align.cli.ParserPrinter file:rdf/rules.rdf -r fr.inrialpes.exmo.align.impl.renderer.OWLAxiomsRendererVisitor -o rdf/output.rdf             
 This will save the aligned owl results in the output folder.
 if you want to give manual path for rules :
 
