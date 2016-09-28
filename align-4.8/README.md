@@ -20,7 +20,7 @@ Save it as Turtle format.
 replace all the uri;s with the following line :              
 
 
-
+```
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .  
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .   
 @prefix foaf: <http://xmlns.com/foaf/spec/> .   
@@ -66,7 +66,7 @@ replace all the uri;s with the following line :
                                              <https://w3id.org/i40/aml#> ;
                              
                              rdfs:isDefinedBy <https://w3id.org/i40/aml#> .
-
+```
 
 Note this will only work for AML domain.
 
@@ -77,20 +77,21 @@ Go to cmd  and move to directory align-4.8/examples.
 You can also go there by directly right shift click open as cmd.
 
 Once you are in that folder run the following command:
-
+```
 java -jar ../lib/procalign.jar file:c://file1.owl file:c://file2.owl -o rdf/rules.rdf
-
+```
 This will generate the rules files in rdf/ folder. You can also specify your own folders. File1 and file 2 are path of converted owl files.
 
 ## Step 6:
 Once we have our rule we can use it to find alignment
 
 Run the following command:
-
+```
 java -cp ../lib/procalign.jar fr.inrialpes.exmo.align.cli.ParserPrinter file:rdf/rules.rdf -r fr.inrialpes.exmo.align.impl.renderer.OWLAxiomsRendererVisitor -o rdf/output.rdf             
+```
 This will save the aligned owl results in the output folder.
 if you want to give manual path for rules :
-
+```
 java -cp ../lib/procalign.jar fr.inrialpes.exmo.align.cli.ParserPrinter file:c://rules.rdf -r fr.inrialpes.exmo.align.impl.renderer.OWLAxiomsRendererVisitor -o rdf/output.rdf
-
+```
 You can find converted files examples folder by name of converted.aml and converted-1.aml
