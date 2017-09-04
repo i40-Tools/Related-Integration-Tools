@@ -1,0 +1,115 @@
+@prefix : <https://w3id.org/i40/aml2#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix om: <http://www.wurvoc.org/vocabularies/om-1.8/> .
+@prefix ns0: <https://w3id.org/i40/aml2#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix foaf: <http://xmlns.com/foaf/spec/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix void: <http://rdfs.org/ns/void#> .
+@prefix terms: <http://purl.org/dc/terms/> .
+@prefix schema: <http://schema.org/> .
+@base <https://w3id.org/i40/aml2#> .
+
+<https://w3id.org/i40/aml/CAEXFile1>
+  a <https://w3id.org/i40/aml/CAEXFile> ;
+  ns0:hasFileName "seed-Granularity-0.aml" ;
+  ns0:hasSchemaVersion "2.15" ;
+  ns0:hasAdditionalInfomation ns0:AdditionalInformation1, ns0:AdditionalInformation2 ;
+  ns0:hasExternalReference ns0:ExternalReference1, ns0:ExternalReference2 ;
+  ns0:hasInstanceHierarchy ns0:InstanceHierarchy1 ;
+  ns0:hasRoleClassLib ns0:RoleClassLib1 .
+
+ns0:AdditionalInformation1
+  a ns0:AdditionalInformation ;
+  ns0:hasAutomationMLVersion "2.0"^^xsd:string .
+
+ns0:AdditionalInformation2
+  a ns0:AdditionalInformation ;
+  ns0:hasWriterName "AutomationML e.V." ;
+  ns0:hasWriterID "AutomationML e.V."^^xsd:string ;
+  ns0:hasWriterVendor "AutomationML e.V."^^xsd:string ;
+  ns0:hasWriterVendorURL "www.AutomationML.org"^^xsd:string ;
+  ns0:hasWriterVersion "1.0"^^xsd:string ;
+  ns0:hasWriterRelease "1.0"^^xsd:string ;
+  ns0:hasWriterProjectTitle "AutomationML Tutorial Examples"^^xsd:string ;
+  ns0:hasWriterProjectID "AutomationML Tutorial Examples "^^xsd:string .
+
+ns0:ExternalReference1
+  a ns0:ExternalReference ;
+  ns0:externalReferenceAlias "BaseRoleClassLib"^^xsd:string ;
+  ns0:refBaseClassPath "Libs/RoleClass Libraries/AutomationMLBaseRoleClassLib.aml"^^xsd:string .
+
+ns0:ExternalReference2
+  a ns0:ExternalReference ;
+  ns0:externalReferenceAlias "BaseInterfaceClassLib"^^xsd:string ;
+  ns0:refBaseClassPath "Libs/InterfaceClass Libraries/AutomationMLInterfaceClassLib.aml"^^xsd:string .
+
+ns0:InstanceHierarchy1
+  a ns0:InstanceHierarchy ;
+  ns0:hasAttributeName "InstanceHierarchy1"^^xsd:string ;
+  ns0:hasInternalElement ns0:InternalElement1 .
+
+ns0:InternalElement1
+  a ns0:InternalElement ;
+  dc:identifier "3fc3ade7-aa58-44a4-ab37-fa7e7665a74e"^^xsd:string ;
+  ns0:hasAttributeName "InstanceMyMotor"^^xsd:string .
+
+ns0:RoleClassLib1
+  a ns0:RoleClassLib ;
+  ns0:hasAttributeName "ExampleEClassRoleClassLib"^^xsd:string ;
+  ns0:hasVersion "1.0.0"^^xsd:string ;
+  ns0:hasRoleClass ns0:RoleClass1 .
+
+ns0:RoleClass1
+  a ns0:RoleClass ;
+  ns0:hasAttributeName "BASIC_27-02-25-01 DC engine (IEC)"^^xsd:string ;
+  ns0:hasAttribute ns0:Attribute1, ns0:Attribute2, ns0:Attribute3, ns0:Attribute4, ns0:Attribute5, ns0:Attribute6 .
+
+ns0:Attribute1
+  a ns0:Attribute ;
+  ns0:hasAttributeName "eClassVersions"^^xsd:string ;
+  ns0:hasAttributeValue "9.0"^^xsd:string .
+
+ns0:Attribute2
+  a ns0:Attribute ;
+  ns0:hasAttributeName "eClassClassificationClass"^^xsd:string ;
+  ns0:hasAttributeValue "27022501"^^xsd:string .
+
+ns0:Attribute3
+  a ns0:Attribute ;
+  ns0:hasAttributeName "eClassIRDI"^^xsd:string ;
+  ns0:hasAttributeValue "0173-1---BASIC_1_1#01-ABW077#009"^^xsd:string .
+
+ns0:Attribute4
+  a ns0:Attribute ;
+  ns0:hasAttributeName "Construction form of DC motor"^^xsd:string ;
+  ns0:hasRefSemantic ns0:RefSemantic1 .
+
+ns0:RefSemantic1
+  a ns0:RefSemantic ;
+  ns0:hasCorrespondingAttributePath "ECLASS:0173-1#02-BAE069#007"^^xsd:string .
+
+ns0:Attribute5
+  a ns0:Attribute ;
+  ns0:hasAttributeName "Cooling type"^^xsd:string ;
+  ns0:hasRefSemantic ns0:RefSemantic5 .
+
+ns0:RefSemantic5
+  a ns0:RefSemantic ;
+  ns0:hasCorrespondingAttributePath "ECLASS:0173-1#02-BAE122#006"^^xsd:string .
+
+ns0:Attribute6
+  a ns0:Attribute ;
+  ns0:hasAttributeName "GTIN"^^xsd:string ;
+  ns0:hasRefSemantic ns0:RefSemantic3 .
+
+ns0:RefSemantic3
+  a ns0:RefSemantic ;
+  ns0:hasCorrespondingAttributePath "0173-1#02-AAO663#002"^^xsd:string .
