@@ -2,7 +2,8 @@ How to run RefSemantic rule:
 
 command 1 : Reads rule_RefSem.rdf and creates a query based on it and its saved in  results/query.sparql
 
-command:
+command: copy paste in cmd
+
 java -cp ../lib/procalign.jar fr.inrialpes.exmo.align.cli.ParserPrinter file:rule_RefSem -r fr.inrialpes.exmo.align.impl.renderer.SPARQLLinkkerRendererVisitor -o results/query.sparql
 
 
