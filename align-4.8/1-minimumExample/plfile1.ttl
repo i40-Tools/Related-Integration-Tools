@@ -1,0 +1,111 @@
+@prefix dc11: <http://purl.org/dc/elements/1.1/> .
+@prefix om: <http://www.wurvoc.org/vocabularies/om-1.8/> .
+@prefix ns1: <https://w3id.org/i40/aml#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix foaf: <http://xmlns.com/foaf/spec/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix void: <http://rdfs.org/ns/void#> .
+@prefix terms: <http://purl.org/dc/terms/> .
+@prefix schema: <http://schema.org/> .
+@base <https://w3id.org/i40/aml#> .
+
+<https://w3id.org/i40/aml/CAEXFile1>
+  a <https://w3id.org/i40/aml/CAEXFile> ;
+  ns1:hasFileName "seed-Schematic-1.aml" ;
+  ns1:hasSchemaVersion "2.15" ;
+  ns1:hasAdditionalInfomation ns1:AdditionalInformation1, ns1:AdditionalInformation2 ;
+  ns1:hasInstanceHierarchy ns1:InstanceHierarchy1 .
+
+ns1:AdditionalInformation1
+  a ns1:AdditionalInformation ;
+  ns1:hasAutomationMLVersion "2.0"^^xsd:string .
+
+ns1:AdditionalInformation2
+  a ns1:AdditionalInformation ;
+  ns1:hasWriterName "AutomationML e.V." ;
+  ns1:hasWriterID "AutomationML e.V."^^xsd:string ;
+  ns1:hasWriterVendor "AutomationML e.V."^^xsd:string ;
+  ns1:hasWriterVendorURL "www.AutomationML.org"^^xsd:string ;
+  ns1:hasWriterVersion "1.0"^^xsd:string ;
+  ns1:hasWriterRelease "1.0"^^xsd:string ;
+  ns1:hasLastWritingDateTime "2012-03-27 "^^xsd:date ;
+  ns1:hasWriterProjectTitle "AutomationML Tutorial Examples"^^xsd:string ;
+  ns1:hasWriterProjectID "AutomationML Tutorial Examples "^^xsd:string .
+
+ns1:InstanceHierarchy1
+  a ns1:InstanceHierarchy ;
+  dc11:identifier "acf9f51b"^^xsd:string ;
+  ns1:hasAttributeName "ConveyorSystem"^^xsd:string ;
+  ns1:hasInternalElement ns1:InternalElement1, ns1:InternalElement2 .
+
+ns1:InternalElement1
+  a ns1:InternalElement ;
+  dc11:identifier "45e20f8e-7351-4af9-bdfd-3c019674de55"^^xsd:string ;
+  ns1:hasAttributeName "Conveyor001"^^xsd:string ;
+  ns1:hasAttribute ns1:Attribute1 ;
+  ns1:hasExternalInterface ns1:ExternalInterface1 ;
+  ns1:hasRoleRequirements ns1:RoleRequirements1 .
+
+ns1:Attribute1
+  a ns1:Attribute ;
+  ns1:hasDataType "xs:double"^^xsd:string ;
+  ns1:hasAttributeName "Offerer/supplier ID"^^xsd:string ;
+  ns1:hasAttributeValue "1234"^^xsd:string ;
+  ns1:hasRefSemantic ns1:RefSemantic1 .
+
+ns1:RefSemantic1
+  a ns1:RefSemantic ;
+  ns1:hasCorrespondingAttributePath "ECLASS:0173-1#02-AAP796#002"^^xsd:string .
+
+ns1:ExternalInterface1
+  a ns1:ExternalInterface ;
+  dc11:identifier "51e272d6-0252-4ebd-b865-2ca7a202a68e"^^xsd:string ;
+  ns1:hasAttributeName "ConnectionPoint"^^xsd:string ;
+  ns1:refBaseClassPath "BaseInterfaceClassLib@AutomationMLInterfaceClassLib/AutomationMLBaseInterface/PortConnector"^^xsd:string .
+
+ns1:RoleRequirements1
+  a ns1:RoleRequirements ;
+  ns1:refBaseRoleClassPath "BaseInterfaceClassLib@AutomationMLBaseRoleClassLib/AutomationMLBaseRole/Port"^^xsd:string .
+
+ns1:InternalElement2
+  a ns1:InternalElement ;
+  dc11:identifier "11b59bf6-44f6-4650-939f-d8e2551912a7"^^xsd:string ;
+  ns1:hasAttributeName "Conveyor002"^^xsd:string ;
+  ns1:hasAttribute ns1:Attribute2 ;
+  ns1:hasExternalInterface ns1:ExternalInterface2 ;
+  ns1:hasInternalLink ns1:InternalLink1 ;
+  ns1:hasRoleRequirements ns1:RoleRequirements2 .
+
+ns1:Attribute2
+  a ns1:Attribute ;
+  ns1:hasDataType "xs:double"^^xsd:string ;
+  ns1:hasAttributeName "Performance unit"^^xsd:string ;
+  ns1:hasAttributeValue "2"^^xsd:string ;
+  ns1:hasRefSemantic ns1:RefSemantic2 .
+
+ns1:RefSemantic2
+  a ns1:RefSemantic ;
+  ns1:hasCorrespondingAttributePath "ECLASS:0173-1#02-BAF577#004"^^xsd:string .
+
+ns1:ExternalInterface2
+  a ns1:ExternalInterface ;
+  dc11:identifier "c50f79eb-6634-4c7e-a32f-54bdef05cace"^^xsd:string ;
+  ns1:hasAttributeName "ConnectionPoint"^^xsd:string ;
+  ns1:refBaseClassPath "BaseInterfaceClassLib@AutomationMLInterfaceClassLib/AutomationMLBaseInterface/PortConnector"^^xsd:string .
+
+ns1:InternalLink1
+  a ns1:InternalLink ;
+  ns1:hasAttributeName "PortLink"^^xsd:string ;
+  ns1:hasRefPartnerSideA "45e20f8e-7351-4af9-bdfd-3c019674de55"^^xsd:string ;
+  ns1:hasRefPartnerSideB "11b59bf6-44f6-4650-939f-d8e2551912a7"^^xsd:string .
+
+ns1:RoleRequirements2
+  a ns1:RoleRequirements ;
+  ns1:refBaseRoleClassPath "BaseInterfaceClassLib@AutomationMLBaseRoleClassLib/AutomationMLBaseRole/Port"^^xsd:string .

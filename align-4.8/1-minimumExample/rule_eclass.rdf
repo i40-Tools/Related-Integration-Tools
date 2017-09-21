@@ -26,18 +26,19 @@
     </Ontology>
   </onto2>
   <map>
-    <Cell rdf:about="http://exmo.inrialpes.fr/connectors-core#cell2">
+    <Cell rdf:about="http://exmo.inrialpes.fr/connectors-core#cell1">
       <entity1>
-        <edoal:Class rdf:about="https://w3id.org/i40/aml2#Attribute"/>
+        <edoal:Class rdf:about="https://w3id.org/i40/aml2#RoleClass"/>
       </entity1>
       <entity2>
         <edoal:Class>
           <edoal:or rdf:parseType="Collection">
-            <edoal:Class rdf:about="https://w3id.org/i40/aml#Attribute"/>
+            <edoal:Class rdf:about="https://w3id.org/i40/aml#RoleClass"/>
             <edoal:AttributeValueRestriction>
               <edoal:onAttribute>
                 <edoal:Property>
                   <edoal:compose rdf:parseType="Collection">
+                  	<edoal:Relation rdf:about="https://w3id.org/i40/aml2#hasAttribute"/>
                     <edoal:Property rdf:about="https://w3id.org/i40/aml#hasAttributeName"/>
                   </edoal:compose>
                 </edoal:Property>
@@ -51,6 +52,7 @@
               <edoal:onAttribute>
                 <edoal:Property>
                   <edoal:compose rdf:parseType="Collection">
+                  	<edoal:Relation rdf:about="https://w3id.org/i40/aml2#hasAttribute"/> 
                     <edoal:Property rdf:about="https://w3id.org/i40/aml#hasAttributeName"/>
                   </edoal:compose>
                 </edoal:Property>
@@ -64,6 +66,7 @@
               <edoal:onAttribute>
                 <edoal:Property>
                   <edoal:compose rdf:parseType="Collection">
+                    <edoal:Relation rdf:about="https://w3id.org/i40/aml2#hasAttribute"/>
                     <edoal:Property rdf:about="https://w3id.org/i40/aml#hasAttributeName"/>
                   </edoal:compose>
                 </edoal:Property>
@@ -84,16 +87,18 @@
             <edoal:Intersects>
               <edoal:property1>
                 <edoal:Property>
-                  <edoal:and rdf:parseType="Collection">
+                  <edoal:compose rdf:parseType="Collection">
+                    <edoal:Relation rdf:about="https://w3id.org/i40/aml2#hasAttribute"/>
                     <edoal:Property rdf:about="https://w3id.org/i40/aml2#hasAttributeValue"/>
-                  </edoal:and>
+                  </edoal:compose>
                 </edoal:Property>
               </edoal:property1>
               <edoal:property2>
                 <edoal:Property>
-                  <edoal:and rdf:parseType="Collection">
+                  <edoal:compose rdf:parseType="Collection">
+                    <edoal:Relation rdf:about="https://w3id.org/i40/aml#hasAttribute"/>
                     <edoal:Property rdf:about="https://w3id.org/i40/aml#hasAttributeValue"/>
-                  </edoal:and>
+                  </edoal:compose>
                 </edoal:Property>
               </edoal:property2>
             </edoal:Intersects>

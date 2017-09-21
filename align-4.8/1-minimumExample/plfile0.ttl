@@ -1,0 +1,122 @@
+@prefix : <https://w3id.org/i40/aml2#> .
+@prefix dc11: <http://purl.org/dc/elements/1.1/> .
+@prefix om: <http://www.wurvoc.org/vocabularies/om-1.8/> .
+@prefix ns0: <https://w3id.org/i40/aml2#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix foaf: <http://xmlns.com/foaf/spec/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix void: <http://rdfs.org/ns/void#> .
+@prefix terms: <http://purl.org/dc/terms/> .
+@prefix schema: <http://schema.org/> .
+@base <https://w3id.org/i40/aml2#> .
+
+<https://w3id.org/i40/aml/CAEXFile1>
+  a <https://w3id.org/i40/aml/CAEXFile> ;
+  ns0:hasFileName "seed-Schematic-0.aml" ;
+  ns0:hasSchemaVersion "2.15" ;
+  ns0:hasAdditionalInfomation ns0:AdditionalInformation1, ns0:AdditionalInformation2 ;
+  ns0:hasInstanceHierarchy ns0:InstanceHierarchy1 .
+
+ns0:AdditionalInformation1
+  a ns0:AdditionalInformation ;
+  ns0:hasAutomationMLVersion "2.0"^^xsd:string .
+
+ns0:AdditionalInformation2
+  a ns0:AdditionalInformation ;
+  ns0:hasWriterName "AutomationML e.V." ;
+  ns0:hasWriterID "AutomationML e.V."^^xsd:string ;
+  ns0:hasWriterVendor "AutomationML e.V."^^xsd:string ;
+  ns0:hasWriterVendorURL "www.AutomationML.org"^^xsd:string ;
+  ns0:hasWriterVersion "1.0"^^xsd:string ;
+  ns0:hasWriterRelease "1.0"^^xsd:string ;
+  ns0:hasLastWritingDateTime "2012-03-27 "^^xsd:date;
+  ns0:hasWriterProjectTitle "AutomationML Tutorial Examples"^^xsd:string ;
+  ns0:hasWriterProjectID "AutomationML Tutorial Examples "^^xsd:string .
+
+ns0:InstanceHierarchy1
+  a ns0:InstanceHierarchy ;
+  ns0:hasAttributeName "ConveyorSystem"^^xsd:string ;
+  ns0:hasInternalElement ns0:InternalElement1 .
+
+ns0:InternalElement1
+  a ns0:InternalElement ;
+  dc11:identifier "acf9f51b-3fbd-4f30-891d-f8daca50ed17"^^xsd:string ;
+  ns0:hasAttributeName "Connection"^^xsd:string ;
+  ns0:hasInternalElement ns0:InternalElement2, ns0:InternalElement3 ;
+  ns0:hasInternalLink ns0:InternalLink1 ;
+  ns0:hasRoleRequirements ns0:RoleRequirements3 .
+
+ns0:InternalElement2
+  a ns0:InternalElement ;
+  dc11:identifier "45e20f8e-7351-4af9-bdfd-3c019674de55"^^xsd:string ;
+  ns0:hasAttributeName "Conveyor001"^^xsd:string ;
+  ns0:hasAttribute ns0:Attribute1 ;
+  ns0:hasExternalInterface ns0:ExternalInterface1 ;
+  ns0:hasRoleRequirements ns0:RoleRequirements1 .
+
+ns0:Attribute1
+  a ns0:Attribute ;
+  ns0:hasDataType "xs:double"^^xsd:string ;
+  ns0:hasAttributeName "Offerer/supplier ID"^^xsd:string ;
+  ns0:hasAttributeValue "1234"^^xsd:string ;
+  ns0:hasRefSemantic ns0:RefSemantic1 .
+
+ns0:RefSemantic1
+  a ns0:RefSemantic ;
+  ns0:hasCorrespondingAttributePath "ECLASS:0173-1#02-AAP796#002"^^xsd:string .
+
+ns0:ExternalInterface1
+  a ns0:ExternalInterface ;
+  dc11:identifier "51e272d6-0252-4ebd-b865-2ca7a202a68e"^^xsd:string ;
+  ns0:hasAttributeName "ConnectionPoint"^^xsd:string ;
+  ns0:refBaseClassPath "BaseInterfaceClassLib@AutomationMLInterfaceClassLib/AutomationMLBaseInterface/PortConnector"^^xsd:string .
+
+ns0:RoleRequirements1
+  a ns0:RoleRequirements ;
+  ns0:refBaseRoleClassPath "BaseInterfaceClassLib@AutomationMLBaseRoleClassLib/AutomationMLBaseRole/Port"^^xsd:string .
+
+ns0:InternalElement3
+  a ns0:InternalElement ;
+  dc11:identifier "11b59bf6-44f6-4650-939f-d8e2551912a7"^^xsd:string ;
+  ns0:hasAttributeName "Conveyor002"^^xsd:string ;
+  ns0:hasAttribute ns0:Attribute2 ;
+  ns0:hasExternalInterface ns0:ExternalInterface2 ;
+  ns0:hasRoleRequirements ns0:RoleRequirements2 .
+
+ns0:Attribute2
+  a ns0:Attribute ;
+  ns0:hasDataType "xs:double"^^xsd:string ;
+  ns0:hasAttributeName "Performance unit"^^xsd:string ;
+  ns0:hasAttributeValue "2"^^xsd:string ;
+  ns0:hasRefSemantic ns0:RefSemantic2 .
+
+ns0:RefSemantic2
+  a ns0:RefSemantic ;
+  ns0:hasCorrespondingAttributePath "ECLASS:0173-1#02-BAF577#004"^^xsd:string .
+
+ns0:ExternalInterface2
+  a ns0:ExternalInterface ;
+  dc11:identifier "c50f79eb-6634-4c7e-a32f-54bdef05cace"^^xsd:string ;
+  ns0:hasAttributeName "ConnectionPoint"^^xsd:string ;
+  ns0:refBaseClassPath "BaseInterfaceClassLib@AutomationMLInterfaceClassLib/AutomationMLBaseInterface/PortConnector"^^xsd:string .
+
+ns0:RoleRequirements2
+  a ns0:RoleRequirements ;
+  ns0:refBaseRoleClassPath "BaseInterfaceClassLib@AutomationMLBaseRoleClassLib/AutomationMLBaseRole/Port"^^xsd:string .
+
+ns0:InternalLink1
+  a ns0:InternalLink ;
+  ns0:hasAttributeName "PortLink"^^xsd:string ;
+  ns0:hasRefPartnerSideA "45e20f8e-7351-4af9-bdfd-3c019674de55"^^xsd:string ;
+  ns0:hasRefPartnerSideB "11b59bf6-44f6-4650-939f-d8e2551912a7"^^xsd:string .
+
+ns0:RoleRequirements3
+  a ns0:RoleRequirements ;
+  ns0:refBaseRoleClassPath "BaseRoleClassLib@AutomationMLBaseRoleClassLib/AutomationMLBaseRole/Resource"^^xsd:string .

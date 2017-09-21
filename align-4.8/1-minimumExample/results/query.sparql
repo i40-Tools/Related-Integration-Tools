@@ -1,19 +1,19 @@
 PREFIX ns0:<https://w3id.org/i40/aml2#>
 PREFIX rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX owl:<http://www.w3.org/2002/07/owl#>
+PREFIX ns2:<http://purl.org/dc/elements/1.1/>
 PREFIX ns1:<https://w3id.org/i40/aml#>
 PREFIX xsd:<http://www.w3.org/2001/XMLSchema#>
 
 CONSTRUCT { ?s1 owl:sameAs ?s2 }
 WHERE {
-?s1 rdf:type ns0:Attribute .
+?s1 rdf:type ns0:InternalElement .
 {
-?s2 rdf:type ns1:Attribute .
+?s2 rdf:type ns1:InternalElement .
 }
-?s1 ns0:hasRefSemantic ?o4 .
-?o4 ns0:hasCorrespondingAttributePath ?o3 .
-?s2 ns1:hasRefSemantic ?o7 .
-?o7 ns1:hasCorrespondingAttributePath ?o6 .
+?s1 ns0:hasInternalLink ?o4 .
+?o4 ns0:hasRefPartnerSideB ?o3 .
+?s2 ns2:identifier ?o6 .
 FILTER( lcase(str(?o3)) = lcase(str(?o6)) )
 }
 
