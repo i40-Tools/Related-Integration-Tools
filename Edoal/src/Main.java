@@ -9,8 +9,13 @@ import java.io.PrintWriter;
 import org.apache.commons.io.IOUtils;
 import org.apache.jena.query.Dataset;
 import org.apache.jena.query.DatasetFactory;
+import org.apache.jena.query.QueryExecution;
 import org.apache.jena.query.QueryExecutionFactory;
+import org.apache.jena.query.QuerySolution;
+import org.apache.jena.query.ResultSet;
 import org.apache.jena.rdf.model.Model;
+import org.apache.jena.rdf.model.RDFNode;
+import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.util.FileManager;
 /**
  * This class uses Edoal Queries to find alignment.
@@ -74,7 +79,7 @@ public class Main {
 
 		// run each query one by one.
 		for (int i = 0; i < a.length; i++) {
-			org.apache.jena.query.QueryExecution qexec = QueryExecutionFactory.create(a[i],
+			QueryExecution qexec = QueryExecutionFactory.create(a[i],
 					dataset.getNamedModel("urn:x-arq:UnionGraph"));
 			Model model = qexec.execConstruct();
 
@@ -86,13 +91,13 @@ public class Main {
 					+ "PREFIX xsd:<http://www.w3.org/2001/XMLSchema#>"
 					+ "Select * where{ ?x ?y ?z } ";
 
-			try (org.apache.jena.query.QueryExecution qexec1 = QueryExecutionFactory
+			try (QueryExecution qexec1 = QueryExecutionFactory
 					.create(queryString, model)) {
-				org.apache.jena.query.ResultSet results = qexec1.execSelect();
+				ResultSet results = qexec1.execSelect();
 				for (; results.hasNext();) {
-					org.apache.jena.query.QuerySolution soln = results.nextSolution();
-					org.apache.jena.rdf.model.RDFNode x = soln.get("x");
-					org.apache.jena.rdf.model.Resource r = soln.getResource("z");
+					QuerySolution soln = results.nextSolution();
+					RDFNode x = soln.get("x");
+					Resource r = soln.getResource("z");
 					if (!result.contains("aml1:" + x.asNode().getLocalName() + "," + "aml2:"
 							+ r.getLocalName())) {
 						result += "aml1:" + x.asNode().getLocalName() + "," + "aml2:"
@@ -106,9 +111,10 @@ public class Main {
 		PrintWriter writer = new PrintWriter(ConfigManager.getFilePath() + "edoal.txt", "UTF-8");
 		writer.println(result);
 		writer.close();
+		
 		// convert object to values
 		similar.convertSimilar();
-		System.out.println("Edoal inference Saved in edoal.txt");
-
+		System.out.println("Edoal inference file Saved in " + ConfigManager.getFilePath() + 
+				           "edoal.txt");
 	}
 }
