@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='utf-8' standalone='no'?>
+<rdf:RDF xmlns='http://knowledgeweb.semanticweb.org/heterogeneity/alignment#'
+         xml:base='http://knowledgeweb.semanticweb.org/heterogeneity/alignment#'
+         xmlns:alext='http://exmo.inrialpes.fr/align/ext/1.0/'
+         xmlns:rdf='http://www.w3.org/1999/02/22-rdf-syntax-ns#'
+         xmlns:xsd='http://www.w3.org/2001/XMLSchema#'
+>
+<Alignment>
+  <xml>yes</xml>
+  <level>0</level>
+  <type>**</type>
+  <alext:time>7</alext:time>
+  <alext:pretty>Alignment testing encoding of utf-8 and other chars in URIs</alext:pretty>
+  <alext:method>manual</alext:method>
+  <onto1>
+    <Ontology rdf:about="http://www.example.org/ontology1">
+      <location>file:examples/rdf/onto1.owl</location>
+      <formalism>
+	<Formalism name="OWL1.0" uri="http://www.w3.org/2002/07/owl#"/>
+      </formalism>
+    </Ontology>
+  </onto1>
+  <onto2>
+    <Ontology rdf:about="http://www.example.org/ontology2">
+      <location>file:examples/rdf/onto2.owl</location>
+      <formalism>
+	<Formalism name="OWL1.0" uri="http://www.w3.org/2002/07/owl#"/>
+      </formalism>
+    </Ontology>
+  </onto2>
+  <map>
+    <Cell>
+      <entity1 rdf:resource='http://www.example.org/ontology1#José-Manuel+Durão-Barroso'/>
+      <entity2 rdf:resource='http://www.example.org/ontology2#Jos%C3%A9_Manuel%20Dur%C3%A3o_Barroso'/>
+      <relation>=</relation>
+      <measure rdf:datatype='http://www.w3.org/2001/XMLSchema#float'>1.0</measure>
+    </Cell>
+  </map>
+  <!-- &quot; " does not seem authorised in URI fragments -->
+  <map>
+    <Cell>
+      <entity1 rdf:resource='http://www.example.org/ontology1#this%27and&apos;'/>
+      <entity2 rdf:resource="http://www.example.org/ontology2#this'7"/>
+      <relation>=</relation>
+      <measure rdf:datatype='http://www.w3.org/2001/XMLSchema#float'>1.0</measure>
+    </Cell>
+  </map>
+  <map>
+    <Cell>
+      <entity1 rdf:resource='http://www.example.org/ontology1#rhythm&amp;blues'/>
+      <entity2 rdf:resource="http://www.example.org/ontology2#rock&amp;roll"/>
+      <relation>%</relation>
+      <measure rdf:datatype='http://www.w3.org/2001/XMLSchema#float'>1.0</measure>
+    </Cell>
+  </map>
+</Alignment>
+</rdf:RDF>

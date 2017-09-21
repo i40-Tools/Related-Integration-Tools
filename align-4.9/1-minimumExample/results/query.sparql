@@ -1,0 +1,35 @@
+PREFIX ns0:<https://w3id.org/i40/aml2#>
+PREFIX rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX owl:<http://www.w3.org/2002/07/owl#>
+PREFIX ns1:<https://w3id.org/i40/aml#>
+PREFIX xsd:<http://www.w3.org/2001/XMLSchema#>
+
+CONSTRUCT { ?s1 owl:sameAs ?s2 }
+WHERE {
+?s1 rdf:type ns0:RoleClass .
+{
+?s2 rdf:type ns1:RoleClass .
+} UNION 
+{
+?s2 ns0:hasAttribute ?o3 .
+?o3 ns1:hasAttributeName ?o2 .
+FILTER (?o2='eClassVersion')
+} UNION 
+{
+?s2 ns0:hasAttribute ?o5 .
+?o5 ns1:hasAttributeName ?o4 .
+FILTER (?o4='eClassClassificationClass')
+} UNION 
+{
+?s2 ns0:hasAttribute ?o7 .
+?o7 ns1:hasAttributeName ?o6 .
+FILTER (?o6='eClassIRDI')
+}
+?s1 ns0:hasAttribute ?o10 .
+?o10 ns0:hasAttributeValue ?o9 .
+?s2 ns1:hasAttribute ?o13 .
+?o13 ns1:hasAttributeValue ?o12 .
+FILTER ( lcase(str(?o9)) = lcase(str(?o12)) )
+}
+
+

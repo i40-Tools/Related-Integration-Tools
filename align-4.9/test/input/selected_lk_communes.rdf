@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='utf-8' standalone='no'?>
+<rdf:RDF xmlns='http://knowledgeweb.semanticweb.org/heterogeneity/alignment#'
+         xmlns:rdf='http://www.w3.org/1999/02/22-rdf-syntax-ns#'
+         xmlns:xsd='http://www.w3.org/2001/XMLSchema#'
+         xmlns:alext='http://exmo.inrialpes.fr/align/ext/1.0/'
+         xmlns:align='http://knowledgeweb.semanticweb.org/heterogeneity/alignment#'
+         xmlns:edoal='http://ns.inria.org/edoal/1.0/#'>
+<Alignment>
+  <xml>yes</xml>
+  <level>2EDOAL</level>
+  <type>**</type>
+  <onto1>
+    <Ontology rdf:about="http://localhost:3030/insee-geonames/query">
+      <location>http://localhost:3030/insee-geonames/query</location>
+      <formalism>
+        <Formalism align:name="OWL2" align:uri="http://www.w3.org/2002/07/owl#"/>
+      </formalism>
+    </Ontology>
+  </onto1>
+  <onto2>
+    <Ontology rdf:about="http://localhost:3030/insee-geonames/query">
+      <location>http://localhost:3030/insee-geonames/query</location>
+      <formalism>
+        <Formalism align:name="OWL2" align:uri="http://www.w3.org/2002/07/owl#"/>
+      </formalism>
+    </Ontology>
+  </onto2>
+  <map>
+    <Cell>
+      <entity1>
+        <edoal:Class rdf:about="http://rdf.insee.fr/def/geo#Commune"/>
+      </entity1>
+      <entity2>
+        <edoal:Class rdf:about="http://www.geonames.org/ontology#Commune"/>
+      </entity2>
+      <relation>=</relation>
+      <measure rdf:datatype='http://www.w3.org/2001/XMLSchema#float'>1.0</measure>
+      <edoal:linkkey>
+        <edoal:Linkkey>
+	  <!-- suppressed for simplifying tests (non determinism) -->
+          <!--edoal:binding>
+            <edoal:Intersects>
+              <edoal:property1>
+                <edoal:Relation rdf:about="http://rdf.insee.fr/def/geo#subdivisionDe"/>
+              </edoal:property1>
+              <edoal:property2>
+                <edoal:Relation rdf:about="http://www.geonames.org/ontology#parentADM3"/>
+              </edoal:property2>
+            </edoal:Intersects>
+          </edoal:binding-->
+          <edoal:binding>
+            <edoal:Intersects>
+              <edoal:property1>
+                <edoal:Relation rdf:about="http://rdf.insee.fr/def/geo#subdivisionDe"/>
+              </edoal:property1>
+              <edoal:property2>
+                <edoal:Relation rdf:about="http://www.geonames.org/ontology#parentFeature"/>
+              </edoal:property2>
+            </edoal:Intersects>
+          </edoal:binding>
+          <edoal:binding>
+            <edoal:Intersects>
+              <edoal:property1>
+                <edoal:Property rdf:about="http://rdf.insee.fr/def/geo#nom"/>
+              </edoal:property1>
+              <edoal:property2>
+                <edoal:Property rdf:about="http://www.geonames.org/ontology#name"/>
+              </edoal:property2>
+            </edoal:Intersects>
+          </edoal:binding>
+        </edoal:Linkkey>
+      </edoal:linkkey>
+    </Cell>
+  </map>
+</Alignment>
+</rdf:RDF>

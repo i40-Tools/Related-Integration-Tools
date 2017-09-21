@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='utf-8' standalone='no'?>
+<rdf:RDF xmlns='http://knowledgeweb.semanticweb.org/heterogeneity/alignment#'
+         xmlns:rdf='http://www.w3.org/1999/02/22-rdf-syntax-ns#'
+         xmlns:ns0='http://exmo.inrialpes.fr/align/service#'
+         xmlns:xsd='http://www.w3.org/2001/XMLSchema#'
+         xmlns:align='http://knowledgeweb.semanticweb.org/heterogeneity/alignment#'
+         xmlns:edoal='http://ns.inria.org/edoal/1.0/#'>
+
+  <Alignment rdf:about="http://localhost:8089/alid/1394718240757/976">
+    <xml>yes</xml>
+    <level>2EDOAL</level>
+    <type>?*</type>
+    <pretty>Test multiple link keys in cell</pretty>
+    <method>manual</method>
+    <onto1>
+      <Ontology rdf:about="http://exmo.inrialpes.fr/connectors/example_musical_work_desc/">
+        <location>/home/tests/example_musical_work_desc.owl</location>
+        <formalism>
+          <Formalism align:name="OWL2.0" align:uri="http://www.w3.org/2002/07/owl#"/>
+        </formalism>
+      </Ontology>
+    </onto1>
+    <onto2>
+      <Ontology rdf:about="http://purl.org/ontology/mo/">
+        <location>http://purl.org/ontology/mo/</location>
+        <formalism>
+          <Formalism align:name="OWL2.0" align:uri="http://www.w3.org/2002/07/owl#"/>
+        </formalism>
+      </Ontology>
+    </onto2>
+    <map>
+      <Cell rdf:about="http://exmo.inrialpes.fr/connectors#cell1">
+        <entity1>
+          <edoal:Class rdf:about="http://exmo.inrialpes.fr/connectors-core/Personne"/>
+        </entity1>
+        <entity2>
+          <edoal:Class rdf:about="http://xmlns.com/foaf/0.1/Person"/>
+        </entity2>
+        <relation>=</relation>
+        <measure rdf:datatype='http://www.w3.org/2001/XMLSchema#float'>1.0</measure>
+        <edoal:linkkey> 
+          <edoal:Linkkey>
+            <!--<edoal:type>weak</edoal:type>-->
+            <edoal:binding>
+              <edoal:Equals>
+                <edoal:property1>
+                  <edoal:Property rdf:about="http://exmo.inrialpes.fr/connectors-core/nom" />
+                </edoal:property1>
+                <edoal:property2>
+                  <edoal:Property rdf:about="http://xmlns.com/foaf/0.1/givenName" />
+                </edoal:property2>
+              </edoal:Equals>
+            </edoal:binding>
+          </edoal:Linkkey>
+        </edoal:linkkey>
+        <edoal:linkkey> 
+          <edoal:Linkkey>
+            <!--<edoal:type>weak</edoal:type>-->
+            <edoal:binding>
+              <edoal:Intersects>
+                <edoal:property1>
+                  <edoal:Property rdf:about="http://exmo.inrialpes.fr/connectors-core/nom" />
+                </edoal:property1>
+                <edoal:property2>
+                  <edoal:Property rdf:about="http://xmlns.com/foaf/0.1/givenName" />
+                </edoal:property2>
+              </edoal:Intersects>
+            </edoal:binding>
+          </edoal:Linkkey>
+        </edoal:linkkey>
+      </Cell>
+    </map>
+  </Alignment>
+</rdf:RDF>

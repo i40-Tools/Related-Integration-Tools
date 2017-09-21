@@ -1,0 +1,55 @@
+<html>
+<head>
+<title>Using the Alignment API with WordNet</title>
+<!--style type="text/css">@import url(style.css);</style-->
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+<body>
+
+<h1 class="titre">Using the Alignment API with WordNet</h1>
+
+<p>We explain how to use the API with wordnet.</p>
+
+<h2>Getting, installing and configuring WordNet</h2>
+
+<p>
+This may be skipped if WordNet is already installed on the current platform.
+</p>
+<p>
+First Wordnet must be downloaded from <a href="https://wordnet.princeton.edu/">the WordNet website</a>.
+</p>
+<p>
+Then it has to be compiled.
+This will depend on your distribution and will not be further 
+detailed here.
+</p>
+
+<h2>Running</h2>
+
+<p>
+Once installed, Wordnet usually has a "dict" directory whose path is assumed here to be in $WNDIR.
+</p>
+
+<p>A matcher using WordNet can be run by, for instance (from the Alignment API distribution root directory):
+<div class="terminal">
+$ java -jar lib/procalign.jar -Dwndict=$WNDIR file:examples/rdf/edu.umbc.ebiquity.publication.owl file:examples/rdf/edu.mit.visus.bibtex.owl -i fr.inrialpes.exmo.align.ling.JWNLAlignment -o examples/rdf/JWNL.rdf
+</div>
+</p>
+
+<p>
+Note that JWNLAlignment is only an example of matcher and nothing very elaborate.
+Its source can be used as inspiration.
+Most of its code relies on the <a href="http://ontosim.gforge.inria.fr">OntoSim library</a>.
+</p>
+
+<address>
+<small>
+<hr />
+<center>http://alignapi.gforge.inria.fr/alignwn.html</center>
+<hr />
+$Id: alignwn.html 2119 2016-12-06 21:43:22Z euzenat $
+</small>
+</address>
+</body>
+</html>
