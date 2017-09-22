@@ -18,7 +18,7 @@ import org.apache.jena.util.FileManager;
  *
  */
 
-public class Convert {
+public class Main {
 
 	/*
 	 * Preprocess rdf files for two ontologies.
@@ -45,7 +45,7 @@ public class Convert {
 		filesAMLInRDF.readFiles(ConfigManager.getFilePath(), ".aml", ".opcua", ".xml");
 		filesAMLInRDF.convertRdf();
 		Similar similar = new Similar();
-		new Convert().preprocessRdf();
+		new Main().preprocessRdf();
 		similar.readFiles(ConfigManager.getFilePath(), ".ttl", ".opcua", ".xml");
 
 		// gets all queries seperated by --
