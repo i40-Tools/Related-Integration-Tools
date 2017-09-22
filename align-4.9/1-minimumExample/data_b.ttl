@@ -1,6 +1,6 @@
 @prefix dc11: <http://purl.org/dc/elements/1.1/> .
 @prefix om: <http://www.wurvoc.org/vocabularies/om-1.8/> .
-@prefix ns1: <https://w3id.org/i40/aml#> .
+@prefix ns1: <https://w3id.org/i40/aml2#> .
 @prefix dct: <http://purl.org/dc/terms/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
@@ -14,7 +14,7 @@
 @prefix void: <http://rdfs.org/ns/void#> .
 @prefix terms: <http://purl.org/dc/terms/> .
 @prefix schema: <http://schema.org/> .
-@base <https://w3id.org/i40/aml#> .
+@base <https://w3id.org/i40/aml2#> .
 
 <https://w3id.org/i40/aml2/CAEXFile1>
   a <https://w3id.org/i40/aml2/CAEXFile> ;
@@ -39,7 +39,7 @@ ns1:AdditionalInformation2
 ns1:ExternalReference1
   a ns1:ExternalReference ;
   ns1:externalReferenceAlias "BaseRoleClassLib"^^xsd:string ;
-  ns1:refBaseClassPath "Libs/RoleClass Libraries/AutomationMLBaseRoleClassLib.aml2"^^xsd:string .
+  ns1:refBaseClassPath "Libs/RoleClass Libraries/AutomationMLBaseRoleClassLib.aml"^^xsd:string .
 
 ns1:ExternalReference2
   a ns1:ExternalReference ;

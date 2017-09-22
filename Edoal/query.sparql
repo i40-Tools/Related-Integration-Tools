@@ -1,0 +1,356 @@
+PREFIX ns0:<https://w3id.org/i40/aml/>
+PREFIX rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX owl:<http://www.w3.org/2002/07/owl#>
+PREFIX ns1:<https://w3id.org/i40/aml2/>
+PREFIX xsd:<http://www.w3.org/2001/XMLSchema#>
+
+CONSTRUCT { ?s1 owl:sameAs ?s2 }
+WHERE {
+?s1 rdf:type ns0:RoleClass .
+{
+?s2 rdf:type ns1:RoleClass .
+}
+?s1 ns0:hasAttributeName ?o3 .
+?s2 ns1:hasAttributeName ?o5 .
+FILTER ( lcase(str(?o3)) = lcase(str(?o5)) )
+}
+
+--
+PREFIX ns0:<https://w3id.org/i40/aml/>
+PREFIX rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX owl:<http://www.w3.org/2002/07/owl#>
+PREFIX ns1:<https://w3id.org/i40/aml2/>
+PREFIX xsd:<http://www.w3.org/2001/XMLSchema#>
+
+CONSTRUCT { ?s1 owl:sameAs ?s2 }
+WHERE {
+?s1 rdf:type ns0:RoleClassLib .
+{
+?s2 rdf:type ns1:RoleClassLib .
+}
+?s1 ns0:hasAttributeName ?o3 .
+?s2 ns1:hasAttributeName ?o5 .
+FILTER ( lcase(str(?o3)) = lcase(str(?o5)) )
+}
+
+--
+
+PREFIX ns0:<https://w3id.org/i40/aml/>
+PREFIX rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX owl:<http://www.w3.org/2002/07/owl#>
+PREFIX ns2:<http://purl.org/dc/elements/1.1/>
+PREFIX ns1:<https://w3id.org/i40/aml2/>
+PREFIX xsd:<http://www.w3.org/2001/XMLSchema#>
+
+CONSTRUCT { ?s1 owl:sameAs ?s2 }
+WHERE {
+?s1 rdf:type ns0:InstanceHierarchy .
+{
+?s2 rdf:type ns1:InstanceHierarchy .
+}
+?s1 ns2:identifier ?o3 .
+?s2 ns2:identifier ?o5 .
+FILTER ( lcase(str(?o3)) = lcase(str(?o5)) )
+}
+
+--
+
+PREFIX ns0:<https://w3id.org/i40/aml/>
+PREFIX rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX owl:<http://www.w3.org/2002/07/owl#>
+PREFIX ns2:<http://purl.org/dc/elements/1.1/>
+PREFIX ns1:<https://w3id.org/i40/aml2/>
+PREFIX xsd:<http://www.w3.org/2001/XMLSchema#>
+
+CONSTRUCT { ?s1 owl:sameAs ?s2 }
+WHERE {
+?s1 rdf:type ns0:InstanceHierarchy .
+{
+?s2 rdf:type ns1:InstanceHierarchy .
+}
+?s1 ns0:hasAttributeName ?o3 .
+?s2 ns1:hasAttributeName ?o5 .
+FILTER ( lcase(str(?o3)) = lcase(str(?o5)) )
+}
+
+--
+
+PREFIX ns0:<https://w3id.org/i40/aml/>
+PREFIX rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX owl:<http://www.w3.org/2002/07/owl#>
+PREFIX ns2:<http://purl.org/dc/elements/1.1/>
+PREFIX ns1:<https://w3id.org/i40/aml2/>
+PREFIX xsd:<http://www.w3.org/2001/XMLSchema#>
+
+CONSTRUCT { ?s1 owl:sameAs ?s2 }
+WHERE {
+?s1 rdf:type ns0:ExternalInterface .
+{
+?s2 rdf:type ns1:ExternalInterface .
+}
+?s1 ns2:identifier ?o3 .
+?s2 ns2:identifier ?o5 .
+FILTER ( lcase(str(?o3)) = lcase(str(?o5)) )
+}
+
+--
+
+PREFIX ns0:<https://w3id.org/i40/aml/>
+PREFIX rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX owl:<http://www.w3.org/2002/07/owl#>
+PREFIX ns2:<http://purl.org/dc/elements/1.1/>
+PREFIX ns1:<https://w3id.org/i40/aml2/>
+PREFIX xsd:<http://www.w3.org/2001/XMLSchema#>
+
+CONSTRUCT { ?s1 owl:sameAs ?s2 }
+WHERE {
+?s1 rdf:type ns0:InternalElement .
+{
+?s2 rdf:type ns1:InternalElement .
+}
+?s1 ns0:hasInternalLink ?o4 .
+?o4 ns0:hasRefPartnerSideA ?o3 .
+?s2 ns2:identifier ?o6 .
+FILTER ( lcase(str(?o3)) = lcase(str(?o6)) )
+}
+
+--
+
+PREFIX ns0:<https://w3id.org/i40/aml/>
+PREFIX rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX owl:<http://www.w3.org/2002/07/owl#>
+PREFIX ns2:<http://purl.org/dc/elements/1.1/>
+PREFIX ns1:<https://w3id.org/i40/aml2/>
+PREFIX xsd:<http://www.w3.org/2001/XMLSchema#>
+
+CONSTRUCT { ?s1 owl:sameAs ?s2 }
+WHERE {
+?s1 rdf:type ns0:InternalElement .
+{
+?s2 rdf:type ns1:InternalElement .
+}
+?s1 ns2:identifier ?o3 .
+?s2 ns2:identifier ?o5 .
+FILTER ( lcase(str(?o3)) = lcase(str(?o5)) )
+}
+
+--
+
+PREFIX ns0:<https://w3id.org/i40/aml/>
+PREFIX rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX owl:<http://www.w3.org/2002/07/owl#>
+PREFIX ns2:<http://purl.org/dc/elements/1.1/>
+PREFIX ns1:<https://w3id.org/i40/aml2/>
+PREFIX xsd:<http://www.w3.org/2001/XMLSchema#>
+
+CONSTRUCT { ?s1 owl:sameAs ?s2 }
+WHERE {
+?s1 rdf:type ns0:InternalElement .
+{
+?s2 rdf:type ns1:InternalElement .
+}
+?s1 ns0:hasAttributeName ?o3 .
+?s2 ns1:hasAttributeName ?o5 .
+FILTER ( lcase(str(?o3)) = lcase(str(?o5)) )
+}
+
+--
+
+PREFIX ns0:<https://w3id.org/i40/aml/>
+PREFIX rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX owl:<http://www.w3.org/2002/07/owl#>
+PREFIX ns2:<http://purl.org/dc/elements/1.1/>
+PREFIX ns1:<https://w3id.org/i40/aml2/>
+PREFIX xsd:<http://www.w3.org/2001/XMLSchema#>
+
+CONSTRUCT { ?s1 owl:sameAs ?s2 }
+WHERE {
+?s1 rdf:type ns0:InternalElement .
+{
+?s2 rdf:type ns1:InternalElement .
+}
+?s1 ns0:hasInternalLink ?o4 .
+?o4 ns0:hasRefPartnerSideB ?o3 .
+?s2 ns2:identifier ?o6 .
+FILTER ( lcase(str(?o3)) = lcase(str(?o6)) )
+}
+
+--
+
+PREFIX ns0:<https://w3id.org/i40/aml/>
+PREFIX rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX owl:<http://www.w3.org/2002/07/owl#>
+PREFIX ns2:<http://purl.org/dc/elements/1.1/>
+PREFIX ns1:<https://w3id.org/i40/aml2/>
+PREFIX xsd:<http://www.w3.org/2001/XMLSchema#>
+
+CONSTRUCT { ?s1 owl:sameAs ?s2 }
+WHERE {
+?s1 rdf:type ns0:InternalLink .
+{
+?s2 rdf:type ns1:InternalLink .
+}
+?s1 ns0:hasAttributeName ?o3 .
+?s2 ns1:hasAttributeName ?o5 .
+FILTER ( lcase(str(?o3)) = lcase(str(?o5)) )
+}
+
+--
+
+PREFIX ns0:<https://w3id.org/i40/aml/>
+PREFIX rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX owl:<http://www.w3.org/2002/07/owl#>
+PREFIX ns2:<http://purl.org/dc/elements/1.1/>
+PREFIX ns1:<https://w3id.org/i40/aml2/>
+PREFIX xsd:<http://www.w3.org/2001/XMLSchema#>
+
+CONSTRUCT { ?s1 owl:sameAs ?s2 }
+WHERE {
+?s1 rdf:type ns0:SystemUnitClassLib .
+{
+?s2 rdf:type ns1:SystemUnitClassLib .
+}
+?s1 ns0:hasAttributeName ?o3 .
+?s2 ns1:hasAttributeName ?o5 .
+FILTER ( lcase(str(?o3)) = lcase(str(?o5)) )
+}
+
+--
+
+PREFIX ns0:<https://w3id.org/i40/aml/>
+PREFIX rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX owl:<http://www.w3.org/2002/07/owl#>
+PREFIX ns2:<http://purl.org/dc/elements/1.1/>
+PREFIX ns1:<https://w3id.org/i40/aml2/>
+PREFIX xsd:<http://www.w3.org/2001/XMLSchema#>
+
+CONSTRUCT { ?s1 owl:sameAs ?s2 }
+WHERE {
+?s1 rdf:type ns0:InterfaceClass .
+{
+?s2 rdf:type ns1:InterfaceClass .
+}
+?s1 ns0:hasAttributeName ?o3 .
+?s2 ns1:hasAttributeName ?o5 .
+FILTER ( lcase(str(?o3)) = lcase(str(?o5)) )
+}
+
+--
+
+PREFIX ns0:<https://w3id.org/i40/aml/>
+PREFIX rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX owl:<http://www.w3.org/2002/07/owl#>
+PREFIX ns2:<http://purl.org/dc/elements/1.1/>
+PREFIX ns1:<https://w3id.org/i40/aml2/>
+PREFIX xsd:<http://www.w3.org/2001/XMLSchema#>
+
+CONSTRUCT { ?s1 owl:sameAs ?s2 }
+WHERE {
+?s1 rdf:type ns0:SystemUnitClass .
+{
+?s2 rdf:type ns1:SystemUnitClass .
+}
+?s1 ns0:hasAttributeName ?o3 .
+?s2 ns1:hasAttributeName ?o5 .
+FILTER ( lcase(str(?o3)) = lcase(str(?o5)) )
+}
+
+--
+
+PREFIX ns0:<https://w3id.org/i40/aml/>
+PREFIX rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX owl:<http://www.w3.org/2002/07/owl#>
+PREFIX ns2:<http://purl.org/dc/elements/1.1/>
+PREFIX ns1:<https://w3id.org/i40/aml2/>
+PREFIX xsd:<http://www.w3.org/2001/XMLSchema#>
+
+CONSTRUCT { ?s1 owl:sameAs ?s2 }
+WHERE {
+?s1 rdf:type ns0:Attribute .
+{
+?s2 rdf:type ns1:Attribute .
+}
+?s1 ns0:hasAttributeValue ?o3 .
+?s2 ns1:hasAttributeValue ?o5 .
+FILTER ( lcase(str(?o3)) = lcase(str(?o5)) )
+}
+
+--
+
+PREFIX ns0:<https://w3id.org/i40/aml/>
+PREFIX rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX owl:<http://www.w3.org/2002/07/owl#>
+PREFIX ns2:<http://purl.org/dc/elements/1.1/>
+PREFIX ns1:<https://w3id.org/i40/aml2/>
+PREFIX xsd:<http://www.w3.org/2001/XMLSchema#>
+
+CONSTRUCT { ?s1 owl:sameAs ?s2 }
+WHERE {
+?s1 rdf:type ns0:Attribute .
+{
+?s2 rdf:type ns1:Attribute .
+}
+?s1 ns2:identifier ?o3 .
+?s2 ns2:identifier ?o5 .
+FILTER ( lcase(str(?o3)) = lcase(str(?o5)) )
+}
+
+--
+
+PREFIX ns0:<https://w3id.org/i40/aml/>
+PREFIX rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX owl:<http://www.w3.org/2002/07/owl#>
+PREFIX ns2:<http://purl.org/dc/elements/1.1/>
+PREFIX ns1:<https://w3id.org/i40/aml2/>
+PREFIX xsd:<http://www.w3.org/2001/XMLSchema#>
+
+CONSTRUCT { ?s1 owl:sameAs ?s2 }
+WHERE {
+?s1 rdf:type ns0:Attribute .
+{
+?s2 rdf:type ns1:Attribute .
+}
+?s1 ns0:hasAttributeName ?o3 .
+?s2 ns1:hasAttributeName ?o5 .
+FILTER ( lcase(str(?o3)) = lcase(str(?o5)) )
+}
+
+--
+
+PREFIX ns0:<https://w3id.org/i40/aml/>
+PREFIX rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX owl:<http://www.w3.org/2002/07/owl#>
+PREFIX ns2:<http://purl.org/dc/elements/1.1/>
+PREFIX ns1:<https://w3id.org/i40/aml2/>
+PREFIX xsd:<http://www.w3.org/2001/XMLSchema#>
+
+CONSTRUCT { ?s1 owl:sameAs ?s2 }
+WHERE {
+?s1 rdf:type ns0:Attribute .
+{
+?s2 rdf:type ns1:Attribute .
+}
+?s1 ns0:hasRefSemantic ?o4 .
+?o4 ns0:hasCorrespondingAttributePath ?o3 .
+?s2 ns1:hasRefSemantic ?o7 .
+?o7 ns1:hasCorrespondingAttributePath ?o6 .
+FILTER ( lcase(str(?o3)) = lcase(str(?o6)) )
+}
+--
+
+PREFIX ns0:<https://w3id.org/i40/aml/>
+PREFIX rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX owl:<http://www.w3.org/2002/07/owl#>
+PREFIX ns2:<http://purl.org/dc/elements/1.1/>
+PREFIX ns1:<https://w3id.org/i40/aml2/>
+
+CONSTRUCT { ?s1 owl:sameAs ?s2 }
+WHERE {
+?s1 rdf:type ns0:ExternalReference .
+{
+?s2 rdf:type ns1:ExternalReference .
+}
+?s1 ns0:refBaseClassPath ?o3 .
+?s2 ns1:refBaseClassPath ?o5 .
+FILTER ( lcase(str(?o3)) = lcase(str(?o5)) )
+}
