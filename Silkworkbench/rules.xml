@@ -67,7 +67,36 @@
 				</Compare>
 				<Filter/>
 			</LinkageRule>     
-		</Interlink>     
+		</Interlink>
+
+		
+			<Interlink id="SameInternalElement">
+			<SourceDataset dataSource="data1" var="a" typeUri="">
+			</SourceDataset>
+			<TargetDataset dataSource="data2" var="b" typeUri="">
+			</TargetDataset>
+			<LinkageRule linkType="&lt;http://www.w3.org/2002/07/owl#sameAs&gt;">
+				<Compare id="equality7" required="false" weight="1" metric="equality" threshold="0.0" indexing="true">
+					<Input id="sourcePath7" path="/aml:hasInternalLink/aml:hasRefPartnerSideA"/><Input id="targetPath7" path="dc11:identifier"/>
+				</Compare>
+				<Filter/>
+			</LinkageRule>     
+		</Interlink>
+
+			<Interlink id="SameInternalElement2">
+			<SourceDataset dataSource="data1" var="a" typeUri="">
+			</SourceDataset>
+			<TargetDataset dataSource="data2" var="b" typeUri="">
+			</TargetDataset>
+			<LinkageRule linkType="&lt;http://www.w3.org/2002/07/owl#sameAs&gt;">
+				<Compare id="equality8" required="false" weight="1" metric="equality" threshold="0.0" indexing="true">
+					<Input id="sourcePath8" path="/aml:hasInternalLink/aml:hasRefPartnerSideB"/><Input id="targetPath8" path="dc11:identifier"/>
+				</Compare>
+				<Filter/>
+			</LinkageRule>     
+		</Interlink>
+
+		     
 	</Interlinks>
 	<Transforms>
 		

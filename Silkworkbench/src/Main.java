@@ -63,12 +63,14 @@ public class Main {
 				new FileInputStream(ConfigManager.getFilePath() + "plfile1.ttl"), "UTF-8");
 		content = content.replaceAll("https://w3id.org/i40/aml", "https://w3id.org/i40/aml2");
 		content = content.replaceAll("dateTime", "date");
+		content = content.replaceAll(":ConnectionPoint", "");
 		IOUtils.write(content, new FileOutputStream(ConfigManager.getFilePath() + "plfile1.ttl"),
 				"UTF-8");
 
 		content = IOUtils.toString(new FileInputStream(ConfigManager.getFilePath() + "plfile0.ttl"),
 				"UTF-8");
 		content = content.replaceAll("dateTime", "date");
+		content = content.replaceAll(":ConnectionPoint", "");
 		IOUtils.write(content, new FileOutputStream(ConfigManager.getFilePath() + "plfile0.ttl"),
 				"UTF-8");
 
@@ -139,6 +141,11 @@ public class Main {
 		result += readOutput();
 		Silk.executeFile(file, "SameExternalReference", 4, true);
 		result += readOutput();
+		Silk.executeFile(file, "SameInternalElement", 4, true);
+		result += readOutput();
+		Silk.executeFile(file, "SameInternalElement2", 4, true);
+		result += readOutput();
+
 		try (Writer writer = new BufferedWriter(
 				new OutputStreamWriter(new FileOutputStream("model.ttl"), "utf-8"))) {
 			writer.write(result);

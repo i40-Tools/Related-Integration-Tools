@@ -32,13 +32,15 @@ public class Main {
 		String content = IOUtils.toString(
 				new FileInputStream(ConfigManager.getFilePath() + "plfile1.ttl"), "UTF-8");
 		content = content.replaceAll("https://w3id.org/i40/aml", "https://w3id.org/i40/aml2");
-		content = content.replaceAll("datetime", "date");
+		content = content.replaceAll("dateTime", "date");
+		content = content.replaceAll(":ConnectionPoint", "");
 		IOUtils.write(content, new FileOutputStream(ConfigManager.getFilePath() + "plfile1.ttl"),
 				"UTF-8");
 
 		content = IOUtils.toString(new FileInputStream(ConfigManager.getFilePath() + "plfile0.ttl"),
 				"UTF-8");
-		content = content.replaceAll("datetime", "date");
+		content = content.replaceAll("dateTime", "date");
+		content = content.replaceAll(":ConnectionPoint", "");
 		IOUtils.write(content, new FileOutputStream(ConfigManager.getFilePath() + "plfile0.ttl"),
 				"UTF-8");
 
