@@ -1,0 +1,75 @@
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
+
+/**
+ * This class uses Edoal Queries to find alignment.
+ * 
+ * @author omar
+ *
+ */
+
+public class Main {
+
+	/*
+	 * Preprocess rdf files for two ontologies.
+	 */
+	void preprocessRdf() throws FileNotFoundException, IOException {
+		String content = IOUtils.toString(
+				new FileInputStream(ConfigManager.getFilePath() + "plfile1.ttl"), "UTF-8");
+		content = content.replaceAll("https://w3id.org/i40/aml", "https://w3id.org/i40/aml2");
+		content = content.replaceAll("datetime", "date");
+		IOUtils.write(content, new FileOutputStream(ConfigManager.getFilePath() + "plfile1.ttl"),
+				"UTF-8");
+
+		content = IOUtils.toString(new FileInputStream(ConfigManager.getFilePath() + "plfile0.ttl"),
+				"UTF-8");
+		content = content.replaceAll("datetime", "date");
+		IOUtils.write(content, new FileOutputStream(ConfigManager.getFilePath() + "plfile0.ttl"),
+				"UTF-8");
+
+	}
+
+	void copyFile(String file) {
+		File source = new File(ConfigManager.getFilePath() + file);
+		File dest = new File(file);
+		try {
+			FileUtils.copyDirectory(source, dest);
+		} catch (IOException e) {
+			e.printStackTrace();
+
+		}
+	}
+
+	public static void main(String[] args) throws Exception {
+
+		Files2Facts filesAMLInRDF = new Files2Facts();
+		filesAMLInRDF.readFiles(ConfigManager.getFilePath(), ".aml", ".opcua", ".xml");
+		filesAMLInRDF.convertRdf();
+//		Similar similar = new Similar();
+//		new Main().preprocessRdf();
+//		similar.readFiles(ConfigManager.getFilePath(), ".ttl", ".opcua", ".xml");
+//		new Main().copyFile("plfile0.ttl");
+//		new Main().copyFile("plfile1.ttl");
+
+//		File file = new File("rules.xml");
+//		Silk.executeFile(file, "SameAttributeName", 4, false);
+
+		// final result saved
+		// PrintWriter writer = new PrintWriter(ConfigManager.getFilePath() +
+		// "edoal.txt", "UTF-8");
+		// writer.println(result);
+		// writer.close();
+		//
+		// // convert object to values
+		// similar.convertSimilar();
+		// System.out.println("Edoal inference file Saved in " +
+		// ConfigManager.getFilePath() +
+		// "edoal.txt");
+	}
+}

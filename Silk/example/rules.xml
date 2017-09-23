@@ -5,6 +5,7 @@
       <Prefix id="owl" namespace="http://www.w3.org/2002/07/owl#"/>
       <Prefix id="aml" namespace="https://w3id.org/i40/aml/"/>
       <Prefix id="aml2" namespace="https://w3id.org/i40/aml2/"/>
+      <Prefix id="dc11" namespace="http://purl.org/dc/elements/1.1/"/>
     </Prefixes>
         <DataSources>
           <Dataset id="data1" type="file">
@@ -41,18 +42,33 @@
           </Compare>
         <Filter/>
       </LinkageRule>     
+      </Interlink>     
+
+     <Interlink id="SameIdentifiers">
+        <SourceDataset dataSource="data1" var="a" typeUri="">
+      </SourceDataset>
+        <TargetDataset dataSource="data2" var="b" typeUri="">
+      </TargetDataset>
+        <LinkageRule linkType="&lt;http://www.w3.org/2002/07/owl#sameAs&gt;">
+        <Compare id="equality3" required="false" weight="1" metric="equality" threshold="0.0" indexing="true">
+            <Input id="sourcePath4" path="/dc11:identifier"/><Input id="targetPath4" path="/dc11:identifier"/>
+          </Compare>
+        <Filter/>
+      </LinkageRule>     
       </Interlink>
-
-
-
-
-
-
+     <Interlink id="SameExternalReference">
+        <SourceDataset dataSource="data1" var="a" typeUri="">
+      </SourceDataset>
+        <TargetDataset dataSource="data2" var="b" typeUri="">
+      </TargetDataset>
+        <LinkageRule linkType="&lt;http://www.w3.org/2002/07/owl#sameAs&gt;">
+        <Compare id="equality4" required="false" weight="1" metric="equality" threshold="0.0" indexing="true">
+            <Input id="sourcePath5" path="/aml:refBaseClassPath"/><Input id="targetPath5" path="/aml2:refBaseClassPath"/>
+          </Compare>
+        <Filter/>
+      </LinkageRule>     
+      </Interlink>     
         </Interlinks>
-
-
-
-
         <Transforms>
           
         </Transforms>
