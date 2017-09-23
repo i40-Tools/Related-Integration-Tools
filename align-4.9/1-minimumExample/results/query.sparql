@@ -6,13 +6,27 @@ PREFIX xsd:<http://www.w3.org/2001/XMLSchema#>
 
 CONSTRUCT { ?s1 owl:sameAs ?s2 }
 WHERE {
-?s1 rdf:type ns0:ExternalReference .
+?s1 rdf:type ns0:RoleClass .
 {
-?s2 rdf:type ns1:ExternalReference .
+?s2 rdf:type ns1:RoleClass .
 }
-?s1 ns0:refBaseClassPath ?o3 .
-?s2 ns1:refBaseClassPath ?o5 .
-FILTER ( lcase(str(?o3)) = lcase(str(?o5)) )
+?s1 ns0:hasAttribute ?o3 .
+?s2 ns1:hasAttribute ?o5 .
+?o5 ns1:hasAttributeName "eClassVersion" .
+
+?o5 ns1:hasAttributeValue ?o8 .
+?o3 ns0:hasAttributeValue ?o7 .
+
+FILTER ( lcase(str(?o7)) = lcase(str(?o8)) )
+
+?o5 ns1:hasAttributeName "eClassClassificationClass" .
+
+?o5 ns1:hasAttributeValue ?o8 .
+?o3 ns0:hasAttributeValue ?o7 .
+
+FILTER ( lcase(str(?o7)) = lcase(str(?o8)) )
+
+
 }
 
 

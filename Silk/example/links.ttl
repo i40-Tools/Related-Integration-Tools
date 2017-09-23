@@ -1,0 +1,6 @@
+<https://w3id.org/i40/aml/Attribute1>  <http://www.w3.org/2002/07/owl#sameAs>  <https://w3id.org/i40/aml2/Attribute1> .
+<https://w3id.org/i40/aml/Attribute2>  <http://www.w3.org/2002/07/owl#sameAs>  <https://w3id.org/i40/aml2/Attribute2> .
+<https://w3id.org/i40/aml/Attribute5>  <http://www.w3.org/2002/07/owl#sameAs>  <https://w3id.org/i40/aml2/Attribute4> .
+<https://w3id.org/i40/aml/InterfaceClassLib1>  <http://www.w3.org/2002/07/owl#sameAs>  <https://w3id.org/i40/aml2/InterfaceClassLib1> .
+<https://w3id.org/i40/aml/Attribute3>  <http://www.w3.org/2002/07/owl#sameAs>  <https://w3id.org/i40/aml2/Attribute3> .
+<https://w3id.org/i40/aml/InterfaceClass1>  <http://www.w3.org/2002/07/owl#sameAs>  <https://w3id.org/i40/aml2/InterfaceClass1> .

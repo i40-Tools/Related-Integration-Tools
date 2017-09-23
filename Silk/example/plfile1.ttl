@@ -1,0 +1,51 @@
+<https://w3id.org/i40/aml2/CAEXFile1>
+	a	<https://w3id.org/i40/aml2/CAEXFile> ;
+	<https://w3id.org/i40/aml2/hasFileName>	"seed-Granularity-1.aml" ;
+	<https://w3id.org/i40/aml2/hasSchemaVersion>	"2.15" ;
+	<https://w3id.org/i40/aml2/hasAdditionalInfomation>	<https://w3id.org/i40/aml2/AdditionalInformation1>, <https://w3id.org/i40/aml2/AdditionalInformation2> ;
+	<https://w3id.org/i40/aml2/hasExternalReference>	<https://w3id.org/i40/aml2/ExternalReference1>, <https://w3id.org/i40/aml2/ExternalReference2> ;
+	<https://w3id.org/i40/aml2/hasInterfaceClassLib>	<https://w3id.org/i40/aml2/InterfaceClassLib1> .
+<https://w3id.org/i40/aml2/AdditionalInformation1>
+	a	<https://w3id.org/i40/aml2/AdditionalInformation> ;
+	<https://w3id.org/i40/aml2/hasAutomationMLVersion>	"2.0"^^<http://www.w3.org/2001/XMLSchema#string> .
+<https://w3id.org/i40/aml2/AdditionalInformation2>
+	a	<https://w3id.org/i40/aml2/AdditionalInformation> ;
+	<https://w3id.org/i40/aml2/hasWriterID>	"AutomationML e.V."^^<http://www.w3.org/2001/XMLSchema#string> ;
+	<https://w3id.org/i40/aml2/hasWriterVendorURL>	"www.AutomationML.org"^^<http://www.w3.org/2001/XMLSchema#string> ;
+	<https://w3id.org/i40/aml2/hasWriterRelease>	"1.0"^^<http://www.w3.org/2001/XMLSchema#string> ;
+	<https://w3id.org/i40/aml2/hasWriterProjectTitle>	"AutomationML Tutorial Examples"^^<http://www.w3.org/2001/XMLSchema#string> .
+<https://w3id.org/i40/aml2/ExternalReference1>
+	a	<https://w3id.org/i40/aml2/ExternalReference> ;
+	<https://w3id.org/i40/aml2/externalReferenceAlias>	"BaseRoleClassLib"^^<http://www.w3.org/2001/XMLSchema#string> ;
+	<https://w3id.org/i40/aml2/refBaseClassPath>	"Libs/RoleClass Libraries/AutomationMLBaseRoleClassLib.aml"^^<http://www.w3.org/2001/XMLSchema#string> .
+<https://w3id.org/i40/aml2/ExternalReference2>
+	a	<https://w3id.org/i40/aml2/ExternalReference> ;
+	<https://w3id.org/i40/aml2/externalReferenceAlias>	"BaseInterfaceClassLib"^^<http://www.w3.org/2001/XMLSchema#string> ;
+	<https://w3id.org/i40/aml2/refBaseClassPath>	"Libs/InterfaceClass Libraries/AutomationMLInterfaceClassLib.aml"^^<http://www.w3.org/2001/XMLSchema#string> .
+<https://w3id.org/i40/aml2/InterfaceClassLib1>
+	a	<https://w3id.org/i40/aml2/InterfaceClassLib> ;
+	<https://w3id.org/i40/aml2/hasAttributeName>	"UserDefinedClassLib"^^<http://www.w3.org/2001/XMLSchema#string> ;
+	<https://w3id.org/i40/aml2/hasInterfaceClass>	<https://w3id.org/i40/aml2/InterfaceClass1> .
+<https://w3id.org/i40/aml2/InterfaceClass1>
+	a	<https://w3id.org/i40/aml2/InterfaceClass> ;
+	<https://w3id.org/i40/aml2/hasAttributeName>	"BASIC_19-20-06-04 Digital input/output (industry microcomputer)"^^<http://www.w3.org/2001/XMLSchema#string> ;
+	<https://w3id.org/i40/aml2/hasAttribute>	<https://w3id.org/i40/aml2/Attribute1>, <https://w3id.org/i40/aml2/Attribute2>, <https://w3id.org/i40/aml2/Attribute3>, <https://w3id.org/i40/aml2/Attribute4> .
+<https://w3id.org/i40/aml2/Attribute1>
+	a	<https://w3id.org/i40/aml2/Attribute> ;
+	<https://w3id.org/i40/aml2/hasAttributeName>	"eClassVersion"^^<http://www.w3.org/2001/XMLSchema#string> ;
+	<https://w3id.org/i40/aml2/hasAttributeValue>	"9.0"^^<http://www.w3.org/2001/XMLSchema#string> .
+<https://w3id.org/i40/aml2/Attribute2>
+	a	<https://w3id.org/i40/aml2/Attribute> ;
+	<https://w3id.org/i40/aml2/hasAttributeName>	"eClassClassificationClass"^^<http://www.w3.org/2001/XMLSchema#string> ;
+	<https://w3id.org/i40/aml2/hasAttributeValue>	"19200604"^^<http://www.w3.org/2001/XMLSchema#string> .
+<https://w3id.org/i40/aml2/Attribute3>
+	a	<https://w3id.org/i40/aml2/Attribute> ;
+	<https://w3id.org/i40/aml2/hasAttributeName>	"eClassIRDI"^^<http://www.w3.org/2001/XMLSchema#string> ;
+	<https://w3id.org/i40/aml2/hasAttributeValue>	"0173-1---BASIC_1_1#04-AFX029#001"^^<http://www.w3.org/2001/XMLSchema#string> .
+<https://w3id.org/i40/aml2/Attribute4>
+	a	<https://w3id.org/i40/aml2/Attribute> ;
+	<https://w3id.org/i40/aml2/hasAttributeName>	"Polystyrene weight portion of the individual packaging"^^<http://www.w3.org/2001/XMLSchema#string> ;
+	<https://w3id.org/i40/aml2/hasRefSemantic>	<https://w3id.org/i40/aml2/RefSemantic1> .
+<https://w3id.org/i40/aml2/RefSemantic1>
+	a	<https://w3id.org/i40/aml2/RefSemantic> ;
+	<https://w3id.org/i40/aml2/hasCorrespondingAttributePath>	"ECLASS:0173-1#02-AAS630#001"^^<http://www.w3.org/2001/XMLSchema#string> .
