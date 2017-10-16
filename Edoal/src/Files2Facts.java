@@ -2,28 +2,39 @@
 
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 import org.apache.jena.rdf.model.Model;
+import org.apache.jena.rdf.model.ModelFactory;
 import org.apache.jena.rdf.model.RDFNode;
 import org.apache.jena.rdf.model.Statement;
 import org.apache.jena.rdf.model.StmtIterator;
+import org.apache.jena.util.FileManager;
 
+import industryStandard.AML;
 import uni.bonn.krextor.Krextor;
+import util.ConfigManager;
 
 /**
- * Reads the RDF files and convert them to Datalog facts
+ * Reads the RDF files and convert them to EDOAL model
  * 
  * @author Irlan 28.06.2016
  */
-public class Files2Facts {
+public class Files2Facts  {
 	public RDFNode object;
 	public RDFNode predicate;
 	public RDFNode subject;
 	public ArrayList<File> files;
 	public Model model;
-
+	private LinkedHashSet<String> subjectsToWrite;
 	/**
 	 * Converts the file to turtle format based on Krextor
 	 * 
@@ -41,6 +52,82 @@ public class Files2Facts {
 			i++;
 		}
 	}
+
+	/**
+	 * This function Generates Evaluation model.
+	 * 
+	 * @param path
+	 * @throws Exception
+	 */
+	public void generateModel(String path) throws Exception {
+		int i = 1;
+		AML aml = new AML();
+		for (File file : files) {
+			// pass in the writers
+			if (!file.getName().equals("seed.ttl")) {
+				createModel(file, i++, "aml", aml);
+			}
+		}
+	}
+
+
+
+
+/**
+ * This function reads the RDF files and extract their contents for creating
+ * a generic model from RDF.
+ * 
+ * @param file
+ * @param number
+ * @param standard
+ * @return
+ * @throws Exception
+ */
+public String createModel(File file, int number, String standard, AML aml) throws Exception {
+
+	InputStream inputStream = FileManager.get().open(file.getAbsolutePath());
+	Model model = ModelFactory.createDefaultModel();
+	model.read(new InputStreamReader(inputStream), null, "TURTLE");
+	subjectsToWrite = new LinkedHashSet<String>();
+	switch (standard) {
+
+	case "aml":
+		aml.setModel(model);
+		aml.setNumber(number);
+		aml.addsDataforAML(); // process required data for AML
+
+		writeData(aml);
+	}
+	return "";
+}
+	
+/**
+ * This function create AML model files. Files are created based on key in
+ * the hashMap. *
+ * 
+ * @param aml
+ * @throws FileNotFoundException
+ */
+private void writeData(AML aml) throws FileNotFoundException {
+	try {
+		Set<String> predicates = aml.generic.keySet();
+		// gets predicates to name the data files
+		for (String i : predicates) {
+			// name files as predicates
+			PrintWriter documentwriter = new PrintWriter(
+					ConfigManager.getFilePath() + "Edoal/model/" + i + ".txt");
+			Collection<String> values = aml.generic.get(i);
+			// for every predicate get its value
+			for (String val : values) {
+				documentwriter.println(val);
+			}
+
+			documentwriter.close();
+		}
+	} catch (Exception e) {
+		e.printStackTrace();
+	}
+}
 
 	/**
 	 * Read the RDF files of a given path

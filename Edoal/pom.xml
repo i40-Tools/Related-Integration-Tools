@@ -10,6 +10,29 @@
     <artifactId>jena-arq</artifactId>
     <version>3.4.0</version>
 </dependency>
+<dependency>
+       <groupId>org.slf4j</groupId>
+       <artifactId>slf4j-api</artifactId>
+       <version>1.7.5</version>
+   </dependency>
+   <dependency>
+       <groupId>org.slf4j</groupId>
+       <artifactId>slf4j-log4j12</artifactId>
+       <version>1.7.5</version>
+   </dependency>
+
+	<dependency>
+			<groupId>com.sun.xsom</groupId>
+			<artifactId>xsom</artifactId>
+			<version>20140925</version>
+		</dependency>
+		<dependency>
+			<groupId>edu.umd.cs</groupId>
+			<artifactId>psl-groovy</artifactId>
+			<version>1.2.1</version>
+		</dependency>
+
+
 	</dependencies>
   <build>
     <sourceDirectory>src</sourceDirectory>

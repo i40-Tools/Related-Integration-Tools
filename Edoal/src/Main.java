@@ -1,10 +1,14 @@
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.lang.reflect.InvocationTargetException;
+
+import javax.script.ScriptException;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.jena.query.Dataset;
@@ -17,36 +21,27 @@ import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.RDFNode;
 import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.util.FileManager;
+import org.codehaus.groovy.control.CompilationFailedException;
+
+import groovy.lang.Script;
+import groovy.util.ResourceException;
+import util.ConfigManager;
+
 /**
  * This class uses Edoal Queries to find alignment.
+ * 
  * @author omar
  *
  */
 
 public class Main {
 
-	/*
-	 * Preprocess rdf files for two ontologies.
-	 */
-	void preprocessRdf() throws FileNotFoundException, IOException {
-		String content = IOUtils.toString(
-				new FileInputStream(ConfigManager.getFilePath() + "plfile1.ttl"), "UTF-8");
-		content = content.replaceAll("https://w3id.org/i40/aml", "https://w3id.org/i40/aml2");
-		content = content.replaceAll("dateTime", "date");
-		content = content.replaceAll(":ConnectionPoint", "");
-		IOUtils.write(content, new FileOutputStream(ConfigManager.getFilePath() + "plfile1.ttl"),
-				"UTF-8");
+	public static void main(String[] args) throws Throwable {
 
-		content = IOUtils.toString(new FileInputStream(ConfigManager.getFilePath() + "plfile0.ttl"),
-				"UTF-8");
-		content = content.replaceAll("dateTime", "date");
-		content = content.replaceAll(":ConnectionPoint", "");
-		IOUtils.write(content, new FileOutputStream(ConfigManager.getFilePath() + "plfile0.ttl"),
-				"UTF-8");
-
-	}
-
-	public static void main(String[] args) throws Exception {
+		// Report.getReport(ConfigManager.getExperimentFolder());
+		// Report.getResults();
+		//
+		// System.exit(0);
 
 		Files2Facts filesAMLInRDF = new Files2Facts();
 		filesAMLInRDF.readFiles(ConfigManager.getFilePath(), ".aml", ".opcua", ".xml");
@@ -93,8 +88,7 @@ public class Main {
 					+ "PREFIX xsd:<http://www.w3.org/2001/XMLSchema#>"
 					+ "Select * where{ ?x ?y ?z } ";
 
-			try (QueryExecution qexec1 = QueryExecutionFactory
-					.create(queryString, model)) {
+			try (QueryExecution qexec1 = QueryExecutionFactory.create(queryString, model)) {
 				ResultSet results = qexec1.execSelect();
 				for (; results.hasNext();) {
 					QuerySolution soln = results.nextSolution();
@@ -110,13 +104,74 @@ public class Main {
 			}
 		}
 		// final result saved
-		PrintWriter writer = new PrintWriter(ConfigManager.getFilePath() + "edoal.txt", "UTF-8");
+		new File(ConfigManager.getFilePath() + "Edoal/Precision").mkdirs();
+
+		new File(ConfigManager.getFilePath() + "Edoal/model").mkdirs();
+
+		PrintWriter writer = new PrintWriter(ConfigManager.getFilePath() + "Edoal/edoal.txt",
+				"UTF-8");
 		writer.println(result);
 		writer.close();
-		
+
+		similar.generateModel(ConfigManager.getFilePath());
 		// convert object to values
-		similar.convertSimilar();
-		System.out.println("Edoal inference file Saved in " + ConfigManager.getFilePath() + 
-				           "edoal.txt");
+		similar.convertSimilar("Edoal/edoal.txt");
+		evaluation();
+		System.out.println(
+				"Edoal inference file Saved in " + ConfigManager.getFilePath() + "edoal.txt");
 	}
+
+	/*
+	 * Preprocess rdf files for two ontologies.
+	 */
+	void preprocessRdf() throws FileNotFoundException, IOException {
+		String content = IOUtils.toString(
+				new FileInputStream(ConfigManager.getFilePath() + "plfile1.ttl"), "UTF-8");
+		content = content.replaceAll("https://w3id.org/i40/aml", "https://w3id.org/i40/aml2");
+		content = content.replaceAll("dateTime", "date");
+		content = content.replaceAll(":ConnectionPoint", "");
+		IOUtils.write(content, new FileOutputStream(ConfigManager.getFilePath() + "plfile1.ttl"),
+				"UTF-8");
+
+		content = IOUtils.toString(new FileInputStream(ConfigManager.getFilePath() + "plfile0.ttl"),
+				"UTF-8");
+		content = content.replaceAll("dateTime", "date");
+		content = content.replaceAll(":ConnectionPoint", "");
+		IOUtils.write(content, new FileOutputStream(ConfigManager.getFilePath() + "plfile0.ttl"),
+				"UTF-8");
+
+	}
+
+	/**
+	 * This function is a general method to execute the Evaluation.
+	 * 
+	 * @throws CompilationFailedException
+	 * @throws IOException
+	 * @throws ScriptException
+	 * @throws IllegalAccessException
+	 * @throws InstantiationException
+	 * @throws SecurityException
+	 * @throws NoSuchMethodException
+	 * @throws InvocationTargetException
+	 * @throws IllegalArgumentException
+	 * @throws groovy.util.ScriptException
+	 * @throws ResourceException
+	 */
+	public static void evaluation() throws CompilationFailedException, IOException, ScriptException,
+			IllegalAccessException, IllegalArgumentException, InvocationTargetException,
+			NoSuchMethodException, SecurityException, InstantiationException, ResourceException,
+			groovy.util.ScriptException {
+		// Needed to run the PSL rules part
+		Script script = new Script() {
+			@Override
+			public Object run() {
+				return null;
+			}
+		};
+		try {
+			script.evaluate(new File("src/evaluation/Evaluation.groovy"));
+		} catch (Exception e) {
+		}
+	}
+
 }

@@ -1,4 +1,3 @@
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -16,6 +15,8 @@ import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.rdf.model.Statement;
 import com.hp.hpl.jena.rdf.model.StmtIterator;
 import com.hp.hpl.jena.util.FileManager;
+
+import util.ConfigManager;
 
 /**
  * Converts computed results from object to values by getting there rdf
@@ -45,22 +46,18 @@ public class Similar extends Files2Facts {
 	public void convertSimilar(String path) throws FileNotFoundException {
 		ArrayList<String> aml1List = new ArrayList<String>();
 		ArrayList<String> aml2List = new ArrayList<String>();
-		ArrayList<String> aml1negList = new ArrayList<String>();
-		ArrayList<String> aml2negList = new ArrayList<String>();
 		ArrayList<String> aml1Values = new ArrayList<String>();
 		ArrayList<String> aml2Values = new ArrayList<String>();
-		ArrayList<String> aml1negValues = new ArrayList<String>();
-		ArrayList<String> aml2negValues = new ArrayList<String>();
 		duplicateCheck = new ArrayList<String>();
 
 		try {
 			// Start reading computed result from here
 			try (BufferedReader br = new BufferedReader(
-					new FileReader(new File(ConfigManager.getFilePath() +path)))) {
+					new FileReader(new File(ConfigManager.getFilePath() + path)))) {
 				String line;
 				while ((line = br.readLine()) != null) {
 					String values[] = line.split(",");
-					if (values.length == 2) {
+					if (values.length > 1) {
 						// add values which are true
 						aml1List.add(values[0].replaceAll("aml1:", ""));
 						aml2List.add(values[1].replaceAll("aml2:", ""));
@@ -104,19 +101,22 @@ public class Similar extends Files2Facts {
 		// update orignal computed results with the new positive values
 		String results = "";
 		for (int j = 0; j < aml1Values.size(); j++) {
+
+			if(j<aml2Values.size()){
 			if (!aml1Values.get(j).equals("aml1:eClassIRDI")
 					&& !aml1Values.get(j).equals("aml1:eClassClassificationClass")
 					&& !aml1Values.get(j).equals("aml1:eClassVersion")) {
 
-				if (!duplicateCheck
-						.contains(aml1Values.get(j) + "\t" + aml2Values.get(j) + "\t" + "1")) {
-					duplicateCheck.add(aml1Values.get(j) + "\t" + aml2Values.get(j) + "\t" + "1");
+					if (!duplicateCheck
+							.contains(aml1Values.get(j) + "\t" + aml2Values.get(j) + "\t" + "1")) {
+						duplicateCheck
+								.add(aml1Values.get(j) + "\t" + aml2Values.get(j) + "\t" + "1");
 
-					results += aml1Values.get(j) + "\t" + aml2Values.get(j) + "\t" + "1" + "\n";
-
+						results += aml1Values.get(j) + "\t" + aml2Values.get(j) + "\t" + "1" + "\n";
 				}
 			}
 		}
+	}
 
 		similar.println(results);
 
@@ -125,11 +125,15 @@ public class Similar extends Files2Facts {
 		// Stores aml values in single array
 		// required for integration.
 		for (int i = 0; i < aml1Values.size(); i++) {
-			amlValues.add(aml1Values.get(i).replaceAll("aml1:", ""));
-			amlValues.add(aml2Values.get(i).replaceAll("aml2:", ""));
+			if (aml2Values.size() < i) {
+
+				amlValues.add(aml1Values.get(i).replaceAll("aml1:", ""));
+				amlValues.add(aml2Values.get(i).replaceAll("aml2:", ""));
+			}
 		}
 		// removes duplicate
 		amlValues = new ArrayList<String>(new HashSet<String>(amlValues));
+		emulateNegativeResults(path);
 
 	}
 
@@ -138,7 +142,7 @@ public class Similar extends Files2Facts {
 	 * file. Negative Rules are emulated by take Cartesian product of initial
 	 * seed.
 	 */
-	public void emulateNegativeResults() {
+	public void emulateNegativeResults(String path) {
 		try {
 			ArrayList<String> aml1negList = new ArrayList<String>();
 			ArrayList<String> aml2negList = new ArrayList<String>();
@@ -152,7 +156,7 @@ public class Similar extends Files2Facts {
 
 			// Read all Objects for the cartesian product
 			try (BufferedReader br = new BufferedReader(new FileReader(
-					new File(ConfigManager.getFilePath() + "PSL/test/hasDocument.txt")))) {
+					new File(ConfigManager.getFilePath() + "Silk/model/hasDocument.txt")))) {
 				String line;
 				while ((line = br.readLine()) != null) {
 					line = line.trim();
@@ -172,7 +176,7 @@ public class Similar extends Files2Facts {
 
 			// Read all Objects type for the Cartesian product
 			try (BufferedReader br = new BufferedReader(new FileReader(
-					new File(ConfigManager.getFilePath() + "PSL/test/hastype.txt")))) {
+					new File(ConfigManager.getFilePath() + "Silk/model/hastype.txt")))) {
 				String line;
 				while ((line = br.readLine()) != null) {
 					String values[] = line.split("\t");
@@ -190,8 +194,8 @@ public class Similar extends Files2Facts {
 
 			}
 
-			PrintWriter similar = new PrintWriter(new FileOutputStream(
-					new File(ConfigManager.getFilePath() + "PSL/test/similar.txt"), true));
+			PrintWriter similar = new PrintWriter(
+					new FileOutputStream(new File(ConfigManager.getFilePath() + path), true));
 
 			// Get all rdf object to values reference for all the objects
 			for (File file : files) {
@@ -249,7 +253,6 @@ public class Similar extends Files2Facts {
 			similar.close();
 		} catch (Exception e) {
 
-			e.printStackTrace();
 		}
 
 	}

@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='utf-8' standalone='no'?>
+<rdf:RDF xmlns='http://knowledgeweb.semanticweb.org/heterogeneity/alignment#'
+         xmlns:rdf='http://www.w3.org/1999/02/22-rdf-syntax-ns#'
+         xmlns:xsd='http://www.w3.org/2001/XMLSchema#'
+         xmlns:alext='http://exmo.inrialpes.fr/align/ext/1.0/'
+         xmlns:align='http://knowledgeweb.semanticweb.org/heterogeneity/alignment#'
+         xmlns:edoal='http://ns.inria.org/edoal/1.0/#'>
+<Alignment>
+  <xml>yes</xml>
+  <level>2EDOAL</level>
+  <type>**</type>
+  <onto1>
+    <Ontology rdf:about="https://w3id.org/i40/aml2#">
+      <location>file:c://converted.owl</location>
+      <formalism>
+        <Formalism align:name="OWL1.0" align:uri="http://www.w3.org/2002/07/owl#"/>
+      </formalism>
+    </Ontology>
+  </onto1>
+  <onto2>
+    <Ontology rdf:about="https://w3id.org/i40/aml#">
+      <location>file:c://converted-1.owl</location>
+      <formalism>
+        <Formalism align:name="OWL1.0" align:uri="http://www.w3.org/2002/07/owl#"/>
+      </formalism>
+    </Ontology>
+  </onto2>
+  <map>
+    <Cell rdf:about="http://exmo.inrialpes.fr/connectors-core#cell1">
+      <entity1>
+        <edoal:Class rdf:about="https://w3id.org/i40/aml2#RoleClass"/>
+      </entity1>
+      <entity2>
+        <edoal:Class>
+          <edoal:or rdf:parseType="Collection">
+            <edoal:Class rdf:about="https://w3id.org/i40/aml#RoleClass"/>
+          </edoal:or>
+        </edoal:Class>
+      </entity2>
+      <relation>=</relation>
+      <measure rdf:datatype='http://www.w3.org/2001/XMLSchema#float'>1.0</measure>
+      <edoal:linkkey>
+        <edoal:Linkkey>
+          <edoal:binding>
+            <edoal:Intersects>
+              <edoal:property1>
+                <edoal:Property>
+                  <edoal:compose rdf:parseType="Collection">
+                    <edoal:Property rdf:about="http://purl.org/dc/elements/1.1/identifier"/>
+                  </edoal:compose>
+                </edoal:Property>
+              </edoal:property1>
+              <edoal:property2>
+                <edoal:Property>
+                  <edoal:compose rdf:parseType="Collection">
+                    <edoal:Property rdf:about="http://purl.org/dc/elements/1.1/identifier"/>
+                  </edoal:compose>
+                </edoal:Property>
+              </edoal:property2>
+            </edoal:Intersects>
+          </edoal:binding>
+        </edoal:Linkkey>
+      </edoal:linkkey>
+    </Cell>
+  </map>
+</Alignment>
+</rdf:RDF>
+

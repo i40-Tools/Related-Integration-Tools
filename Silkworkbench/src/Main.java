@@ -7,9 +7,13 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.io.Writer;
+import java.lang.reflect.InvocationTargetException;
+
+import javax.script.ScriptException;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
+import org.codehaus.groovy.control.CompilationFailedException;
 import org.silkframework.Silk;
 
 import com.hp.hpl.jena.query.QueryExecution;
@@ -21,6 +25,10 @@ import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.rdf.model.RDFNode;
 import com.hp.hpl.jena.rdf.model.Resource;
 
+import groovy.lang.Script;
+import groovy.util.ResourceException;
+import util.ConfigManager;
+
 /**
  * This class uses Silk linkage rules to find alignment.
  * 
@@ -30,7 +38,12 @@ import com.hp.hpl.jena.rdf.model.Resource;
 
 public class Main {
 
-	public static void main(String[] args) throws Exception {
+	public static void main(String[] args) throws Throwable {
+
+		// Report.getReport(ConfigManager.getExperimentFolder());
+		// Report.getResults();
+		// Report.getSize();
+		// System.exit(0);
 
 		Files2Facts filesAMLInRDF = new Files2Facts();
 		filesAMLInRDF.readFiles(ConfigManager.getFilePath(), ".aml", ".opcua", ".xml");
@@ -43,22 +56,29 @@ public class Main {
 		runSilkInference();
 		String result = formatResult();
 		cleanFiles();
+		new File(ConfigManager.getFilePath() + "Silk/Precision").mkdirs();
+
+		new File(ConfigManager.getFilePath() + "Silk/model").mkdirs();
 
 		// final result saved
-		PrintWriter writer = new PrintWriter(ConfigManager.getFilePath() + "silk.txt", "UTF-8");
+		PrintWriter writer = new PrintWriter(ConfigManager.getFilePath() + "Silk/silk.txt",
+				"UTF-8");
 		writer.println(result);
 		writer.close();
 
+		similar.generateModel(ConfigManager.getFilePath());
+
 		// convert object to values
-		similar.convertSimilar("silk.txt");
+		similar.convertSimilar("Silk/silk.txt");
 		System.out.println(
 				"Silk inference file Saved in " + ConfigManager.getFilePath() + "silk.txt");
+		evaluation();
 	}
 
 	/*
 	 * Preprocess rdf files for two ontologies.
 	 */
-	void preprocessRdf() throws FileNotFoundException, IOException {
+	public void preprocessRdf() throws FileNotFoundException, IOException {
 		String content = IOUtils.toString(
 				new FileInputStream(ConfigManager.getFilePath() + "plfile1.ttl"), "UTF-8");
 		content = content.replaceAll("https://w3id.org/i40/aml", "https://w3id.org/i40/aml2");
@@ -82,7 +102,7 @@ public class Main {
 	 * 
 	 * @param file
 	 */
-	void copyFile(String file) {
+	public void copyFile(String file) {
 		File source = new File(ConfigManager.getFilePath() + file);
 		File dest = new File(file);
 		try {
@@ -97,7 +117,7 @@ public class Main {
 	 * This function reads output for given rule and returns it. Used for
 	 * concatination of all the results.
 	 */
-	static String readOutput() throws FileNotFoundException, IOException {
+	public static String readOutput() throws FileNotFoundException, IOException {
 		try (FileInputStream inputStream = new FileInputStream("links.ttl")) {
 			String everything = IOUtils.toString(inputStream, "UTF-8");
 			return everything;
@@ -109,7 +129,7 @@ public class Main {
 	 * 
 	 * @throws IOException
 	 */
-	static void cleanFiles() throws IOException {
+	public static void cleanFiles() throws IOException {
 		File file = new File("plfile0.ttl");
 		file.delete();
 		file = new File("plfile1.ttl");
@@ -157,7 +177,7 @@ public class Main {
 	 * 
 	 * @return
 	 */
-	static String formatResult() {
+	public static String formatResult() {
 		Model modelY = ModelFactory.createDefaultModel();
 		modelY.read("model.ttl", "Turtle");
 		String result = "";
@@ -183,6 +203,38 @@ public class Main {
 		}
 
 		return result;
+	}
+
+	/**
+	 * This function is a general method to execute the Evaluation.
+	 * 
+	 * @throws CompilationFailedException
+	 * @throws IOException
+	 * @throws ScriptException
+	 * @throws IllegalAccessException
+	 * @throws InstantiationException
+	 * @throws SecurityException
+	 * @throws NoSuchMethodException
+	 * @throws InvocationTargetException
+	 * @throws IllegalArgumentException
+	 * @throws groovy.util.ScriptException
+	 * @throws ResourceException
+	 */
+	public static void evaluation() throws CompilationFailedException, IOException, ScriptException,
+			IllegalAccessException, IllegalArgumentException, InvocationTargetException,
+			NoSuchMethodException, SecurityException, InstantiationException, ResourceException,
+			groovy.util.ScriptException {
+		// Needed to run the PSL rules part
+		Script script = new Script() {
+			@Override
+			public Object run() {
+				return null;
+			}
+		};
+		try {
+			script.evaluate(new File("src/evaluation/Evaluation.groovy"));
+		} catch (Exception e) {
+		}
 	}
 
 }

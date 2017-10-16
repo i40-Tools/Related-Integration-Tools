@@ -2,6 +2,7 @@
  * @Copyright EIS University of Bonn
  */
 
+package util;
 
 import java.io.File;
 import java.io.InputStream;
@@ -15,6 +16,7 @@ import com.hp.hpl.jena.rdf.model.RDFNode;
 import com.hp.hpl.jena.rdf.model.Statement;
 import com.hp.hpl.jena.rdf.model.StmtIterator;
 import com.hp.hpl.jena.util.FileManager;
+
 
 
 /**
@@ -118,6 +120,16 @@ public class ConfigManager {
 		return filePath;
 	}
 
+	/**
+	 * Reads the configuration of the experiment folder 
+	 * @return true or false
+	 */
+	public static String getExperimentFolder() {
+		String filePath = loadConfig().getProperty(URI_NAMESPACE + "experimentFolder");
+		return filePath;
+	}
+	
+	
 	/**
 	 * Get the general file path where all the files are located
 	 * 
