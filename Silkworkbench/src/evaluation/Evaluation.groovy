@@ -87,13 +87,13 @@ public class Evaluation
 
 	}
 
-		/**
+	/**
 	 * Evaluates the results of inference versus expected truth values
 	 */
 	public void evalResults() {
 		testDir = util.ConfigManager.getFilePath() + "Silk/"
 		
-		File file = new File(testDir+"GoldStandard.txt");
+		File file = new File(util.ConfigManager.getFilePath()+"GoldStandard.txt");
 		if (!file.exists()) {
 			System.out.println("Error :: GoldStandard Missing in" + testDir + "model");
 			System.exit(0);
@@ -105,7 +105,7 @@ public class Evaluation
 		InserterUtils.loadDelimitedDataTruth(insert, testDir + "silk.txt")
 
 		insert  =  data.getInserter(eval, truthPartition)
-		InserterUtils.loadDelimitedDataTruth(insert, testDir + "GoldStandard.txt")
+		InserterUtils.loadDelimitedDataTruth(insert, util.ConfigManager.getFilePath() + "GoldStandard.txt")
 		Database resultsDB = data.getDatabase(targetsPartition, [eval] as Set)
 		Database truthDB = data.getDatabase(truthPartition, [eval] as Set)
 		DiscretePredictionComparator dpc = new DiscretePredictionComparator(resultsDB)
