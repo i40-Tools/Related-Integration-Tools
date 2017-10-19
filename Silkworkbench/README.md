@@ -56,7 +56,6 @@ Please add GoldStandard at the root for evaluation.
 You can obtain GoldStandard using CPSDocument Generator.
 
 If you want to reproduce the results for paper, please use the report class.
-```
 ## Updating Silk Rules 
 Please navigate to src folder and change files starting with rules.
 
@@ -77,6 +76,4 @@ Here you can update, remove or add rules for RDF conversion.
 
 * Copyright (C) 2015-2017 EIS Uni-Bonn
 * Licensed under the Apache License
-
-``
 
