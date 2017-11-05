@@ -246,6 +246,27 @@ PREFIX xsd:<http://www.w3.org/2001/XMLSchema#>
 
 CONSTRUCT { ?s1 owl:sameAs ?s2 }
 WHERE {
+?s1 rdf:type ns0:InterfaceClassLib .
+{
+?s2 rdf:type ns1:InterfaceClassLib .
+}
+?s1 ns0:hasAttributeName ?o3 .
+?s2 ns1:hasAttributeName ?o5 .
+FILTER ( lcase(str(?o3)) = lcase(str(?o5)) )
+}
+
+--
+
+
+PREFIX ns0:<https://w3id.org/i40/aml/>
+PREFIX rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX owl:<http://www.w3.org/2002/07/owl#>
+PREFIX ns2:<http://purl.org/dc/elements/1.1/>
+PREFIX ns1:<https://w3id.org/i40/aml2/>
+PREFIX xsd:<http://www.w3.org/2001/XMLSchema#>
+
+CONSTRUCT { ?s1 owl:sameAs ?s2 }
+WHERE {
 ?s1 rdf:type ns0:SystemUnitClass .
 {
 ?s2 rdf:type ns1:SystemUnitClass .
