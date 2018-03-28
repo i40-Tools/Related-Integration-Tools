@@ -60,8 +60,9 @@ If you want to reproduce the results for paper, please use the report class.
 
 ## Updating EDOAL Rules 
 Please navigate to src folder and change the query.sparql
-You will need to obtain the query from edoal command tool for your rule.
-For more information Please see edoal commandline version with rules examples.
+You will need to obtain the query from EDOAL command tool for your rule.
+For more information Please see EDOAL Commandline version with rules examples: 
+https://github.com/i40-Tools/Related-Integration-Tools/tree/master/Edoal%20(command%20Line)
 
 
 
