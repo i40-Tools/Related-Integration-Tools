@@ -1,4 +1,4 @@
-# Edoal Rules processing for I4.0 standards
+# EDOAL Rules processing for I4.0 standards
 
 ## Dependencies
 This tool depends on the following software
@@ -10,14 +10,14 @@ Donwload Eclipse groovy plugin: https://github.com/groovy/groovy-eclipse/wiki
 Makes sure to download plugin according to your ide version.
 
 ## IDE support Running Project in Eclipse
-The quick and easy way to start compiling, running and coding **Edoal** is we provide a java project in Eclipse .
+The quick and easy way to start compiling, running and coding **EDOAL** is to run the java project in Eclipse that we provide.
 
 Thus, you need to install tools:
 * Eclipse IDE: https://www.eclipse.org/downloads/
 
 Import the project in eclipse and click build. The maven dependancies will be downloaded automatically.                      
 
-Add config.ttl to the root of your project. This file configures how the experiments will be run                
+Add the config.ttl file to the root of your project. This file configures how the experiments will be run                
 
 You can find Heterogeneity examples at :                         
 https://github.com/i40-Tools/HeterogeneityExampleData                                
@@ -50,14 +50,15 @@ uri:path refers to Heterogeneity path
 uri:URI refers to the ontology path (optional)
 ```
 
-Just give path of AML heterogenity and folders will be created automatically.                  
+Provide the path of the AML files and folders will be created automatically.                  
 
-Please add GoldStandard at the root for evaluation.
-You can obtain GoldStandard using CPSDocument Generator.
+Please add the GoldStandard file at the root for evaluation.
+The GoldStandard can be obtained by using CPSDocument Generator:
+https://github.com/i40-Tools/CPSDocumentGenerator.
 
 If you want to reproduce the results for paper, please use the report class.
 
-## Updating Edoal Rules 
+## Updating EDOAL Rules 
 Please navigate to src folder and change the query.sparql
 You will need to obtain the query from edoal command tool for your rule.
 For more information Please see edoal commandline version with rules examples.
@@ -74,11 +75,11 @@ Read more at : https://github.com/EIS-Bonn/krextor
 
 Please navigate to /resources/amlrules/aml.xsl
 
-Here you can update, remove or add rules for RDF conversion.
+Here you can update, remove or add rules for XML to RDF conversion.
 
 
 ## License
 
-* Copyright (C) 2015-2017 EIS Uni-Bonn
+* Copyright (C) 2015-2018 EIS Uni-Bonn
 * Licensed under the Apache License
 
