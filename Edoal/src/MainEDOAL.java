@@ -34,7 +34,7 @@ import util.ConfigManager;
  *
  */
 
-public class Main {
+public class MainEDOAL {
 
 	public static void main(String[] args) throws Throwable {
 
@@ -47,7 +47,7 @@ public class Main {
 		filesAMLInRDF.readFiles(ConfigManager.getFilePath(), ".aml", ".opcua", ".xml");
 		filesAMLInRDF.convertRdf();
 		Similar similar = new Similar();
-		new Main().preprocessRdf();
+		new MainEDOAL().preprocessRdf();
 		similar.readFiles(ConfigManager.getFilePath(), ".ttl", ".opcua", ".xml");
 
 		// gets all queries seperated by --

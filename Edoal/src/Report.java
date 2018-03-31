@@ -27,7 +27,7 @@ import util.ConfigManager;
  *
  */
 
-public class Report extends Main {
+public class Report extends MainEDOAL {
 
 	// run bulk report
 	static void getReport(String root) throws Throwable {
@@ -44,7 +44,7 @@ public class Report extends Main {
 						filesAMLInRDF.readFiles(ConfigManager.getFilePath(), ".aml", ".opcua", ".xml");
 						filesAMLInRDF.convertRdf();
 						Similar similar = new Similar();
-						new Main().preprocessRdf();
+						new MainEDOAL().preprocessRdf();
 						similar.readFiles(ConfigManager.getFilePath(), ".ttl", ".opcua", ".xml");
 
 						// gets all queries seperated by --
@@ -128,7 +128,7 @@ public class Report extends Main {
 						filesAMLInRDF.readFiles(ConfigManager.getFilePath(), ".aml", ".opcua", ".xml");
 						filesAMLInRDF.convertRdf();
 						Similar similar = new Similar();
-						new Main().preprocessRdf();
+						new MainEDOAL().preprocessRdf();
 						similar.readFiles(ConfigManager.getFilePath(), ".ttl", ".opcua", ".xml");
 
 						// gets all queries seperated by --
