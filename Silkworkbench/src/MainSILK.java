@@ -36,7 +36,7 @@ import util.ConfigManager;
  *
  */
 
-public class Main {
+public class MainSILK {
 
 	public static void main(String[] args) throws Throwable {
 
@@ -49,7 +49,7 @@ public class Main {
 		filesAMLInRDF.readFiles(ConfigManager.getFilePath(), ".aml", ".opcua", ".xml");
 		filesAMLInRDF.convertRdf();
 		Similar similar = new Similar();
-		new Main().preprocessRdf();
+		new MainSILK().preprocessRdf();
 		similar.readFiles(ConfigManager.getFilePath(), ".ttl", ".opcua", ".xml");
 
 		// preprocess data sources
@@ -149,8 +149,8 @@ public class Main {
 	 * @throws IOException
 	 */
 	public static void runSilkInference() throws FileNotFoundException, IOException {
-		new Main().copyFile("plfile0.ttl");
-		new Main().copyFile("plfile1.ttl");
+		new MainSILK().copyFile("plfile0.ttl");
+		new MainSILK().copyFile("plfile1.ttl");
 		File file = new File("rules.xml");
 
 		Silk.executeFile(file, "AttributeRefSemantic", 4, true);

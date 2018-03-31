@@ -16,7 +16,7 @@ import util.ConfigManager;
  *
  */
 
-public class Report extends Main {
+public class Report extends MainSILK {
 
 	// run bulk report
 	static void getReport(String root) throws Throwable {
@@ -33,7 +33,7 @@ public class Report extends Main {
 						filesAMLInRDF.readFiles(ConfigManager.getFilePath(), ".aml", ".opcua", ".xml");
 						filesAMLInRDF.convertRdf();
 						Similar similar = new Similar();
-						new Main().preprocessRdf();
+						new MainSILK().preprocessRdf();
 						similar.readFiles(ConfigManager.getFilePath(), ".ttl", ".opcua", ".xml");
 
 						// preprocess data sources
@@ -70,7 +70,7 @@ public class Report extends Main {
 					filesAMLInRDF.readFiles(ConfigManager.getFilePath(), ".aml", ".opcua", ".xml");
 					filesAMLInRDF.convertRdf();
 					Similar similar = new Similar();
-					new Main().preprocessRdf();
+					new MainSILK().preprocessRdf();
 					similar.readFiles(ConfigManager.getFilePath(), ".ttl", ".opcua", ".xml");
 
 					// preprocess data sources
